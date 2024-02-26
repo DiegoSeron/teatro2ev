@@ -8,10 +8,10 @@ defineProps<{
 
 <template>
   <article class="cardInformation">
-    <div class="cardInformation__img taquilla">
+    <div :class="[ 'cardInformation__img', plusClass ]"  >
 
     </div>
-    <div class="cardInformation__text {{ plusClass }}">
+    <div class="cardInformation__text">
       <h2>{{ title }}</h2>
     </div>
   </article>
