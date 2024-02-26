@@ -54,9 +54,9 @@ onMounted(async () => {
         <div class="information">
           <h3>Información</h3>
           <div class="information__data">
-            <h3></h3>
-            <h3></h3>
-            <h3></h3>
+            <h3>Género: {{ datosApi.genero }}</h3>
+            <h3>Duración: {{ datosApi.duracion }} minutos</h3>
+            <h3>Precio: {{ datosApi.precio }}€</h3>
           </div>
         </div>
       </div>
