@@ -40,7 +40,8 @@ onMounted(async () => {
           <img :src="'../src/assets/IMAGENES/' + datosApi.imagen" :alt="`${datosApi.titulo}`">
         </div>
         <div>
-          <a href="#" id="seleccionarButacas">SELECCIONAR BUTACAS</a>
+          <RouterLink to="/Butacas">SELECCIONAR BUTACAS</RouterLink>
+
         </div>
       </div>
       <div class="secundary">
