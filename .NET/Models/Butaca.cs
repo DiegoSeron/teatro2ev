@@ -9,10 +9,11 @@ public class Butaca
     public int ButacaId { get; set; }
     [Required]
     public bool Libre { get; set; }
-
-    [ForeignKey("Obra")]
+    [Required]
     public int ObraId { get; set; }
     public Obra Obra { get; set; }
+
+    
     public Butaca() { }
     public Butaca(int butacaId, bool libre, int obraId)
     {
@@ -24,15 +25,5 @@ public class Butaca
         // 
     }
 
-    public List<Butaca> GenerarButacas(int oId)
-        {
-            var butacas = new List<Butaca>();
-            for (var i = 1; i <= 100; i++)
-            {
-                 butacas.Add(new Butaca(butacaId: i, obraId: oId,libre: true)); // Suponiendo que inicialmente todas las butacas están libres
-            }
-            return butacas;
-        }
-
-
+    
 }

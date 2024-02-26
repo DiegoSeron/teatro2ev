@@ -2,22 +2,36 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Tickett.Models;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.VisualBasic;
 
 namespace Tickett.Data
 {
     public class ObraContext : DbContext
     {
-        public readonly Butaca butaca = new Butaca();
-
         public ObraContext(DbContextOptions<ObraContext> options)
             : base(options)
         {
 
         }
+        private IEnumerable<Butaca> GenerarButacas(int finButacaId, int obraId)
+        {
+            var butacas = new List<Butaca>();
+            for (int i = 1; i <= finButacaId; i++)
+            {
+                butacas.Add(new Butaca { ObraId =  obraId, ButacaId = i, Libre = true });
+            }
+            return butacas;
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Obra>().HasKey(o => o.ObraId);
+
+            modelBuilder.Entity<Obra>()
+                .HasMany(o => o.ListaButaca)
+                .WithOne()
+                .HasForeignKey("ObraId")
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<ObraReparto>()
                 .HasKey(o => new { o.ObraId, o.RepartoId });
@@ -33,35 +47,22 @@ namespace Tickett.Data
                 .HasForeignKey(pi => pi.RepartoId);
 
 
+
+
             modelBuilder.Entity<Obra>().HasData(
-                new Obra { ObraId = 1, Titulo = "Don Juan", Descripcion = "false", DiaObra = new DateTime(2024, 01, 13), HoraObra = new TimeSpan(17, 0, 0), Imagen = "donjuan.jpg", Genero = "Drama", Duracion = 105, Precio = 25 },
-                new Obra { ObraId = 2, Titulo = "Celestina", Descripcion = "false", DiaObra = new DateTime(2024, 01, 25), HoraObra = new TimeSpan(18, 30, 0), Imagen = "celestina.jpg", Genero = "Drama", Duracion = 120, Precio = 15 },
-                new Obra { ObraId = 3, Titulo = "Doble o nada", Descripcion = "false", DiaObra = new DateTime(2024, 02, 7), HoraObra = new TimeSpan(16, 0, 0), Imagen = "doble-o-nada.jpg", Genero = "Drama", Duracion = 115, Precio = 20 },
-                new Obra { ObraId = 4, Titulo = "Campeones", Descripcion = "false", DiaObra = new DateTime(2024, 02, 15), HoraObra = new TimeSpan(19, 15, 0), Imagen = "campeones.jpg", Genero = "Drama", Duracion = 140, Precio = 35 },
-                new Obra { ObraId = 5, Titulo = "El mago Pop", Descripcion = "false", DiaObra = new DateTime(2024, 02, 29), HoraObra = new TimeSpan(18, 0, 0), Imagen = "el-mago-pop.jpg", Genero = "Drama", Duracion = 135, Precio = 30 },
-                new Obra { ObraId = 6, Titulo = "El Rey Leon", Descripcion = "false", DiaObra = new DateTime(2024, 03, 03), HoraObra = new TimeSpan(12, 0, 0), Imagen = "ElReyLeon3Aniv200.jpg", Genero = "Drama", Duracion = 100, Precio = 10 },
-                new Obra { ObraId = 7, Titulo = "Fango", Descripcion = "false", DiaObra = new DateTime(2024, 03, 16), HoraObra = new TimeSpan(20, 0, 0), Imagen = "fango.jpg", Genero = "Drama", Duracion = 90, Precio = 40 },
-                new Obra { ObraId = 8, Titulo = "La Funcion que Sale Mal", Descripcion = "false", DiaObra = new DateTime(2024, 03, 21), HoraObra = new TimeSpan(20, 30, 0), Imagen = "funcion-sale.mal.jpg", Genero = "Drama", Duracion = 110, Precio = 30 },
-                new Obra { ObraId = 9, Titulo = "Ilusionate", Descripcion = "false", DiaObra = new DateTime(2024, 04, 04), HoraObra = new TimeSpan(15, 15, 0), Imagen = "ilusionate.jpg", Genero = "Drama", Duracion = 120, Precio = 15 },
-                new Obra { ObraId = 10, Titulo = "Jose el soñador", Descripcion = "false", DiaObra = new DateTime(2024, 04, 10), HoraObra = new TimeSpan(22, 15, 0), Imagen = "jose-el-sonador.jpg", Genero = "Drama", Duracion = 105, Precio = 25 },
-                new Obra { ObraId = 11, Titulo = "Laponia", Descripcion = "false", DiaObra = new DateTime(2024, 04, 23), HoraObra = new TimeSpan(21, 30, 0), Imagen = "laponia.jpg", Genero = "Drama", Duracion = 125, Precio = 20 },
-                new Obra { ObraId = 12, Titulo = "Las mil y una noches", Descripcion = "false", DiaObra = new DateTime(2024, 05, 01), HoraObra = new TimeSpan(19, 15, 0), Imagen = "las-mil-y-una-noches.jpg", Genero = "Drama", Duracion = 30, Precio = 25 }
+                new Obra { ObraId = 1, Titulo = "Don Juan", Descripcion = "false", DiaObra = new DateTime(2024, 01, 13), Imagen = "donjuan.jpg", Genero = "Drama", Duracion = 105, Precio = 25 },
+                new Obra { ObraId = 2, Titulo = "Celestina", Descripcion = "false", DiaObra = new DateTime(2024, 01, 25), Imagen = "celestina.jpg", Genero = "Drama", Duracion = 120, Precio = 15 },
+                new Obra { ObraId = 3, Titulo = "Doble o nada", Descripcion = "false", DiaObra = new DateTime(2024, 02, 7), Imagen = "doble-o-nada.jpg", Genero = "Drama", Duracion = 115, Precio = 20 },
+                new Obra { ObraId = 4, Titulo = "Campeones", Descripcion = "false", DiaObra = new DateTime(2024, 02, 15), Imagen = "campeones.jpg", Genero = "Drama", Duracion = 140, Precio = 35 },
+                new Obra { ObraId = 5, Titulo = "El mago Pop", Descripcion = "false", DiaObra = new DateTime(2024, 02, 29), Imagen = "el-mago-pop.jpg", Genero = "Drama", Duracion = 135, Precio = 30 },
+                new Obra { ObraId = 6, Titulo = "El Rey Leon", Descripcion = "false", DiaObra = new DateTime(2024, 03, 03), Imagen = "ElReyLeon3Aniv200.jpg", Genero = "Drama", Duracion = 100, Precio = 10 },
+                new Obra { ObraId = 7, Titulo = "Fango", Descripcion = "false", DiaObra = new DateTime(2024, 03, 16), Imagen = "fango.jpg", Genero = "Drama", Duracion = 90, Precio = 40 },
+                new Obra { ObraId = 8, Titulo = "La Funcion que Sale Mal", Descripcion = "false", DiaObra = new DateTime(2024, 03, 21), Imagen = "funcion-sale.mal.jpg", Genero = "Drama", Duracion = 110, Precio = 30 },
+                new Obra { ObraId = 9, Titulo = "Ilusionate", Descripcion = "false", DiaObra = new DateTime(2024, 04, 04), Imagen = "ilusionate.jpg", Genero = "Drama", Duracion = 120, Precio = 15 },
+                new Obra { ObraId = 10, Titulo = "Jose el soñador", Descripcion = "false", DiaObra = new DateTime(2024, 04, 10), Imagen = "jose-el-sonador.jpg", Genero = "Drama", Duracion = 105, Precio = 25 },
+                new Obra { ObraId = 11, Titulo = "Laponia", Descripcion = "false", DiaObra = new DateTime(2024, 04, 23), Imagen = "laponia.jpg", Genero = "Drama", Duracion = 125, Precio = 20 },
+                new Obra { ObraId = 12, Titulo = "Las mil y una noches", Descripcion = "false", DiaObra = new DateTime(2024, 05, 01), Imagen = "las-mil-y-una-noches.jpg", Genero = "Drama", Duracion = 30, Precio = 25 }
 
-            );
-
-            modelBuilder.Entity<Butaca>().HasData(
-                butaca.GenerarButacas(1),
-                butaca.GenerarButacas(2),
-                butaca.GenerarButacas(3),
-                butaca.GenerarButacas(4),
-                butaca.GenerarButacas(5),
-                butaca.GenerarButacas(6),
-                butaca.GenerarButacas(7),
-                butaca.GenerarButacas(8),
-                butaca.GenerarButacas(9),
-                butaca.GenerarButacas(10),
-                butaca.GenerarButacas(11),
-                butaca.GenerarButacas(12)
             );
 
             modelBuilder.Entity<Reparto>().HasData(
@@ -260,10 +261,104 @@ namespace Tickett.Data
                 new ObraReparto { ObraId = 12, RepartoId = 95 },
                 new ObraReparto { ObraId = 12, RepartoId = 96 }
 
-
            );
 
+            modelBuilder.Entity<Butaca>().HasData(
+                new Butaca { ObraId = 1, ButacaId = 1, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 2, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 3, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 4, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 5, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 6, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 7, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 8, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 9, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 10, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 11, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 12, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 13, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 14, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 15, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 16, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 17, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 18, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 19, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 20, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 21, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 22, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 23, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 24, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 25, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 26, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 27, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 28, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 29, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 30, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 31, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 32, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 33, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 34, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 35, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 36, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 37, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 38, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 39, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 40, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 41, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 42, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 43, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 44, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 45, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 46, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 47, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 48, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 49, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 50, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 51, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 52, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 53, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 54, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 55, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 56, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 57, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 58, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 59, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 60, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 61, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 62, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 63, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 64, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 65, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 66, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 67, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 68, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 69, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 70, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 71, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 72, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 73, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 74, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 75, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 76, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 77, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 78, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 79, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 80, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 81, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 82, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 83, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 84, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 85, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 86, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 87, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 88, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 89, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 90, Libre = true },
+                new Butaca { ObraId = 1, ButacaId = 91, Libre = true }
+            );
+
         }
+        
 
         public DbSet<Obra> Obras { get; set; }
         public DbSet<Butaca> Butacas { get; set; }

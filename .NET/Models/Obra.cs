@@ -12,8 +12,7 @@ public class Obra
     public string Descripcion { get; set; }
     [Required]
     public DateTime DiaObra { get; set; }
-    [Required]
-    public TimeSpan HoraObra { get; set; }
+
     [Required]
     public string Imagen { get; set; }
     public List<ObraReparto> ListaObraReparto { get; set; }
@@ -30,15 +29,15 @@ public class Obra
 
     public Obra() { }
 
-    public Obra(string titulo, string descripcion, DateTime diaObra, TimeSpan horaObra, string imagen, string genero, int duracion, int precio)
+    public Obra(string titulo, string descripcion, DateTime diaObra, string imagen, string genero, int duracion, int precio, List<Butaca>listaButaca)
     {
         Titulo = titulo;
         Descripcion = descripcion;
         DiaObra = diaObra;
-        HoraObra = horaObra;
         Imagen = imagen;
         Genero = genero;
         Duracion = duracion;
+        ListaButaca = listaButaca;
         Precio = precio;
         ObraId = obraSeed;
         obraSeed++;
