@@ -68,7 +68,7 @@ onMounted(async () => {
 
         <h3>Descripcion</h3>
         <div>
-          <p></p>
+          <p>{{ datosApi.descripcion }}</p>
         </div>
 
       </div>
