@@ -29,7 +29,7 @@ public class Obra
 
     public Obra() { }
 
-    public Obra(string titulo, string descripcion, DateTime diaObra, string imagen, string genero, int duracion, int precio, List<Butaca>listaButaca)
+    public Obra(string titulo, string descripcion, DateTime diaObra, string imagen, string genero, int duracion, int precio)
     {
         Titulo = titulo;
         Descripcion = descripcion;
@@ -37,7 +37,6 @@ public class Obra
         Imagen = imagen;
         Genero = genero;
         Duracion = duracion;
-        ListaButaca = listaButaca;
         Precio = precio;
         ObraId = obraSeed;
         obraSeed++;
