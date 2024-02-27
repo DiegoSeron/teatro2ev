@@ -13,7 +13,7 @@ const router = createRouter({
             component: HomeView
         },
         {
-            path: '/Obras',
+            path: '/Obra',
             name: 'obras',
             component: FunctionsView
         },
@@ -24,7 +24,7 @@ const router = createRouter({
             props: true,
         },
         {
-            path: '/Butacas',
+            path: '/Butaca',
             name: 'butaca',
             component: SeatSelectorView,
             props: true,

@@ -12,6 +12,8 @@ interface Obra {
   imagen: string;
   genero: string;
   horaObra: Date;
+  duracion: number;
+  precio: number;
 }
 
 const datosApi = ref<Array<Obra>>([]);
@@ -40,7 +42,7 @@ onMounted(async () => {
           <img :src="'../src/assets/IMAGENES/' + datosApi.imagen" :alt="`${datosApi.titulo}`">
         </div>
         <div>
-          <RouterLink to="/Butacas">SELECCIONAR BUTACAS</RouterLink>
+          <RouterLink to="/Butaca">SELECCIONAR BUTACAS</RouterLink>
 
         </div>
       </div>
