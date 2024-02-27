@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tickett.Models;
 using System.Text;
@@ -23,7 +23,7 @@ public class Obra
     [Required]
     public int Precio { get; set; }
     [Required]
-    public List<Butaca> ListaButaca { get; set; }
+    public List<ButacaObra> ListaButacaObra { get; set; }
 
     public static int obraSeed = 1;
 

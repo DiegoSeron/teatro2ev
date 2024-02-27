@@ -13,25 +13,28 @@ namespace Tickett.Data
         {
 
         }
-        private IEnumerable<Butaca> GenerarButacas(int finButacaId, int obraId)
+        public List<ButacaObra> CrearButacasObra(int obraId)
         {
-            var butacas = new List<Butaca>();
-            for (int i = 1; i <= finButacaId; i++)
+            List<ButacaObra> butacas = new List<ButacaObra>();
+
+            for (int i = 1; i <= 91; i++)
             {
-                butacas.Add(new Butaca { ObraId =  obraId, ButacaId = i, Libre = true });
+                butacas.Add(new ButacaObra
+                {
+                    ButacaId = i,
+                    ObraId = obraId,
+                    Libre = true
+                });
             }
+
             return butacas;
         }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Obra>().HasKey(o => o.ObraId);
 
-            modelBuilder.Entity<Obra>()
-                .HasMany(o => o.ListaButaca)
-                .WithOne()
-                .HasForeignKey("ObraId")
-                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<ObraReparto>()
                 .HasKey(o => new { o.ObraId, o.RepartoId });
@@ -45,6 +48,20 @@ namespace Tickett.Data
                 .HasOne(r => r.Reparto)
                 .WithMany(i => i.ListaObraReparto)
                 .HasForeignKey(pi => pi.RepartoId);
+
+
+            modelBuilder.Entity<ButacaObra>()
+                .HasKey(o => new { o.ObraId, o.ButacaId });
+
+            modelBuilder.Entity<ButacaObra>()
+                .HasOne(o => o.Obra)
+                .WithMany(p => p.ListaButacaObra)
+                .HasForeignKey(pi => pi.ObraId);
+
+            modelBuilder.Entity<ButacaObra>()
+                .HasOne(b => b.Butaca)
+                .WithMany(i => i.ListaButacaObra)
+                .HasForeignKey(pi => pi.ButacaId);
 
 
 
@@ -264,197 +281,116 @@ namespace Tickett.Data
            );
 
             modelBuilder.Entity<Butaca>().HasData(
-                new Butaca { ObraId = 1, ButacaId = 1, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 2, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 3, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 4, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 5, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 6, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 7, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 8, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 9, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 10, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 11, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 12, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 13, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 14, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 15, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 16, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 17, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 18, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 19, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 20, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 21, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 22, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 23, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 24, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 25, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 26, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 27, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 28, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 29, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 30, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 31, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 32, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 33, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 34, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 35, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 36, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 37, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 38, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 39, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 40, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 41, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 42, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 43, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 44, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 45, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 46, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 47, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 48, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 49, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 50, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 51, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 52, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 53, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 54, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 55, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 56, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 57, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 58, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 59, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 60, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 61, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 62, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 63, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 64, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 65, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 66, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 67, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 68, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 69, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 70, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 71, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 72, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 73, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 74, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 75, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 76, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 77, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 78, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 79, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 80, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 81, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 82, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 83, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 84, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 85, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 86, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 87, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 88, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 89, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 90, Libre = true },
-                new Butaca { ObraId = 1, ButacaId = 91, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 1, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 2, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 3, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 4, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 5, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 6, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 7, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 8, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 9, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 10, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 11, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 12, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 13, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 14, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 15, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 16, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 17, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 18, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 19, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 20, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 21, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 22, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 23, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 24, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 25, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 26, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 27, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 28, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 29, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 30, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 31, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 32, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 33, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 34, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 35, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 36, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 37, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 38, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 39, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 40, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 41, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 42, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 43, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 44, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 45, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 46, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 47, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 48, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 49, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 50, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 51, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 52, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 53, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 54, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 55, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 56, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 57, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 58, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 59, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 60, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 61, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 62, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 63, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 64, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 65, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 66, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 67, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 68, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 69, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 70, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 71, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 72, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 73, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 74, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 75, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 76, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 77, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 78, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 79, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 80, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 81, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 82, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 83, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 84, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 85, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 86, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 87, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 88, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 89, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 90, Libre = true },
-                new Butaca { ObraId = 2, ButacaId = 91, Libre = true }
+                new Butaca { ButacaId = 1, Libre = true },
+                new Butaca { ButacaId = 2, Libre = true },
+                new Butaca { ButacaId = 3, Libre = true },
+                new Butaca { ButacaId = 4, Libre = true },
+                new Butaca { ButacaId = 5, Libre = true },
+                new Butaca { ButacaId = 6, Libre = true },
+                new Butaca { ButacaId = 7, Libre = true },
+                new Butaca { ButacaId = 8, Libre = true },
+                new Butaca { ButacaId = 9, Libre = true },
+                new Butaca { ButacaId = 10, Libre = true },
+                new Butaca { ButacaId = 11, Libre = true },
+                new Butaca { ButacaId = 12, Libre = true },
+                new Butaca { ButacaId = 13, Libre = true },
+                new Butaca { ButacaId = 14, Libre = true },
+                new Butaca { ButacaId = 15, Libre = true },
+                new Butaca { ButacaId = 16, Libre = true },
+                new Butaca { ButacaId = 17, Libre = true },
+                new Butaca { ButacaId = 18, Libre = true },
+                new Butaca { ButacaId = 19, Libre = true },
+                new Butaca { ButacaId = 20, Libre = true },
+                new Butaca { ButacaId = 21, Libre = true },
+                new Butaca { ButacaId = 22, Libre = true },
+                new Butaca { ButacaId = 23, Libre = true },
+                new Butaca { ButacaId = 24, Libre = true },
+                new Butaca { ButacaId = 25, Libre = true },
+                new Butaca { ButacaId = 26, Libre = true },
+                new Butaca { ButacaId = 27, Libre = true },
+                new Butaca { ButacaId = 28, Libre = true },
+                new Butaca { ButacaId = 29, Libre = true },
+                new Butaca { ButacaId = 30, Libre = true },
+                new Butaca { ButacaId = 31, Libre = true },
+                new Butaca { ButacaId = 32, Libre = true },
+                new Butaca { ButacaId = 33, Libre = true },
+                new Butaca { ButacaId = 34, Libre = true },
+                new Butaca { ButacaId = 35, Libre = true },
+                new Butaca { ButacaId = 36, Libre = true },
+                new Butaca { ButacaId = 37, Libre = true },
+                new Butaca { ButacaId = 38, Libre = true },
+                new Butaca { ButacaId = 39, Libre = true },
+                new Butaca { ButacaId = 40, Libre = true },
+                new Butaca { ButacaId = 41, Libre = true },
+                new Butaca { ButacaId = 42, Libre = true },
+                new Butaca { ButacaId = 43, Libre = true },
+                new Butaca { ButacaId = 44, Libre = true },
+                new Butaca { ButacaId = 45, Libre = true },
+                new Butaca { ButacaId = 46, Libre = true },
+                new Butaca { ButacaId = 47, Libre = true },
+                new Butaca { ButacaId = 48, Libre = true },
+                new Butaca { ButacaId = 49, Libre = true },
+                new Butaca { ButacaId = 50, Libre = true },
+                new Butaca { ButacaId = 51, Libre = true },
+                new Butaca { ButacaId = 52, Libre = true },
+                new Butaca { ButacaId = 53, Libre = true },
+                new Butaca { ButacaId = 54, Libre = true },
+                new Butaca { ButacaId = 55, Libre = true },
+                new Butaca { ButacaId = 56, Libre = true },
+                new Butaca { ButacaId = 57, Libre = true },
+                new Butaca { ButacaId = 58, Libre = true },
+                new Butaca { ButacaId = 59, Libre = true },
+                new Butaca { ButacaId = 60, Libre = true },
+                new Butaca { ButacaId = 61, Libre = true },
+                new Butaca { ButacaId = 62, Libre = true },
+                new Butaca { ButacaId = 63, Libre = true },
+                new Butaca { ButacaId = 64, Libre = true },
+                new Butaca { ButacaId = 65, Libre = true },
+                new Butaca { ButacaId = 66, Libre = true },
+                new Butaca { ButacaId = 67, Libre = true },
+                new Butaca { ButacaId = 68, Libre = true },
+                new Butaca { ButacaId = 69, Libre = true },
+                new Butaca { ButacaId = 70, Libre = true },
+                new Butaca { ButacaId = 71, Libre = true },
+                new Butaca { ButacaId = 72, Libre = true },
+                new Butaca { ButacaId = 73, Libre = true },
+                new Butaca { ButacaId = 74, Libre = true },
+                new Butaca { ButacaId = 75, Libre = true },
+                new Butaca { ButacaId = 76, Libre = true },
+                new Butaca { ButacaId = 77, Libre = true },
+                new Butaca { ButacaId = 78, Libre = true },
+                new Butaca { ButacaId = 79, Libre = true },
+                new Butaca { ButacaId = 80, Libre = true },
+                new Butaca { ButacaId = 81, Libre = true },
+                new Butaca { ButacaId = 82, Libre = true },
+                new Butaca { ButacaId = 83, Libre = true },
+                new Butaca { ButacaId = 84, Libre = true },
+                new Butaca { ButacaId = 85, Libre = true },
+                new Butaca { ButacaId = 86, Libre = true },
+                new Butaca { ButacaId = 87, Libre = true },
+                new Butaca { ButacaId = 88, Libre = true },
+                new Butaca { ButacaId = 89, Libre = true },
+                new Butaca { ButacaId = 90, Libre = true },
+                new Butaca { ButacaId = 91, Libre = true }
+
             );
 
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(1).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(2).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+
+
         }
-        
+
 
         public DbSet<Obra> Obras { get; set; }
         public DbSet<Butaca> Butacas { get; set; }
         public DbSet<Reparto> Repartos { get; set; }
         public DbSet<ObraReparto> ObraRepartos { get; set; }
+        public DbSet<ButacaObra> ButacaObras { get; set; }
 
     }
 }
