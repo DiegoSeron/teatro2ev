@@ -2,29 +2,10 @@
 
 import CardGrid from '../components/CardGrid.vue';
 
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import { useFunctionsStore } from '@/store/obras-store'
 
-interface Obra {
-  obraId: number;
-  titulo: string;
-  diaObra: string;
-  imagen: string;
-  genero: string;
-  // Agrega otras propiedades según la estructura real de tus objetos
-}
+const datosApi = useFunctionsStore()
 
-const datosApi = ref<Array<Obra>>([]);
-
-onMounted(async () => {
-  try {
-    const response = await axios.get('http://localhost:5000/Obra');
-    console.log("Fetch para sacar grid de funciones hecho");
-    datosApi.value = response.data;
-  } catch (error) {
-    console.error('Error al hacer la petición:', error);
-  }
-});
 
 </script>
 
