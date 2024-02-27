@@ -2,10 +2,28 @@
 
 import CardGrid from '../components/CardGrid.vue';
 
-import { useFunctionsStore } from '@/store/obras-store'
+import { ref, onMounted } from "vue";
+import axios from 'axios';
 
-const datosApi = useFunctionsStore()
+interface Obra {
+    obraId: number;
+    titulo: string;
+    diaObra: string;
+    imagen: string;
+    genero: string;
+}
 
+const datosApi = ref<Array<Obra>>([]);
+
+onMounted(async () => {
+    try {
+        const response = await axios.get('http://localhost:5000/Obra');
+        console.log("Fetch para sacar grid de funciones hecho");
+        datosApi.value = response.data;
+    } catch (error) {
+        console.error('Error al hacer la petición:', error);
+    }
+});
 
 </script>
 
@@ -13,8 +31,8 @@ const datosApi = useFunctionsStore()
     <div class="content">
         <section class="functions">
 
-            <CardGrid v-for="obra in datosApi" :obraId="obra.obraId" :title="obra.titulo" 
-                :dia-obra="obra.diaObra" :imageSrc="obra.imagen" :genero="obra.genero" />
+            <CardGrid v-for="obra in datosApi" :obraId="obra.obraId" :title="obra.titulo" :dia-obra="obra.diaObra"
+                :imageSrc="obra.imagen" :genero="obra.genero" />
         </section>
 
 
@@ -45,11 +63,11 @@ const datosApi = useFunctionsStore()
 
 <style>
 .functions {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
 }
 
 .content {

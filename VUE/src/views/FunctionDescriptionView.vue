@@ -40,7 +40,8 @@ onMounted(async () => {
           <img :src="'../src/assets/IMAGENES/' + datosApi.imagen" :alt="`${datosApi.titulo}`">
         </div>
         <div>
-          <a href="#" id="seleccionarButacas">SELECCIONAR BUTACAS</a>
+          <RouterLink to="/Butacas">SELECCIONAR BUTACAS</RouterLink>
+
         </div>
       </div>
       <div class="secundary">
@@ -54,9 +55,9 @@ onMounted(async () => {
         <div class="information">
           <h3>Información</h3>
           <div class="information__data">
-            <h3></h3>
-            <h3></h3>
-            <h3></h3>
+            <h3>Género: {{ datosApi.genero }}</h3>
+            <h3>Duración: {{ datosApi.duracion }} minutos</h3>
+            <h3>Precio: {{ datosApi.precio }}€</h3>
           </div>
         </div>
       </div>
@@ -68,7 +69,7 @@ onMounted(async () => {
 
         <h3>Descripcion</h3>
         <div>
-          <p></p>
+          <p>{{ datosApi.descripcion }}</p>
         </div>
 
       </div>
