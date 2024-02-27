@@ -15,9 +15,9 @@ namespace Tickett.Data
         }
         public List<ButacaObra> CrearButacasObra(int obraId)
         {
-            List<ButacaObra> butacas = new List<ButacaObra>();
+                List<ButacaObra> butacas = new List<ButacaObra>();
 
-            for (int i = 1; i <= 91; i++)
+            for (int i = 1; i <= 100; i++)
             {
                 butacas.Add(new ButacaObra
                 {
@@ -28,6 +28,7 @@ namespace Tickett.Data
             }
 
             return butacas;
+            
         }
 
 
@@ -371,7 +372,16 @@ namespace Tickett.Data
                 new Butaca { ButacaId = 88, Libre = true },
                 new Butaca { ButacaId = 89, Libre = true },
                 new Butaca { ButacaId = 90, Libre = true },
-                new Butaca { ButacaId = 91, Libre = true }
+                new Butaca { ButacaId = 91, Libre = true },
+                new Butaca { ButacaId = 92, Libre = true },
+                new Butaca { ButacaId = 93, Libre = true },
+                new Butaca { ButacaId = 94, Libre = true },
+                new Butaca { ButacaId = 95, Libre = true },
+                new Butaca { ButacaId = 96, Libre = true },
+                new Butaca { ButacaId = 97, Libre = true },
+                new Butaca { ButacaId = 98, Libre = true },
+                new Butaca { ButacaId = 99, Libre = true },
+                new Butaca { ButacaId = 100, Libre = true }
 
             );
 
