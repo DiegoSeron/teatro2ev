@@ -25,9 +25,21 @@ namespace Tickett.Business
             return seats;
         }
 
-        public  ButacaObra Get(int idFunction, int idSeat)
+        public  ButacaObra GetSeat(int idFunction, int idSeat)
         {
-            var seat = _seatRepository.Get(idFunction, idSeat);
+            var seat = _seatRepository.GetSeat(idFunction, idSeat);
+
+            // if (pizza != null)
+            // {
+            //     pizza.Ingredientes = _ingredientesRepository.GetIngredientesByPizzaId(pizza.Id);
+            // }
+
+            return seat;
+        }
+
+        public  List<ButacaObra> GetFromFunction(int idFunction)
+        {
+            var seat = _seatRepository.GetFromFunction(idFunction);
 
             // if (pizza != null)
             // {

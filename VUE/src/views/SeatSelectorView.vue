@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconWhiteSeatVue from '@/components/icons/IconWhiteSeat.vue';
+import IconWhiteSeatVue from '@/components/icons/IconSeat.vue';
 
 
 
