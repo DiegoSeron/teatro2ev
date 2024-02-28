@@ -18,10 +18,10 @@ interface Obra {
 
 const datosApi = ref<Array<Obra>>([]);
 const route = useRoute();
-
+const id = route.params.id;
 onMounted(async () => {
   try {
-    const id = route.params.id;
+    
     const response = await axios.get(`http://localhost:5000/Obra/${id}`);
     console.log("Fetch para sacar descripcion de obra hecho");
     datosApi.value = response.data;
@@ -42,7 +42,7 @@ onMounted(async () => {
           <img :src="'../src/assets/IMAGENES/' + datosApi.imagen" :alt="`${datosApi.titulo}`">
         </div>
         <div>
-          <RouterLink to="/Butaca">SELECCIONAR BUTACAS</RouterLink>
+          <RouterLink :to="'/Butaca/' + id">SELECCIONAR BUTACAS</RouterLink>
 
         </div>
       </div>

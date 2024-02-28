@@ -24,7 +24,7 @@ const router = createRouter({
             props: true,
         },
         {
-            path: '/Butaca',
+            path: '/Butaca/:id',
             name: 'butaca',
             component: SeatSelectorView,
             props: true,
