@@ -1,7 +1,7 @@
 using Tickett.Models;
-namespace Tickett.Data;
+namespace Tickett.Business;
 
-public interface ISeatRepository
+public interface ISeatService
 {
     List<ButacaObra> GetAll();
     // GetAll(int id);
