@@ -48,10 +48,17 @@ namespace Tickett.Data
             SaveChanges();
         }
 
-        public ButacaObra Get(int idFunction, int idSeat)
+        public ButacaObra GetSeat(int idFunction, int idSeat)
         {
             return _context.ButacaObras.FirstOrDefault(obra => obra.ObraId == idFunction && obra.ButacaId == idSeat);
         }
+
+        public List<ButacaObra> GetFromFunction(int idFunction)
+        {
+            return _context.ButacaObras.Where(obra => obra.ObraId == idFunction).ToList();
+
+        }
+
 
         public void Update(ButacaObra seat)
         {
@@ -61,7 +68,7 @@ namespace Tickett.Data
 
         public void Delete(int idFunction, int idSeat)
         {
-            var seat = Get(idFunction, idSeat );
+            var seat = GetSeat(idFunction, idSeat);
             if (seat is null)
             {
                 throw new KeyNotFoundException("Pizza not found.");

@@ -6,7 +6,8 @@ public interface ISeatService
     List<ButacaObra> GetAll();
     // GetAll(int id);
     void Add(ButacaObra butaca);
-    ButacaObra Get(int idFunction, int idSeat);
+    ButacaObra GetSeat(int idFunction, int idSeat);
+    List<ButacaObra> GetFromFunction(int idFunction);
     void Update(ButacaObra butaca);
     void Delete(int idFunction, int idSeat);
 }
