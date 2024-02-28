@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "../views/HomeView.vue"
 import FunctionsView from "../views/FunctionsView.vue"
 import FunctionDescriptionView from "../views/FunctionDescriptionView.vue"
+import SeatSelectorView from "../views/SeatSelectorView.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,7 @@ const router = createRouter({
             component: HomeView
         },
         {
-            path: '/Obras',
+            path: '/Obra',
             name: 'obras',
             component: FunctionsView
         },
@@ -20,6 +21,12 @@ const router = createRouter({
             path: '/Obra/:id',
             name: 'obra',
             component: FunctionDescriptionView,
+            props: true,
+        },
+        {
+            path: '/Butaca',
+            name: 'butaca',
+            component: SeatSelectorView,
             props: true,
         }
     ]
