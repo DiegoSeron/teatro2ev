@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tickett.Data;
 
@@ -11,9 +12,10 @@ using Tickett.Data;
 namespace Tickett.Data.Migrations
 {
     [DbContext(typeof(ObraContext))]
-    partial class ObraContextModelSnapshot : ModelSnapshot
+    [Migration("20240227193921_InitialCreate6")]
+    partial class InitialCreate6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -491,51 +493,6 @@ namespace Tickett.Data.Migrations
                         new
                         {
                             ButacaId = 91,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ButacaId = 92,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ButacaId = 93,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ButacaId = 94,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ButacaId = 95,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ButacaId = 96,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ButacaId = 97,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ButacaId = 98,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ButacaId = 99,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ButacaId = 100,
                             Libre = true
                         });
                 });
@@ -1200,69 +1157,6 @@ namespace Tickett.Data.Migrations
                         },
                         new
                         {
-                            ObraId = 1,
-                            ButacaId = 92,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 1,
-                            ButacaId = 93,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 1,
-                            ButacaId = 94,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 1,
-                            ButacaId = 95,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 1,
-                            ButacaId = 96,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 1,
-                            ButacaId = 97,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 1,
-                            ButacaId = 98,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 1,
-                            ButacaId = 99,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 1,
-                            ButacaId = 100,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
                             ObraId = 2,
                             ButacaId = 1,
                             Butaca_obraId = 0,
@@ -1895,69 +1789,6 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 2,
                             ButacaId = 91,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 2,
-                            ButacaId = 92,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 2,
-                            ButacaId = 93,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 2,
-                            ButacaId = 94,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 2,
-                            ButacaId = 95,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 2,
-                            ButacaId = 96,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 2,
-                            ButacaId = 97,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 2,
-                            ButacaId = 98,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 2,
-                            ButacaId = 99,
-                            Butaca_obraId = 0,
-                            Libre = true
-                        },
-                        new
-                        {
-                            ObraId = 2,
-                            ButacaId = 100,
                             Butaca_obraId = 0,
                             Libre = true
                         });
