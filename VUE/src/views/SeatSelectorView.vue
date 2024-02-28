@@ -8,28 +8,28 @@ import { useRoute } from 'vue-router';
 
 
 interface Obra {
-  obraId: number;
-  titulo: string;
-  diaObra: Date;
-  imagen: string;
-  genero: string;
-  horaObra: Date;
-  duracion: number;
-  precio: number;
+    obraId: number;
+    titulo: string;
+    diaObra: Date;
+    imagen: string;
+    genero: string;
+    horaObra: Date;
+    duracion: number;
+    precio: number;
 }
 
 const datosApi = ref<Array<Obra>>([]);
 const route = useRoute();
 const id = route.params.id;
 onMounted(async () => {
-  try {
-    
-    const response = await axios.get(`http://localhost:5000/Obra/${id}`);
-    console.log("Fetch para sacar descripcion de obra hecho");
-    datosApi.value = response.data;
-  } catch (error) {
-    console.error('Error al hacer la petición:', error);
-  }
+    try {
+
+        const response = await axios.get(`http://localhost:5000/Obra/${id}`);
+        console.log("Fetch para sacar descripcion de obra hecho");
+        datosApi.value = response.data;
+    } catch (error) {
+        console.error('Error al hacer la petición:', error);
+    }
 });
 
 
@@ -48,7 +48,7 @@ onMounted(async () => {
         console.log("Fetch para sacar butacas por obra id");
         datosApiButaca.value = response.data;
         console.log(datosApiButaca.value);
-        
+
     } catch (error) {
         console.error('Error al hacer la petición:', error);
     }
@@ -85,22 +85,24 @@ onMounted(async () => {
             <div class="gridButacas">
                 <div class="butacas">
 
-                    <div class="fila">
-                        <IconWhiteSeatVue colorr="red"/>
-                        <IconWhiteSeatVue v-for="butaca in datosApiButaca" :key="butaca.butacaId" :colorr="butaca.libre ? 'white' : 'black'"/>
-                        <IconWhiteSeatVue colorr="black"/>
+                    <div v-for="filaIndex in 10" :key="filaIndex" class="butacas">
+                        <div class="fila">
+                            <IconWhiteSeatVue
+                                v-for="(butaca, index) in datosApiButaca.slice((filaIndex - 1) * 10, filaIndex * 10)"
+                                :key="butaca.butacaId" :colorr="butaca.libre ? 'white' : 'black'" />
+                        </div>
 
                     </div>
-                    
+                </div>
 
-                </div>
-                <div class="escenario">
-                    <div>escenario</div>
-                </div>
+
             </div>
-            <div class="button" id="botonPago">
-                <a href="compra.html">IR A PAGAR</a>
+            <div class="escenario">
+                <div>escenario</div>
             </div>
+        </div>
+        <div class="button" id="botonPago">
+            <a href="compra.html">IR A PAGAR</a>
         </div>
     </div>
 </template>
