@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconWhiteSeatVue from '@/components/icons/IconSeat.vue';
+import IconSeatVue from '@/components/icons/IconSeat.vue';
 
 
 import { ref, onMounted } from 'vue';
@@ -75,7 +75,7 @@ onMounted(async () => {
                 </div>
             </div>
             <div class="info__img">
-                <img src="../../IMAGENES/jose-el-sonador.jpg" alt="">
+                <img :src="'../src/assets/IMAGENES/' + datosApi.imagen" alt="">
             </div>
         </div>
         <div class="selection">
@@ -85,11 +85,11 @@ onMounted(async () => {
             <div class="gridButacas">
                 <div class="butacas">
 
-                    <div v-for="filaIndex in 10" :key="filaIndex" class="butacas">
+                    <div v-for="filaIndex in 10" :key="filaIndex">
                         <div class="fila">
-                            <IconWhiteSeatVue
+                            <IconSeatVue
                                 v-for="(butaca, index) in datosApiButaca.slice((filaIndex - 1) * 10, filaIndex * 10)"
-                                :key="butaca.butacaId" :colorr="butaca.libre ? 'free' : 'taken'" :butacaId="butaca.butacaId"/>
+                                :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="butaca.butacaId" />
                         </div>
 
                     </div>
@@ -106,3 +106,176 @@ onMounted(async () => {
         </div>
     </div>
 </template>
+
+
+<style scoped>
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.info__text {
+    width: 50%;
+    height: auto;
+    background-color: #fff;
+    margin-top: 5px;
+}
+
+.info__text div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.info__text div h2 {
+    margin-top: 5%;
+    margin-bottom: 0;
+    margin-left: 6%;
+    margin-right: 6%;
+    font-family: "Bebas Neue";
+    color: #ffffff;
+    color: #ba1313;
+}
+
+.info__text div h3 {
+    margin-top: 0;
+    margin-bottom: 5%;
+    font-family: "Montserrat";
+}
+
+.info__img {
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    margin-top: 5px;
+}
+
+.info__img img {
+    width: 85%;
+    height: auto;
+    border-radius: 15px;
+    margin-top: 5%;
+}
+
+.selection {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.selection .title {
+    width: 100%;
+    height: 15%;
+    background-color: #ba1313;
+    margin-top: 5%;
+    margin-bottom: 0;
+    margin-left: 6%;
+    margin-right: 6%;
+    font-family: "Bebas Neue";
+    color: #ffffff;
+}
+
+.selection .gridButacas {
+    width: 100%;
+    height: 70%;
+}
+
+.selection .gridButacas .butacas {
+    width: 100%;
+    height: 380px;
+    display: grid;
+    grid-template-rows: repeat(10, 30px);
+    grid-gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.selection .gridButacas .butacas .fila {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+.selection .gridButacas .butacas .butaca {
+    width: 22px;
+    height: 22px;
+    background-size: cover;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.selection .gridButacas .escenario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    font-family: "Montserrat";
+}
+
+.selection .gridButacas .escenario div {
+    background-color: #D9D9D9;
+    height: 100%;
+    width: 60%;
+}
+
+.selection .button {
+    width: 100%;
+    height: 15%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selection .button a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #ba1313;
+    padding: 10px;
+    font-family: "Montserrat";
+    font-size: 18px;
+    border-radius: 50px;
+}
+
+/* PARA ORDENADORES */
+@media screen and (min-width: 767px) {
+    .info__img {
+        width: 30%;
+    }
+
+    .selection .gridButacas .butacas {
+        height: 415px;
+        grid-gap: 8px;
+    }
+
+    .selection .gridButacas .butacas .butaca {
+        width: 37px;
+        height: 35px;
+        margin: 5px;
+    }
+
+    .selection .gridButacas .escenario div {
+        margin-top: 35px;
+    }
+
+    .selection .button {
+        margin: 45px;
+    }
+}</style>
