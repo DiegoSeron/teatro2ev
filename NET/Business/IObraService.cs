@@ -5,8 +5,8 @@ public interface IObraService
 {
     List<Obra> GetAll();
     // GetAll(int id);
-    void Add(Obra obra);
+    public Obra Add(ObraCreateDTO obraCreateDTO);
     Obra Get(int id);
-    void Update(Obra obra);
+    void Update(int id, ObraUpdateDTO obraUpdateDTO);
     void Delete(int id);
 }

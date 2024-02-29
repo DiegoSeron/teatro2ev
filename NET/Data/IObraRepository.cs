@@ -9,4 +9,5 @@ public interface IObraRepository
     Obra Get(int id);
     void Update(Obra obra);
     void Delete(int id);
+
 }
