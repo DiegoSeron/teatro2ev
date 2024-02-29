@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
     colorr: string;
+    butacaId: number
   }>()
  
 </script>
@@ -23,19 +24,19 @@ defineProps<{
 </template>
 
 <style>
-.red{
+.choosen{
     fill:#ba1313;
     stroke-width:1;
     stroke:rgb(0,0,0)
 }
 
-.white{
+.free{
     fill:white;
     stroke-width:1;
     stroke:rgb(0,0,0)
 }
 
-.black{
+.taken{
     fill:rgb(50,50,50);
     stroke-width:1;
     stroke:rgb(0,0,0)

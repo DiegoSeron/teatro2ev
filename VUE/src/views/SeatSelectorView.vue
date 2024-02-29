@@ -89,7 +89,7 @@ onMounted(async () => {
                         <div class="fila">
                             <IconWhiteSeatVue
                                 v-for="(butaca, index) in datosApiButaca.slice((filaIndex - 1) * 10, filaIndex * 10)"
-                                :key="butaca.butacaId" :colorr="butaca.libre ? 'white' : 'black'" />
+                                :key="butaca.butacaId" :colorr="butaca.libre ? 'free' : 'taken'" :butacaId="butaca.butacaId"/>
                         </div>
 
                     </div>
