@@ -20,7 +20,7 @@ public class ObraDTO
     [Required]
     public int Duracion { get; set; }
     [Required]
-    public int Precio { get; set; }
+    public decimal Precio { get; set; }
 
     public List<ButacaDTO> Butacas { get; set; }
 

@@ -48,29 +48,30 @@ namespace Tickett.Data
             SaveChanges();
         }
 
-        public Obra Get(int id)
+        public ObraDTO Get(int id)
         {
-            var obras = _context.Obras
+            var obra = _context.Obras
                 .Include(b => b.ListaButacaObra)
-                .ToList();
+                .Where(obra => obra.ObraId == id)
+                .FirstOrDefault();
 
-            var obraDto = obras.Select(o => new ObraDTO
+            var obraDto = new ObraDTO
             {
-                ObraId = o.ObraId,
-                Titulo = o.Titulo,
-                Descripcion = o.Descripcion,
-                DiaObra = o.DiaObra,
-                Imagen = o.Imagen,
-                Genero = o.Genero,
-                Duracion = o.Duracion,
-                Precio = o.Precio,
-                Butacas = o.ListaButacaObra(ob => new ButacaDTO
+                ObraId = obra.ObraId,
+                Titulo = obra.Titulo,
+                Descripcion = obra.Descripcion,
+                DiaObra = obra.DiaObra,
+                Imagen = obra.Imagen,
+                Genero = obra.Genero,
+                Duracion = obra.Duracion,
+                Precio = obra.Precio,
+                Butacas = obra.ListaButacaObra.Select(bo => new ButacaDTO
                 {
-                    ButacaId = ob.Butaca.ButacaId,
-                    Libre = ob.Butaca.Libre
-                })
-            })
-            return _context.Obras.FirstOrDefault(obra => obra.ObraId == id);
+                    ButacaId = bo.Butaca.ButacaId,
+                    Libre = bo.Butaca.Libre
+                }).ToList()
+            };
+            return obraDto;
         }
 
         public void Update(Obra obra)

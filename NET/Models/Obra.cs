@@ -43,4 +43,29 @@ public class Obra
 
     }
 
+
+    public Obra mapFromCreateDto(ObraCreateDTO obraCreateDTO)
+    {
+        if (obraCreateDTO == null)
+        {
+            // Puedes lanzar una excepción aquí o manejar el caso de DTO nulo según tu lógica
+            throw new ArgumentNullException(nameof(obraCreateDTO));
+        }
+
+        var obra = new Obra
+        {
+            Titulo = obraCreateDTO.Titulo,
+            Descripcion = obraCreateDTO.Descripcion,
+            DiaObra = obraCreateDTO.DiaObra,
+            Imagen = obraCreateDTO.Imagen,
+            Genero = obraCreateDTO.Genero,
+            Duracion = obraCreateDTO.Duracion,
+            Precio = obraCreateDTO.Precio,
+            // Resto de las propiedades...
+        };
+
+        return obra;
+    }
+
 }
+

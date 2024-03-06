@@ -27,9 +27,12 @@ public class ObraController : ControllerBase
     {
         var obra = _obraService.Get(id);
 
-        if (obra == null){
+        if (obra == null)
+        {
             return NotFound();
-        }else{
+        }
+        else
+        {
             return obra;
         }
     }
@@ -38,11 +41,15 @@ public class ObraController : ControllerBase
 
 
     [HttpPost]
-    public IActionResult Create(Obra obra)
+    public IActionResult Create(ObraCreateDTO obraCreateDTO)
     {
-        _obraService.Add(obra);
-        return CreatedAtAction(nameof(Get), new { id = obra.ObraId }, obra);
+        var obra = new Obra();
+        var mappedObra = obra.mapFromCreateDto(obraCreateDTO); // Suponiendo que mapFromCreateDto no es estático
+        _obraService.Add(mappedObra);
+        return CreatedAtAction(nameof(Get), new { id = mappedObra.ObraId }, mappedObra);
     }
+
+
 
 
 
