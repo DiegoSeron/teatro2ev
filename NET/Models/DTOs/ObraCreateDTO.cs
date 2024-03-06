@@ -4,7 +4,6 @@ namespace Tickett.Models;
 using System.Text;
 public class ObraCreateDTO
 {
-
     [Required]
     public string Titulo { get; set; }
     [Required]
@@ -21,11 +20,7 @@ public class ObraCreateDTO
     public int Duracion { get; set; }
     [Required]
     public int Precio { get; set; }
+    [Required]
+    public List<ButacaObra> ListaButacaObra { get; set; }
 
-    // public List<ButacaObra> ListaButacaObra { get; set; }
-
-    // public ObraCreateDTO(){
-    //     ListaButacaObra = new List<ButacaObra>();
-    // }
-    
 }
