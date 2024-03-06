@@ -50,7 +50,44 @@ namespace Tickett.Data
 
         public Obra Get(int id)
         {
-            return _context.Obras.FirstOrDefault(obra => obra.ObraId == id);
+            // var obras = _context.Obras
+            //     .Include(b => b.ListaButacaObra)
+            //     .ToList();
+
+            // var obraDto = obras.Select(o => new ObraDTO
+            // {
+            //     ObraId = o.ObraId,
+            //     Titulo = o.Titulo,
+            //     Descripcion = o.Descripcion,
+            //     DiaObra = o.DiaObra,
+            //     Imagen = o.Imagen,
+            //     Genero = o.Genero,
+            //     Duracion = o.Duracion,
+            //     Precio = o.Precio,
+            //     Butacas = o.ListaButacaObra.Select({
+
+            //     }).ToList();
+            // }).ToList();
+            // return obraDto;
+            var obras = _context.Obras
+                .Include(b => b.ListaButacaObra)
+                .ToList();
+
+            var obraDto = obras.Select(o => new ObraDTO{
+                ObraId = o.ObraId,
+                Titulo = o.Titulo,
+                Descripcion = o.Descripcion,
+                DiaObra = o.DiaObra,
+                Imagen = o.Imagen,
+                Genero = o.Genero,
+                Duracion = o.Duracion,
+                Precio = o.Precio,
+                Butacas = o.ListaButacaObra.Select(ob => new ButacaDTO{
+                    ButacaId = ob.ButacaId,
+                    Libre = ob.Libre
+                }).ToList()
+            }).ToList();
+            return obraDto;
         }
 
         public void Update(Obra obra)

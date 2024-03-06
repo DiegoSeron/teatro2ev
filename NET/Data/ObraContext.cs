@@ -13,21 +13,37 @@ namespace Tickett.Data
         {
 
         }
+        
         public List<ButacaObra> CrearButacasObra(int obraId)
         {
             List<ButacaObra> butacas = new List<ButacaObra>();
-
-            for (int i = 1; i <= 91; i++)
+            for (int i = 1; i <= 100; i++)
             {
                 butacas.Add(new ButacaObra
                 {
                     ButacaId = i,
                     ObraId = obraId,
-                    Libre = true
+                    Libre = true,
                 });
             }
 
             return butacas;
+
+        }
+        public List<Butaca> CrearButacas()
+        {
+            List<Butaca> butacas = new List<Butaca>();
+
+            for (int i = 1; i <= 100; i++)
+            {
+                butacas.Add(new Butaca
+                {
+                    ButacaId = i,
+                });
+            }
+
+            return butacas;
+
         }
 
 
@@ -67,18 +83,18 @@ namespace Tickett.Data
 
 
             modelBuilder.Entity<Obra>().HasData(
-                new Obra { ObraId = 1, Titulo = "Don Juan", Descripcion = "false", DiaObra = new DateTime(2024, 01, 13), Imagen = "donjuan.jpg", Genero = "Drama", Duracion = 105, Precio = 25 },
-                new Obra { ObraId = 2, Titulo = "Celestina", Descripcion = "false", DiaObra = new DateTime(2024, 01, 25), Imagen = "celestina.jpg", Genero = "Drama", Duracion = 120, Precio = 15 },
-                new Obra { ObraId = 3, Titulo = "Doble o nada", Descripcion = "false", DiaObra = new DateTime(2024, 02, 7), Imagen = "doble-o-nada.jpg", Genero = "Drama", Duracion = 115, Precio = 20 },
-                new Obra { ObraId = 4, Titulo = "Campeones", Descripcion = "false", DiaObra = new DateTime(2024, 02, 15), Imagen = "campeones.jpg", Genero = "Drama", Duracion = 140, Precio = 35 },
-                new Obra { ObraId = 5, Titulo = "El mago Pop", Descripcion = "false", DiaObra = new DateTime(2024, 02, 29), Imagen = "el-mago-pop.jpg", Genero = "Drama", Duracion = 135, Precio = 30 },
-                new Obra { ObraId = 6, Titulo = "El Rey Leon", Descripcion = "false", DiaObra = new DateTime(2024, 03, 03), Imagen = "ElReyLeon3Aniv200.jpg", Genero = "Drama", Duracion = 100, Precio = 10 },
-                new Obra { ObraId = 7, Titulo = "Fango", Descripcion = "false", DiaObra = new DateTime(2024, 03, 16), Imagen = "fango.jpg", Genero = "Drama", Duracion = 90, Precio = 40 },
-                new Obra { ObraId = 8, Titulo = "La Funcion que Sale Mal", Descripcion = "false", DiaObra = new DateTime(2024, 03, 21), Imagen = "funcion-sale.mal.jpg", Genero = "Drama", Duracion = 110, Precio = 30 },
-                new Obra { ObraId = 9, Titulo = "Ilusionate", Descripcion = "false", DiaObra = new DateTime(2024, 04, 04), Imagen = "ilusionate.jpg", Genero = "Drama", Duracion = 120, Precio = 15 },
-                new Obra { ObraId = 10, Titulo = "Jose el soñador", Descripcion = "false", DiaObra = new DateTime(2024, 04, 10), Imagen = "jose-el-sonador.jpg", Genero = "Drama", Duracion = 105, Precio = 25 },
-                new Obra { ObraId = 11, Titulo = "Laponia", Descripcion = "false", DiaObra = new DateTime(2024, 04, 23), Imagen = "laponia.jpg", Genero = "Drama", Duracion = 125, Precio = 20 },
-                new Obra { ObraId = 12, Titulo = "Las mil y una noches", Descripcion = "false", DiaObra = new DateTime(2024, 05, 01), Imagen = "las-mil-y-una-noches.jpg", Genero = "Drama", Duracion = 30, Precio = 25 }
+                new Obra { ObraId = 1, Titulo = "Don Juan", Descripcion = "La obra 'Don Juan' es un clásico atemporal que explora las travesuras y el encanto del legendario seductor Don Juan. Esta pieza teatral icónica examina la naturaleza humana, el deseo, la moralidad y las consecuencias de nuestras acciones. A través de un cautivador relato, la historia sigue a Don Juan, un personaje carismático y seductor que desafía las normas sociales. Su irresistible magnetismo lo lleva a interactuar con una variedad de personajes, cada uno reflejando diferentes aspectos de la sociedad y la moralidad de la época. 'Don Juan' invita a reflexionar sobre la dualidad del ser humano, la moralidad, el amor y la libertad, envuelto en una trama llena de intriga y emociones intensas.", DiaObra = new DateTime(2024, 01, 13, 13, 0, 0), Imagen = "donjuan.jpg", Genero = "Romance", Duracion = 105, Precio = 25 },
+                new Obra { ObraId = 2, Titulo = "Celestina", Descripcion = "'La Celestina' es una obra maestra de la literatura española escrita por Fernando de Rojas en el siglo XV. Esta tragicomedia narra la historia de amor entre Calisto y Melibea, en un contexto lleno de engaños, pasiones y traiciones. La trama se centra en la intervención de la alcahueta Celestina, una mujer astuta y manipuladora que actúa como intermediaria en el romance. A medida que avanza la historia, se entrelazan intrigas que revelan las complejidades de las relaciones humanas y critican la sociedad de la época. 'La Celestina' es reconocida por su profundidad psicológica en la construcción de personajes y su aguda crítica social, explorando temas como el amor, la codicia, el poder y la moralidad en un estilo literario cautivador.", DiaObra = new DateTime(2024, 01, 25, 16, 0, 0), Imagen = "celestina.jpg", Genero = "Romance", Duracion = 120, Precio = 15 },
+                new Obra { ObraId = 3, Titulo = "Doble o nada", Descripcion = "Doble o nada es un thriller emocional ambientado en el hostil ambiente de las altas esferas empresariales. Una historia sobre el amor platónico, traición y engaño, y sobre todo, el poder y la ambición. Este emocionante thriller te mantendrá en vilo hasta el último minuto.", DiaObra = new DateTime(2024, 02, 7, 20, 30, 0), Imagen = "doble-o-nada.jpg", Genero = "Thriller", Duracion = 115, Precio = 20 },
+                new Obra { ObraId = 4, Titulo = "Campeones", Descripcion = "Gloria y Josete se acaban de independizar bajo la tutela de Claudia. Ante la necesidad de encontrar un trabajo para poder tener un sueldo con el que mantenerse, Claudia les propone que intenten dedicarse a algo que les guste de verdad. Ellos quieren ser artistas. Para ello deberían encontrar un representante. Esta comedia hilarante sigue las aventuras de este trío en su búsqueda por la fama y la risa del público.", DiaObra = new DateTime(2024, 02, 15, 20, 0, 0), Imagen = "campeones.jpg", Genero = "Comedia", Duracion = 140, Precio = 35 },
+                new Obra { ObraId = 5, Titulo = "El mago Pop", Descripcion = "El Mago Pop es el nombre artístico de Antonio Díaz, un ilusionista español reconocido por sus impresionantes trucos de magia y espectáculos de ilusionismo. Conocido por combinar magia, tecnología y narrativa en sus actuaciones, El Mago Pop ha cautivado al público con sus shows innovadores y sorprendentes. Sus espectáculos suelen incorporar efectos visuales impactantes, interacción con el público y asombrosas ilusiones que desafían la lógica y la percepción. Antonio Díaz, como El Mago Pop, ha logrado llevar la magia a un nivel moderno y cautivador, convirtiéndose en uno de los ilusionistas más reconocidos a nivel internacional.", DiaObra = new DateTime(2024, 02, 29, 17, 30, 0), Imagen = "el-mago-pop.jpg", Genero = "Monologo", Duracion = 135, Precio = 30 },
+                new Obra { ObraId = 6, Titulo = "El Rey Leon", Descripcion = "El Rey León es un espectacular musical inspirado en la película de Disney que ha cautivado a audiencias de todo el mundo. Con música de Elton John y letras de Tim Rice, esta producción teatral transporta al público a la majestuosa sabana africana. La historia sigue el viaje de Simba, un joven león destinado a convertirse en rey, a través de sus aventuras, desafíos y el aprendizaje de valiosas lecciones sobre el honor, el coraje y el amor. El espectáculo se destaca por su impresionante puesta en escena, coloridos vestuarios, efectos visuales deslumbrantes y coreografías espectaculares. 'El Rey León' es una experiencia teatral emocionante y conmovedora, que combina la magia del cine con la energía y la emoción del teatro en vivo.", DiaObra = new DateTime(2024, 03, 03, 19, 0, 0), Imagen = "ElReyLeon3Aniv200.jpg", Genero = "Musical", Duracion = 100, Precio = 10 },
+                new Obra { ObraId = 7, Titulo = "Fango", Descripcion = "Fango es una obra teatral que aborda temas complejos y profundos relacionados con la condición humana, la lucha interna, la redención y las relaciones interpersonales. Esta obra se sumerge en la complejidad de los personajes y sus conflictos, explorando la naturaleza humana a través de diálogos intensos y situaciones emocionales. A menudo, Fango presenta una reflexión sobre la sociedad y sus injusticias, mostrando la lucha de los individuos por encontrar significado y redención en un mundo lleno de desafíos y adversidades.", DiaObra = new DateTime(2024, 03, 16, 12, 0, 0), Imagen = "fango.jpg", Genero = "Monologo", Duracion = 90, Precio = 40 },
+                new Obra { ObraId = 8, Titulo = "La Funcion que Sale Mal", Descripcion = "La función que sale mal es una obra teatral cómica que gira en torno a un grupo de actores aficionados que intentan representar una obra de teatro, pero todo lo que puede salir mal ¡sale mal! La trama se desarrolla con una sucesión de desastres cómicos, desde problemas técnicos hasta errores de actuación y malentendidos entre los personajes. La obra es una comedia llena de situaciones hilarantes y caóticas que mantienen al público riendo a carcajadas. 'La función que sale mal' es conocida por su humor físico, su ingenio y su capacidad para convertir los errores en momentos divertidos e inolvidables para el público.", DiaObra = new DateTime(2024, 03, 21, 19, 0, 0), Imagen = "funcion-sale.mal.jpg", Genero = "Thriller", Duracion = 110, Precio = 30 },
+                new Obra { ObraId = 9, Titulo = "Ilusionate", Descripcion = "Ilusionate es una emocionante obra de teatro que fusiona el ilusionismo, la magia y el drama en una experiencia teatral única. Esta obra cautivadora transporta al público a un mundo de sorpresas, ilusiones y emociones. Con un elenco talentoso y efectos visuales impactantes, Ilusionate combina la magia del teatro con increíbles trucos y narrativas que mantienen al espectador absorto en un viaje lleno de misterio y asombro. Esta obra teatral es una oportunidad para sumergirse en un universo de ilusiones y disfrutar de un espectáculo que desafía la imaginación y la percepción.", DiaObra = new DateTime(2024, 04, 04, 18, 15, 0), Imagen = "ilusionate.jpg", Genero = "Monologo", Duracion = 120, Precio = 15 },
+                new Obra { ObraId = 10, Titulo = "Jose el soñador", Descripcion = "José el Soñador es una historia bíblica que relata la vida de José, hijo de Jacob, vendido como esclavo por sus hermanos. La historia sigue la vida de José desde su juventud hasta convertirse en un importante funcionario en Egipto. Conocida por su narrativa llena de intriga, traición y redención, la historia muestra la habilidad de José para interpretar sueños, lo que lo lleva a ganar el favor del faraón y a desempeñar un papel crucial en la historia de Egipto. 'José el Soñador' es un relato emocionante que explora temas de fe, perseverancia y perdón, y ha sido una fuente de inspiración para muchas personas a lo largo de los siglos.", DiaObra = new DateTime(2024, 04, 10, 12, 0, 0), Imagen = "jose-el-sonador.jpg", Genero = "Drama", Duracion = 105, Precio = 25 },
+                new Obra { ObraId = 11, Titulo = "Laponia", Descripcion = "Laponia es una región situada en el norte de Europa que abarca partes de Noruega, Suecia, Finlandia y Rusia. Conocida por su belleza natural y su paisaje ártico, Laponia es famosa por ser el hogar de la gente sami, su cultura única y las auroras boreales que se pueden observar durante la temporada de invierno. Esta región ofrece una amplia gama de actividades, como safaris en trineo de perros, excursiones para avistar renos, esquí, senderismo y la oportunidad de experimentar la cultura sami a través de sus tradiciones, como la artesanía, la música y la gastronomía local. Laponia es un destino popular para aquellos que buscan aventuras inolvidables en un entorno natural espectacular.", DiaObra = new DateTime(2024, 04, 23, 16, 0, 0), Imagen = "laponia.jpg", Genero = "Thriller", Duracion = 125, Precio = 20 },
+                new Obra { ObraId = 12, Titulo = "Las mil y una noches", Descripcion = "Las Mil y Una Noches es una colección de cuentos y fábulas de origen árabe que se remonta a varios siglos. La historia principal sigue a Scheherezade, quien cuenta historias al rey Shahriar para evitar su ejecución. Estas historias incluyen relatos mágicos, aventuras, fábulas morales y cuentos populares que abarcan un amplio espectro de géneros y temas. Entre los cuentos más conocidos se encuentran 'Aladino y la lámpara maravillosa', 'Simbad el marino' y 'Ali Baba y los cuarenta ladrones'. 'Las Mil y Una Noches' ha cautivado a lectores durante generaciones con su riqueza narrativa, su imaginación desbordante y su habilidad para entrelazar historias encantadoras y emocionantes.", DiaObra = new DateTime(2024, 05, 01, 18, 0, 0), Imagen = "las-mil-y-una-noches.jpg", Genero = "Comedia", Duracion = 30, Precio = 25 }
 
             );
 
@@ -281,97 +297,7 @@ namespace Tickett.Data
            );
 
             modelBuilder.Entity<Butaca>().HasData(
-                new Butaca { ButacaId = 1, Libre = true },
-                new Butaca { ButacaId = 2, Libre = true },
-                new Butaca { ButacaId = 3, Libre = true },
-                new Butaca { ButacaId = 4, Libre = true },
-                new Butaca { ButacaId = 5, Libre = true },
-                new Butaca { ButacaId = 6, Libre = true },
-                new Butaca { ButacaId = 7, Libre = true },
-                new Butaca { ButacaId = 8, Libre = true },
-                new Butaca { ButacaId = 9, Libre = true },
-                new Butaca { ButacaId = 10, Libre = true },
-                new Butaca { ButacaId = 11, Libre = true },
-                new Butaca { ButacaId = 12, Libre = true },
-                new Butaca { ButacaId = 13, Libre = true },
-                new Butaca { ButacaId = 14, Libre = true },
-                new Butaca { ButacaId = 15, Libre = true },
-                new Butaca { ButacaId = 16, Libre = true },
-                new Butaca { ButacaId = 17, Libre = true },
-                new Butaca { ButacaId = 18, Libre = true },
-                new Butaca { ButacaId = 19, Libre = true },
-                new Butaca { ButacaId = 20, Libre = true },
-                new Butaca { ButacaId = 21, Libre = true },
-                new Butaca { ButacaId = 22, Libre = true },
-                new Butaca { ButacaId = 23, Libre = true },
-                new Butaca { ButacaId = 24, Libre = true },
-                new Butaca { ButacaId = 25, Libre = true },
-                new Butaca { ButacaId = 26, Libre = true },
-                new Butaca { ButacaId = 27, Libre = true },
-                new Butaca { ButacaId = 28, Libre = true },
-                new Butaca { ButacaId = 29, Libre = true },
-                new Butaca { ButacaId = 30, Libre = true },
-                new Butaca { ButacaId = 31, Libre = true },
-                new Butaca { ButacaId = 32, Libre = true },
-                new Butaca { ButacaId = 33, Libre = true },
-                new Butaca { ButacaId = 34, Libre = true },
-                new Butaca { ButacaId = 35, Libre = true },
-                new Butaca { ButacaId = 36, Libre = true },
-                new Butaca { ButacaId = 37, Libre = true },
-                new Butaca { ButacaId = 38, Libre = true },
-                new Butaca { ButacaId = 39, Libre = true },
-                new Butaca { ButacaId = 40, Libre = true },
-                new Butaca { ButacaId = 41, Libre = true },
-                new Butaca { ButacaId = 42, Libre = true },
-                new Butaca { ButacaId = 43, Libre = true },
-                new Butaca { ButacaId = 44, Libre = true },
-                new Butaca { ButacaId = 45, Libre = true },
-                new Butaca { ButacaId = 46, Libre = true },
-                new Butaca { ButacaId = 47, Libre = true },
-                new Butaca { ButacaId = 48, Libre = true },
-                new Butaca { ButacaId = 49, Libre = true },
-                new Butaca { ButacaId = 50, Libre = true },
-                new Butaca { ButacaId = 51, Libre = true },
-                new Butaca { ButacaId = 52, Libre = true },
-                new Butaca { ButacaId = 53, Libre = true },
-                new Butaca { ButacaId = 54, Libre = true },
-                new Butaca { ButacaId = 55, Libre = true },
-                new Butaca { ButacaId = 56, Libre = true },
-                new Butaca { ButacaId = 57, Libre = true },
-                new Butaca { ButacaId = 58, Libre = true },
-                new Butaca { ButacaId = 59, Libre = true },
-                new Butaca { ButacaId = 60, Libre = true },
-                new Butaca { ButacaId = 61, Libre = true },
-                new Butaca { ButacaId = 62, Libre = true },
-                new Butaca { ButacaId = 63, Libre = true },
-                new Butaca { ButacaId = 64, Libre = true },
-                new Butaca { ButacaId = 65, Libre = true },
-                new Butaca { ButacaId = 66, Libre = true },
-                new Butaca { ButacaId = 67, Libre = true },
-                new Butaca { ButacaId = 68, Libre = true },
-                new Butaca { ButacaId = 69, Libre = true },
-                new Butaca { ButacaId = 70, Libre = true },
-                new Butaca { ButacaId = 71, Libre = true },
-                new Butaca { ButacaId = 72, Libre = true },
-                new Butaca { ButacaId = 73, Libre = true },
-                new Butaca { ButacaId = 74, Libre = true },
-                new Butaca { ButacaId = 75, Libre = true },
-                new Butaca { ButacaId = 76, Libre = true },
-                new Butaca { ButacaId = 77, Libre = true },
-                new Butaca { ButacaId = 78, Libre = true },
-                new Butaca { ButacaId = 79, Libre = true },
-                new Butaca { ButacaId = 80, Libre = true },
-                new Butaca { ButacaId = 81, Libre = true },
-                new Butaca { ButacaId = 82, Libre = true },
-                new Butaca { ButacaId = 83, Libre = true },
-                new Butaca { ButacaId = 84, Libre = true },
-                new Butaca { ButacaId = 85, Libre = true },
-                new Butaca { ButacaId = 86, Libre = true },
-                new Butaca { ButacaId = 87, Libre = true },
-                new Butaca { ButacaId = 88, Libre = true },
-                new Butaca { ButacaId = 89, Libre = true },
-                new Butaca { ButacaId = 90, Libre = true },
-                new Butaca { ButacaId = 91, Libre = true }
+                CrearButacas().ToList()
 
             );
 

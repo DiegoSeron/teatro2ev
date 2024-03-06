@@ -2,8 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Tickett.Models;
 using System.Text;
-public class ObraCreateDTO
+public class ObraDTO
 {
+    [Required]
+    public int ObraId { get; set; }
     [Required]
     public string Titulo { get; set; }
     [Required]
@@ -13,9 +15,6 @@ public class ObraCreateDTO
 
     [Required]
     public string Imagen { get; set; }
-
-    public List<ObraReparto> ListaObraReparto { get; set; }
-
     [Required]
     public string Genero { get; set; }
     [Required]
@@ -23,8 +22,10 @@ public class ObraCreateDTO
     [Required]
     public int Precio { get; set; }
 
-    [Required]
-    public List<ButacaObra> ListaButacaObra { get; set; }
+    public List<ButacaDTO> Butacas { get; set; }
 
+    // public ObraCreateDTO(){
+    //     ListaButacaObra = new List<ButacaObra>();
+    // }
 
 }

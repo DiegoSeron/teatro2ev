@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tickett.Data;
 
@@ -11,9 +12,10 @@ using Tickett.Data;
 namespace Tickett.Data.Migrations
 {
     [DbContext(typeof(ObraContext))]
-    partial class ObraContextModelSnapshot : ModelSnapshot
+    [Migration("20240227195023_InitialCreate7")]
+    partial class InitialCreate7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,6 +32,9 @@ namespace Tickett.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ButacaId"), 1L, 1);
 
+                    b.Property<bool>("Libre")
+                        .HasColumnType("bit");
+
                     b.HasKey("ButacaId");
 
                     b.ToTable("Butacas");
@@ -37,403 +42,503 @@ namespace Tickett.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ButacaId = 1
+                            ButacaId = 1,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 2
+                            ButacaId = 2,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 3
+                            ButacaId = 3,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 4
+                            ButacaId = 4,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 5
+                            ButacaId = 5,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 6
+                            ButacaId = 6,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 7
+                            ButacaId = 7,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 8
+                            ButacaId = 8,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 9
+                            ButacaId = 9,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 10
+                            ButacaId = 10,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 11
+                            ButacaId = 11,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 12
+                            ButacaId = 12,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 13
+                            ButacaId = 13,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 14
+                            ButacaId = 14,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 15
+                            ButacaId = 15,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 16
+                            ButacaId = 16,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 17
+                            ButacaId = 17,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 18
+                            ButacaId = 18,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 19
+                            ButacaId = 19,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 20
+                            ButacaId = 20,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 21
+                            ButacaId = 21,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 22
+                            ButacaId = 22,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 23
+                            ButacaId = 23,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 24
+                            ButacaId = 24,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 25
+                            ButacaId = 25,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 26
+                            ButacaId = 26,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 27
+                            ButacaId = 27,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 28
+                            ButacaId = 28,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 29
+                            ButacaId = 29,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 30
+                            ButacaId = 30,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 31
+                            ButacaId = 31,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 32
+                            ButacaId = 32,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 33
+                            ButacaId = 33,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 34
+                            ButacaId = 34,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 35
+                            ButacaId = 35,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 36
+                            ButacaId = 36,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 37
+                            ButacaId = 37,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 38
+                            ButacaId = 38,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 39
+                            ButacaId = 39,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 40
+                            ButacaId = 40,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 41
+                            ButacaId = 41,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 42
+                            ButacaId = 42,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 43
+                            ButacaId = 43,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 44
+                            ButacaId = 44,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 45
+                            ButacaId = 45,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 46
+                            ButacaId = 46,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 47
+                            ButacaId = 47,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 48
+                            ButacaId = 48,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 49
+                            ButacaId = 49,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 50
+                            ButacaId = 50,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 51
+                            ButacaId = 51,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 52
+                            ButacaId = 52,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 53
+                            ButacaId = 53,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 54
+                            ButacaId = 54,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 55
+                            ButacaId = 55,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 56
+                            ButacaId = 56,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 57
+                            ButacaId = 57,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 58
+                            ButacaId = 58,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 59
+                            ButacaId = 59,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 60
+                            ButacaId = 60,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 61
+                            ButacaId = 61,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 62
+                            ButacaId = 62,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 63
+                            ButacaId = 63,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 64
+                            ButacaId = 64,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 65
+                            ButacaId = 65,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 66
+                            ButacaId = 66,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 67
+                            ButacaId = 67,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 68
+                            ButacaId = 68,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 69
+                            ButacaId = 69,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 70
+                            ButacaId = 70,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 71
+                            ButacaId = 71,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 72
+                            ButacaId = 72,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 73
+                            ButacaId = 73,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 74
+                            ButacaId = 74,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 75
+                            ButacaId = 75,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 76
+                            ButacaId = 76,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 77
+                            ButacaId = 77,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 78
+                            ButacaId = 78,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 79
+                            ButacaId = 79,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 80
+                            ButacaId = 80,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 81
+                            ButacaId = 81,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 82
+                            ButacaId = 82,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 83
+                            ButacaId = 83,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 84
+                            ButacaId = 84,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 85
+                            ButacaId = 85,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 86
+                            ButacaId = 86,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 87
+                            ButacaId = 87,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 88
+                            ButacaId = 88,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 89
+                            ButacaId = 89,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 90
+                            ButacaId = 90,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 91
+                            ButacaId = 91,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 92
+                            ButacaId = 92,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 93
+                            ButacaId = 93,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 94
+                            ButacaId = 94,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 95
+                            ButacaId = 95,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 96
+                            ButacaId = 96,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 97
+                            ButacaId = 97,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 98
+                            ButacaId = 98,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 99
+                            ButacaId = 99,
+                            Libre = true
                         },
                         new
                         {
-                            ButacaId = 100
+                            ButacaId = 100,
+                            Libre = true
                         });
                 });
 
@@ -443,6 +548,9 @@ namespace Tickett.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ButacaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Butaca_obraId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Libre")
@@ -459,1200 +567,1400 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 1,
                             ButacaId = 1,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 2,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 3,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 4,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 5,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 6,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 7,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 8,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 9,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 10,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 11,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 12,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 13,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 14,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 15,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 16,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 17,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 18,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 19,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 20,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 21,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 22,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 23,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 24,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 25,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 26,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 27,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 28,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 29,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 30,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 31,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 32,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 33,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 34,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 35,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 36,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 37,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 38,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 39,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 40,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 41,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 42,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 43,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 44,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 45,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 46,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 47,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 48,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 49,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 50,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 51,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 52,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 53,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 54,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 55,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 56,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 57,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 58,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 59,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 60,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 61,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 62,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 63,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 64,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 65,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 66,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 67,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 68,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 69,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 70,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 71,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 72,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 73,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 74,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 75,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 76,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 77,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 78,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 79,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 80,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 81,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 82,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 83,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 84,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 85,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 86,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 87,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 88,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 89,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 90,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 91,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 92,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 93,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 94,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 95,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 96,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 97,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 98,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 99,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 1,
                             ButacaId = 100,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 1,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 2,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 3,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 4,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 5,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 6,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 7,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 8,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 9,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 10,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 11,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 12,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 13,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 14,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 15,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 16,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 17,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 18,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 19,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 20,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 21,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 22,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 23,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 24,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 25,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 26,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 27,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 28,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 29,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 30,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 31,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 32,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 33,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 34,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 35,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 36,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 37,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 38,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 39,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 40,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 41,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 42,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 43,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 44,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 45,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 46,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 47,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 48,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 49,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 50,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 51,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 52,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 53,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 54,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 55,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 56,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 57,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 58,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 59,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 60,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 61,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 62,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 63,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 64,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 65,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 66,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 67,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 68,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 69,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 70,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 71,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 72,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 73,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 74,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 75,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 76,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 77,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 78,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 79,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 80,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 81,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 82,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 83,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 84,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 85,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 86,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 87,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 88,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 89,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 90,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 91,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 92,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 93,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 94,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 95,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 96,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 97,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 98,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 99,
+                            Butaca_obraId = 0,
                             Libre = true
                         },
                         new
                         {
                             ObraId = 2,
                             ButacaId = 100,
+                            Butaca_obraId = 0,
                             Libre = true
                         });
                 });
@@ -1701,7 +2009,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "La obra 'Don Juan' es un clásico atemporal que explora las travesuras y el encanto del legendario seductor Don Juan. Esta pieza teatral icónica examina la naturaleza humana, el deseo, la moralidad y las consecuencias de nuestras acciones. A través de un cautivador relato, la historia sigue a Don Juan, un personaje carismático y seductor que desafía las normas sociales. Su irresistible magnetismo lo lleva a interactuar con una variedad de personajes, cada uno reflejando diferentes aspectos de la sociedad y la moralidad de la época. 'Don Juan' invita a reflexionar sobre la dualidad del ser humano, la moralidad, el amor y la libertad, envuelto en una trama llena de intriga y emociones intensas.",
                             DiaObra = new DateTime(2024, 1, 13, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 105,
-                            Genero = "Romance",
+                            Genero = "Drama",
                             Imagen = "donjuan.jpg",
                             Precio = 25,
                             Titulo = "Don Juan"
@@ -1712,7 +2020,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "'La Celestina' es una obra maestra de la literatura española escrita por Fernando de Rojas en el siglo XV. Esta tragicomedia narra la historia de amor entre Calisto y Melibea, en un contexto lleno de engaños, pasiones y traiciones. La trama se centra en la intervención de la alcahueta Celestina, una mujer astuta y manipuladora que actúa como intermediaria en el romance. A medida que avanza la historia, se entrelazan intrigas que revelan las complejidades de las relaciones humanas y critican la sociedad de la época. 'La Celestina' es reconocida por su profundidad psicológica en la construcción de personajes y su aguda crítica social, explorando temas como el amor, la codicia, el poder y la moralidad en un estilo literario cautivador.",
                             DiaObra = new DateTime(2024, 1, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 120,
-                            Genero = "Romance",
+                            Genero = "Drama",
                             Imagen = "celestina.jpg",
                             Precio = 15,
                             Titulo = "Celestina"
@@ -1723,7 +2031,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "Doble o nada es un thriller emocional ambientado en el hostil ambiente de las altas esferas empresariales. Una historia sobre el amor platónico, traición y engaño, y sobre todo, el poder y la ambición. Este emocionante thriller te mantendrá en vilo hasta el último minuto.",
                             DiaObra = new DateTime(2024, 2, 7, 20, 30, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 115,
-                            Genero = "Thriller",
+                            Genero = "Drama",
                             Imagen = "doble-o-nada.jpg",
                             Precio = 20,
                             Titulo = "Doble o nada"
@@ -1734,7 +2042,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "Gloria y Josete se acaban de independizar bajo la tutela de Claudia. Ante la necesidad de encontrar un trabajo para poder tener un sueldo con el que mantenerse, Claudia les propone que intenten dedicarse a algo que les guste de verdad. Ellos quieren ser artistas. Para ello deberían encontrar un representante. Esta comedia hilarante sigue las aventuras de este trío en su búsqueda por la fama y la risa del público.",
                             DiaObra = new DateTime(2024, 2, 15, 20, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 140,
-                            Genero = "Comedia",
+                            Genero = "Drama",
                             Imagen = "campeones.jpg",
                             Precio = 35,
                             Titulo = "Campeones"
@@ -1745,7 +2053,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "El Mago Pop es el nombre artístico de Antonio Díaz, un ilusionista español reconocido por sus impresionantes trucos de magia y espectáculos de ilusionismo. Conocido por combinar magia, tecnología y narrativa en sus actuaciones, El Mago Pop ha cautivado al público con sus shows innovadores y sorprendentes. Sus espectáculos suelen incorporar efectos visuales impactantes, interacción con el público y asombrosas ilusiones que desafían la lógica y la percepción. Antonio Díaz, como El Mago Pop, ha logrado llevar la magia a un nivel moderno y cautivador, convirtiéndose en uno de los ilusionistas más reconocidos a nivel internacional.",
                             DiaObra = new DateTime(2024, 2, 29, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 135,
-                            Genero = "Monologo",
+                            Genero = "Drama",
                             Imagen = "el-mago-pop.jpg",
                             Precio = 30,
                             Titulo = "El mago Pop"
@@ -1756,7 +2064,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "El Rey León es un espectacular musical inspirado en la película de Disney que ha cautivado a audiencias de todo el mundo. Con música de Elton John y letras de Tim Rice, esta producción teatral transporta al público a la majestuosa sabana africana. La historia sigue el viaje de Simba, un joven león destinado a convertirse en rey, a través de sus aventuras, desafíos y el aprendizaje de valiosas lecciones sobre el honor, el coraje y el amor. El espectáculo se destaca por su impresionante puesta en escena, coloridos vestuarios, efectos visuales deslumbrantes y coreografías espectaculares. 'El Rey León' es una experiencia teatral emocionante y conmovedora, que combina la magia del cine con la energía y la emoción del teatro en vivo.",
                             DiaObra = new DateTime(2024, 3, 3, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 100,
-                            Genero = "Musical",
+                            Genero = "Drama",
                             Imagen = "ElReyLeon3Aniv200.jpg",
                             Precio = 10,
                             Titulo = "El Rey Leon"
@@ -1767,7 +2075,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "Fango es una obra teatral que aborda temas complejos y profundos relacionados con la condición humana, la lucha interna, la redención y las relaciones interpersonales. Esta obra se sumerge en la complejidad de los personajes y sus conflictos, explorando la naturaleza humana a través de diálogos intensos y situaciones emocionales. A menudo, Fango presenta una reflexión sobre la sociedad y sus injusticias, mostrando la lucha de los individuos por encontrar significado y redención en un mundo lleno de desafíos y adversidades.",
                             DiaObra = new DateTime(2024, 3, 16, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 90,
-                            Genero = "Monologo",
+                            Genero = "Drama",
                             Imagen = "fango.jpg",
                             Precio = 40,
                             Titulo = "Fango"
@@ -1778,7 +2086,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "La función que sale mal es una obra teatral cómica que gira en torno a un grupo de actores aficionados que intentan representar una obra de teatro, pero todo lo que puede salir mal ¡sale mal! La trama se desarrolla con una sucesión de desastres cómicos, desde problemas técnicos hasta errores de actuación y malentendidos entre los personajes. La obra es una comedia llena de situaciones hilarantes y caóticas que mantienen al público riendo a carcajadas. 'La función que sale mal' es conocida por su humor físico, su ingenio y su capacidad para convertir los errores en momentos divertidos e inolvidables para el público.",
                             DiaObra = new DateTime(2024, 3, 21, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 110,
-                            Genero = "Thriller",
+                            Genero = "Drama",
                             Imagen = "funcion-sale.mal.jpg",
                             Precio = 30,
                             Titulo = "La Funcion que Sale Mal"
@@ -1789,7 +2097,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "Ilusionate es una emocionante obra de teatro que fusiona el ilusionismo, la magia y el drama en una experiencia teatral única. Esta obra cautivadora transporta al público a un mundo de sorpresas, ilusiones y emociones. Con un elenco talentoso y efectos visuales impactantes, Ilusionate combina la magia del teatro con increíbles trucos y narrativas que mantienen al espectador absorto en un viaje lleno de misterio y asombro. Esta obra teatral es una oportunidad para sumergirse en un universo de ilusiones y disfrutar de un espectáculo que desafía la imaginación y la percepción.",
                             DiaObra = new DateTime(2024, 4, 4, 18, 15, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 120,
-                            Genero = "Monologo",
+                            Genero = "Drama",
                             Imagen = "ilusionate.jpg",
                             Precio = 15,
                             Titulo = "Ilusionate"
@@ -1811,7 +2119,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "Laponia es una región situada en el norte de Europa que abarca partes de Noruega, Suecia, Finlandia y Rusia. Conocida por su belleza natural y su paisaje ártico, Laponia es famosa por ser el hogar de la gente sami, su cultura única y las auroras boreales que se pueden observar durante la temporada de invierno. Esta región ofrece una amplia gama de actividades, como safaris en trineo de perros, excursiones para avistar renos, esquí, senderismo y la oportunidad de experimentar la cultura sami a través de sus tradiciones, como la artesanía, la música y la gastronomía local. Laponia es un destino popular para aquellos que buscan aventuras inolvidables en un entorno natural espectacular.",
                             DiaObra = new DateTime(2024, 4, 23, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 125,
-                            Genero = "Thriller",
+                            Genero = "Drama",
                             Imagen = "laponia.jpg",
                             Precio = 20,
                             Titulo = "Laponia"
@@ -1822,7 +2130,7 @@ namespace Tickett.Data.Migrations
                             Descripcion = "Las Mil y Una Noches es una colección de cuentos y fábulas de origen árabe que se remonta a varios siglos. La historia principal sigue a Scheherezade, quien cuenta historias al rey Shahriar para evitar su ejecución. Estas historias incluyen relatos mágicos, aventuras, fábulas morales y cuentos populares que abarcan un amplio espectro de géneros y temas. Entre los cuentos más conocidos se encuentran 'Aladino y la lámpara maravillosa', 'Simbad el marino' y 'Ali Baba y los cuarenta ladrones'. 'Las Mil y Una Noches' ha cautivado a lectores durante generaciones con su riqueza narrativa, su imaginación desbordante y su habilidad para entrelazar historias encantadoras y emocionantes.",
                             DiaObra = new DateTime(2024, 5, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 30,
-                            Genero = "Comedia",
+                            Genero = "Drama",
                             Imagen = "las-mil-y-una-noches.jpg",
                             Precio = 25,
                             Titulo = "Las mil y una noches"

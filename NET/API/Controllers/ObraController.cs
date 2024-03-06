@@ -27,9 +27,12 @@ public class ObraController : ControllerBase
     {
         var obra = _obraService.Get(id);
 
-        if (obra == null){
+        if (obra == null)
+        {
             return NotFound();
-        }else{
+        }
+        else
+        {
             return obra;
         }
     }
@@ -38,28 +41,37 @@ public class ObraController : ControllerBase
 
 
     [HttpPost]
-    public IActionResult Create(Obra obra)
+    public IActionResult Create([FromBody] ObraCreateDTO obraDto)
     {
-        _obraService.Add(obra);
-        return CreatedAtAction(nameof(Get), new { id = obra.ObraId }, obra);
+        if (!ModelState.IsValid) { return BadRequest(ModelState); }
+
+        try
+        {
+            var obra = _obraService.Add(obraDto); //mejor pasar el DTO completo como en el PUT
+            return CreatedAtAction(nameof(Get), new { obraId = obra.ObraId }, obra);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
 
 
-
     [HttpPut("{id}")]
-    public IActionResult Update(int id, Obra obra)
+    public IActionResult Update(int id, [FromBody] ObraUpdateDTO obraDto)
     {
-        if (id != obra.ObraId)
-            return BadRequest();
+        if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-        var existingObra = _obraService.Get(id);
-        if (existingObra is null)
+        try
+        {
+            _obraService.Update(id, obraDto);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
             return NotFound();
-
-        _obraService.Update(obra);
-
-        return NoContent();
+        }
     }
 
 
