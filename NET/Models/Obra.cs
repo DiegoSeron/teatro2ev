@@ -43,6 +43,6 @@ public class Obra
         ObraId = obraSeed;
         obraSeed++;
 
-
     }
+
 }

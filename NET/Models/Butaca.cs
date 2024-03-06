@@ -7,6 +7,7 @@ public class Butaca
 {
     [Key]
     public int ButacaId { get; set; }
+    public bool Libre { get; set; }
     public List<ButacaObra> ListaButacaObra { get; set; }
 
     public Butaca() { }

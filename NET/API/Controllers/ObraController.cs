@@ -58,7 +58,6 @@ public class ObraController : ControllerBase
 
 
 
-
     [HttpPut("{id}")]
     public IActionResult Update(int id, [FromBody] ObraUpdateDTO obraDto)
     {
