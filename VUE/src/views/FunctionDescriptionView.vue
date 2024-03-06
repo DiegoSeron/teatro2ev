@@ -3,43 +3,25 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { useFunctionStore } from '@/stores/FunctionStore';
 
-
-interface Obra {
-  obraId: number;
-  titulo: string;
-  diaObra: Date;
-  imagen: string;
-  genero: string;
-  horaObra: Date;
-  duracion: number;
-  precio: number;
-}
-
-const datosApi = ref<Array<Obra>>([]);
+const FunctionStore = useFunctionStore();
 const route = useRoute();
 const id = route.params.id;
-onMounted(async () => {
-  try {
-    
-    const response = await axios.get(`http://localhost:5000/Obra/${id}`);
-    console.log("Fetch para sacar descripcion de obra hecho");
-    datosApi.value = response.data;
-  } catch (error) {
-    console.error('Error al hacer la petición:', error);
-  }
+onMounted( () => {
+    FunctionStore.fetchFunctionsPerId(id);
+
 });
-
-
-
 </script>
+
+
 <template>
   <div class="content">
-    <h2>{{ datosApi.titulo }}</h2>
+    <h2>{{ FunctionStore.functions.titulo }}</h2>
     <section class="first">
       <div class="principal">
         <div>
-          <img :src="'../src/assets/IMAGENES/' + datosApi.imagen" :alt="`${datosApi.titulo}`">
+          <img :src="'../src/assets/IMAGENES/' + FunctionStore.functions.imagen" :alt="`${FunctionStore.functions.titulo}`">
         </div>
         <div>
           <RouterLink :to="'/Butaca/' + id">SELECCIONAR BUTACAS</RouterLink>
@@ -50,16 +32,16 @@ onMounted(async () => {
         <div class="date">
           <h3>Horario</h3>
           <div class="date__data">
-            <h3>Dia: {{ datosApi.diaObra }}</h3>
-            <h3>Hora: {{ datosApi.horaObra }}</h3>
+            <h3>Dia: {{ FunctionStore.functions.diaObra }}</h3>
+            <h3>Hora: {{ FunctionStore.functions.horaObra }}</h3>
           </div>
         </div>
         <div class="information">
           <h3>Información</h3>
           <div class="information__data">
-            <h3>Género: {{ datosApi.genero }}</h3>
-            <h3>Duración: {{ datosApi.duracion }} minutos</h3>
-            <h3>Precio: {{ datosApi.precio }}€</h3>
+            <h3>Género: {{ FunctionStore.functions.genero }}</h3>
+            <h3>Duración: {{ FunctionStore.functions.duracion }} minutos</h3>
+            <h3>Precio: {{ FunctionStore.functions.precio }}€</h3>
           </div>
         </div>
       </div>
@@ -71,7 +53,7 @@ onMounted(async () => {
 
         <h3>Descripcion</h3>
         <div>
-          <p>{{ datosApi.descripcion }}</p>
+          <p>{{ FunctionStore.functions.descripcion }}</p>
         </div>
 
       </div>
