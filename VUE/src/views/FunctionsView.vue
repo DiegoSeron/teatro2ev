@@ -1,28 +1,14 @@
 <script setup lang="ts">
 
+import { useFunctionStore } from '@/stores/FunctionStore';
 import CardGrid from '../components/CardGrid.vue';
-
 import { ref, onMounted } from "vue";
-import axios from 'axios';
 
-interface Obra {
-    obraId: number;
-    titulo: string;
-    diaObra: string;
-    imagen: string;
-    genero: string;
-}
+const FunctionStore = useFunctionStore();
 
-const datosApi = ref<Array<Obra>>([]);
+onMounted( () => {
+    FunctionStore.fetchFunctions();
 
-onMounted(async () => {
-    try {
-        const response = await axios.get('http://localhost:5000/Obra');
-        console.log("Fetch para sacar grid de funciones hecho");
-        datosApi.value = response.data;
-    } catch (error) {
-        console.error('Error al hacer la petición:', error);
-    }
 });
 
 </script>
@@ -31,7 +17,7 @@ onMounted(async () => {
     <div class="content">
         <section class="functions">
 
-            <CardGrid v-for="obra in datosApi" :obraId="obra.obraId" :title="obra.titulo" :dia-obra="obra.diaObra"
+            <CardGrid v-for="obra in FunctionStore.functions" :obraId="obra.obraId" :title="obra.titulo" :dia-obra="obra.diaObra"
                 :imageSrc="obra.imagen" :genero="obra.genero" />
         </section>
 
@@ -183,4 +169,4 @@ onMounted(async () => {
     }
 
 }
-</style>
+</style>../stores/FunctionStore
