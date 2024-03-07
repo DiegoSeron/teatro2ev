@@ -24,8 +24,29 @@ public class ObraDTO
 
     public List<ButacaDTO> Butacas { get; set; }
 
+
+
     // public ObraCreateDTO(){
     //     ListaButacaObra = new List<ButacaObra>();
     // }
+    public Obra ToObra()
+    {
+        return new Obra
+        {
+            ObraId = this.ObraId,
+            Titulo = this.Titulo,
+            Descripcion = this.Descripcion,
+            DiaObra = this.DiaObra,
+            Imagen = this.Imagen,
+            Genero = this.Genero,
+            Duracion = this.Duracion,
+            Precio = this.Precio,
+            ListaButacaObra = this.Butacas != null ? this.Butacas.Select(b => new ButacaObra
+            {
+                Butaca = new Butaca { ButacaId = b.ButacaId, Libre = b.Libre }
+            }).ToList() : null
+        };
+    }
+
 
 }

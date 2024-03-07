@@ -28,15 +28,10 @@ namespace Tickett.Business
             return obras;
         }
 
-        public Obra Get(int id)
+        public ObraDTO Get(int id)
         {
             var obra = _obraRepository.Get(id);
-
-            // if (pizza != null)
-            // {
-            //     pizza.Ingredientes = _ingredientesRepository.GetIngredientesByPizzaId(pizza.Id);
-            // }
-
+            // Aquí deberías mapear la instancia de Obra a ObraDTO si es necesario
             return obra;
         }
 
@@ -55,18 +50,33 @@ namespace Tickett.Business
 
 
 
-        public void Update(Obra obra)
+        public void Update(int id, ObraUpdateDTO obraUpdate)
         {
-            _obraRepository.Update(obra);
+            var obraDto = _obraRepository.Get(id);
+            if (obraDto == null)
+            {
+                throw new KeyNotFoundException($"Obra con Id {id} no encontrada.");
+            }
 
-            // _ingredientesRepository.UpdateIngredientesForPizza(pizza.Ingredientes, pizza.Id);
+            // Mapea los datos del DTO a la entidad Obra
+            var obra = obraDto.ToObra();
+            obra.Titulo = obraUpdate.Titulo;
+            obra.Descripcion = obraUpdate.Descripcion;
+            obra.Precio = obraUpdate.Precio;
+            obra.DiaObra = obraUpdate.DiaObra;
+
+            // Llama al método Update del repositorio con la entidad Obra actualizada
+            _obraRepository.Update(obra);
         }
+
+
 
         public void Delete(int id)
         {
             _obraRepository.Delete(id);
         }
     }
+
 
 
 

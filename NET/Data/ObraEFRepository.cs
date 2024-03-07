@@ -52,44 +52,80 @@ namespace Tickett.Data
         {
             var obra = _context.Obras
                 .Include(b => b.ListaButacaObra)
+                    .ThenInclude(bo => bo.Butaca)
                 .Where(obra => obra.ObraId == id)
                 .FirstOrDefault();
 
-            var obraDto = new ObraDTO
+            if (obra != null)
             {
-                ObraId = obra.ObraId,
-                Titulo = obra.Titulo,
-                Descripcion = obra.Descripcion,
-                DiaObra = obra.DiaObra,
-                Imagen = obra.Imagen,
-                Genero = obra.Genero,
-                Duracion = obra.Duracion,
-                Precio = obra.Precio,
-                Butacas = obra.ListaButacaObra.Select(bo => new ButacaDTO
+                var obraDto = new ObraDTO
                 {
-                    ButacaId = bo.Butaca.ButacaId,
-                    Libre = bo.Butaca.Libre
-                }).ToList()
-            };
-            return obraDto;
+                    ObraId = obra.ObraId,
+                    Titulo = obra.Titulo,
+                    Descripcion = obra.Descripcion,
+                    DiaObra = obra.DiaObra,
+                    Imagen = obra.Imagen,
+                    Genero = obra.Genero,
+                    Duracion = obra.Duracion,
+                    Precio = obra.Precio,
+                    Butacas = obra.ListaButacaObra
+                        .Where(bo => bo != null && bo.Butaca != null) // Verificar que bo y bo.Butaca no sean null
+                        .Select(bo => new ButacaDTO
+                        {
+                            ButacaId = bo.ButacaId,
+                            Libre = bo.Libre ? true : false // Suponiendo que el estado depende de la propiedad "Libre" de la butaca
+                        })
+                    .ToList()
+                };
+
+                return obraDto;
+            }
+            else
+            {
+                return null; // Devuelve null si no se encuentra la obra
+            }
+
         }
 
         public void Update(Obra obra)
         {
+            // Verificar si ya hay una instancia de Obra con el mismo ObraId en el contexto
+            var existingObra = _context.Obras.Find(obra.ObraId);
+
+            if (existingObra != null)
+            {
+                // Si existe una instancia previa, desvincularla del contexto
+                _context.Entry(existingObra).State = EntityState.Detached;
+            }
+
+            // Adjuntar la nueva instancia de Obra al contexto
+            _context.Attach(obra);
+
+            // Marcar la entidad como modificada para que Entity Framework la actualice en la base de datos
             _context.Entry(obra).State = EntityState.Modified;
-            SaveChanges();
+
+            // Guardar los cambios en la base de datos
+            _context.SaveChanges();
         }
+
+
 
         public void Delete(int id)
         {
-            var obra = Get(id);
-            if (obra is null)
+            var obraDto = Get(id);
+            if (obraDto == null)
             {
-                throw new KeyNotFoundException("Pizza not found.");
+                throw new KeyNotFoundException("Obra not found.");
             }
-            _context.Obras.Remove(obra);
-            SaveChanges();
+
+            var obra = _context.Obras.FirstOrDefault(o => o.ObraId == id);
+            if (obra != null)
+            {
+                _context.Obras.Remove(obra);
+                SaveChanges();
+            }
         }
+
 
         public void SaveChanges()
         {
