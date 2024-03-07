@@ -3,6 +3,8 @@ import HomeView from "../views/HomeView.vue"
 import FunctionsView from "../views/FunctionsView.vue"
 import FunctionDescriptionView from "../views/FunctionDescriptionView.vue"
 import SeatSelectorView from "../views/SeatSelectorView.vue"
+import BuyView from "../views/BuyView.vue"
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +33,13 @@ const router = createRouter({
             path: '/Butaca/:id',
             name: 'butaca',
             component: SeatSelectorView,
+            props: true,
+        },
+        {
+            // selector de butacas
+            path: '/Compra',
+            name: 'compra',
+            component: BuyView,
             props: true,
         }
     ]
