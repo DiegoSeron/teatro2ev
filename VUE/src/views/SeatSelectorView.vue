@@ -4,6 +4,7 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { useFunctionStore } from '@/stores/FunctionStore';
+import { useSeatStore } from '@/stores/SeatStore';
 
 // cojo la url y el id de la obra
 const route = useRoute();
@@ -13,26 +14,11 @@ const id = route.params.id;
 const FunctionStore = useFunctionStore();
 FunctionStore.fetchFunctionsPerId(id);
 
-interface Butaca {
-    obraId: number;
-    butacaId: number;
-    libre: boolean;
+// llamo al SeatStore y hago el fetch con el id de la obra
+const SeatStore = useSeatStore();
+SeatStore.fetchSeatsPerId(id);
 
-}
 
-const datosApiButaca = ref<Array<Butaca>>([]);
-
-onMounted(async () => {
-    try {
-        const response = await axios.get(`http://localhost:5000/Seat/${id}`);
-        console.log("Fetch para sacar butacas por obra id");
-        datosApiButaca.value = response.data;
-        console.log(datosApiButaca.value);
-
-    } catch (error) {
-        console.error('Error al hacer la petición:', error);
-    }
-});
 
 const choosenSeats = ref<number[]>([]);
 
@@ -88,7 +74,7 @@ function onUnchooseSeat(butacaId: number) {
                     <div v-for="filaIndex in 10" :key="filaIndex">
                         <div class="fila">
                             <IconSeatVue
-                                v-for="(butaca, index) in datosApiButaca.slice((filaIndex - 1) * 10, filaIndex * 10)"
+                                v-for="(butaca, index) in SeatStore.seats.slice((filaIndex - 1) * 10, filaIndex * 10)"
                                 :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="butaca.butacaId" @selectSeat="onChooseSeat" @unselectSeat="onUnchooseSeat"/>
                         </div>
 
