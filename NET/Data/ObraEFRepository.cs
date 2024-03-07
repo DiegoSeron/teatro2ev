@@ -20,26 +20,39 @@ namespace Tickett.Data
             _context = context;
         }
 
-        public List<Obra> GetAll()
+        public List<ObraDTO> GetAll()
         {
-            return _context.Obras.ToList();
-            // var pizzas = _context.Pizzas
-            //     .Include(p => p.PizzaIngredientes)
-            //         .ThenInclude(pi => pi.Ingrediente)
-            //     .ToList();
+            var obras = _context.Obras
+                .Include(b => b.ListaButacaObra)
+                    .ThenInclude(bo => bo.Butaca)
+                .ToList();
 
-            // var pizzasDto = pizzas.Select(p => new PizzaDto
-            // {
-            //     Id = p.Id,
-            //     Name = p.Name,
-            //     PizzaIngredientes = p.PizzaIngredientes.Select(pi => new IngredienteDto
-            //     {
-            //         Id = pi.Ingrediente.Id,
-            //         Name = pi.Ingrediente.Name
-            //     }).ToList()
-            // }).ToList();
-
-            // return pizzasDto;
+            if (obras != null)
+            {
+                var obraDto = obras.Select(o => new ObraDTO
+                {
+                    ObraId = o.ObraId,
+                    Titulo = o.Titulo,
+                    Descripcion = o.Descripcion,
+                    DiaObra = o.DiaObra,
+                    Imagen = o.Imagen,
+                    Genero = o.Genero,
+                    Duracion = o.Duracion,
+                    Precio = o.Precio,
+                    Butacas = o.ListaButacaObra
+                    .Where(bo => bo != null && bo.Butaca != null)
+                    .Select(bo => new ButacaDTO
+                    {
+                        ButacaId = bo.ButacaId,
+                        Libre = bo.Libre ? true : false
+                    }).ToList()
+                }).ToList();
+                return obraDto;
+            }
+            else
+            {
+                return null; // Devuelve null si no se encuentra la obra
+            }
         }
 
         public void Add(Obra obra)
@@ -74,8 +87,7 @@ namespace Tickett.Data
                         {
                             ButacaId = bo.ButacaId,
                             Libre = bo.Libre ? true : false // Suponiendo que el estado depende de la propiedad "Libre" de la butaca
-                        })
-                    .ToList()
+                        }).ToList()
                 };
 
                 return obraDto;

@@ -16,7 +16,7 @@ public class ObraController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<Obra>> GetAll() =>
+    public ActionResult<List<ObraDTO>> GetAll() =>
     _obraService.GetAll();
 
 

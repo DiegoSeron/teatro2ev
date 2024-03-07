@@ -3,7 +3,7 @@
 
 public interface IObraRepository
 {
-    List<Obra> GetAll();
+    List<ObraDTO> GetAll();
     // GetAll(int id);
     void Add(Obra obra);
     ObraDTO Get(int id);

@@ -13,20 +13,34 @@ namespace Tickett.Business
         private readonly IObraRepository _obraRepository;
 
 
+
+        public List<ButacaObra> CrearButacasObra(int obraId)
+        {
+            List<ButacaObra> butacas = new List<ButacaObra>();
+            for (int i = 1; i <= 100; i++)
+            {
+                butacas.Add(new ButacaObra
+                {
+                    ButacaId = i,
+                    ObraId = obraId,
+                    Libre = true,
+                });
+            }
+
+            return butacas;
+
+        }
         public ObraService(IObraRepository obraRepository)
         {
             _obraRepository = obraRepository;
 
         }
-        public List<Obra> GetAll()
+        public List<ObraDTO> GetAll()
         {
             var obras = _obraRepository.GetAll();
-            // foreach (var pizza in pizzas)
-            // {
-            //     pizza.Ingredientes = _ingredientesRepository.GetIngredientesByPizzaId(pizza.Id);
-            // }
             return obras;
         }
+
 
         public ObraDTO Get(int id)
         {
@@ -38,17 +52,16 @@ namespace Tickett.Business
 
         public void Add(ObraCreateDTO obraCreateDTO)
         {
+
             var obra = new Obra();
             var mappedObra = obra.mapFromCreateDto(obraCreateDTO);
             _obraRepository.Add(mappedObra);
+
 
             // Aquí puedes realizar cualquier otra lógica que necesites
 
 
         }
-
-
-
 
         public void Update(int id, ObraUpdateDTO obraUpdate)
         {

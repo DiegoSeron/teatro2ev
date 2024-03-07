@@ -67,33 +67,28 @@ public class Obra
         return obra;
     }
 
-    public ObraDTO MapToDTO(Obra obra)
+    public ObraDTO MapToDTO()
     {
-        if (obra == null)
-        {
-            return null; // Devolver nulo si la obra es nula
-        }
-
         var obraDto = new ObraDTO
         {
-            ObraId = obra.ObraId,
-            Titulo = obra.Titulo,
-            Descripcion = obra.Descripcion,
-            DiaObra = obra.DiaObra,
-            Imagen = obra.Imagen,
-            Genero = obra.Genero,
-            Duracion = obra.Duracion,
-            Precio = obra.Precio,
+            ObraId = this.ObraId,
+            Titulo = this.Titulo,
+            Descripcion = this.Descripcion,
+            DiaObra = this.DiaObra,
+            Imagen = this.Imagen,
+            Genero = this.Genero,
+            Duracion = this.Duracion,
+            Precio = this.Precio,
             Butacas = this.ListaButacaObra.Select(bo => new ButacaDTO
             {
                 ButacaId = bo.Butaca.ButacaId,
                 Libre = bo.Butaca.Libre
             }).ToList()
-            // Agrega otras propiedades si es necesario
         };
 
         return obraDto;
     }
-
 }
+
+
 

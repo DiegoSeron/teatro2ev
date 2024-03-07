@@ -48,6 +48,12 @@ namespace Tickett.Data
             SaveChanges();
         }
 
+        public void AddRange(IEnumerable<ButacaObra> butacas)
+    {
+        _context.Set<ButacaObra>().AddRange(butacas);
+        _context.SaveChanges();
+    }
+
         public ButacaObra GetSeat(int idFunction, int idSeat)
         {
             return _context.ButacaObras.FirstOrDefault(obra => obra.ObraId == idFunction && obra.ButacaId == idSeat);
