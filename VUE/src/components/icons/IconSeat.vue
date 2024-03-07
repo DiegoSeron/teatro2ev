@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const emits = defineEmits(['selectSeat', 'unselectSeat'])
+
 defineProps<{
     isFree: boolean;
     butacaId: number;
@@ -8,27 +10,28 @@ defineProps<{
 
 const seatRef = ref<SVGGElement>();
 
-// Funcion para selccionar butacas
+// Funcion para seleccionar butacas
 function chooseSeat(butacaId: number, isFree: boolean) {
     if (seatRef.value) {
-        const esLibre = seatRef.value.classList.contains('free'); // si la butaca contiene la clase free (libre)
-        // Si esta libre en la base de datos
+        const esLibre = seatRef.value.classList.contains('free');
+        // Si la butaca está libre en la base de datos
         if (isFree) { 
-            console.log("butaca LIBRE: " + butacaId);
+            console.log("butaca LIBRE en la BBDD");
             // Si se selecciona
             if (esLibre) { 
-                console.log("Butaca Seleccionada");
                 seatRef.value.classList.remove('free');
                 seatRef.value.classList.add('choosen');
+                emits('selectSeat', butacaId);
             // Si se deselecciona
             } else {
-                console.log("Butaca Deseleccionada");
                 seatRef.value.classList.remove('choosen');
                 seatRef.value.classList.add('free');
+                emits('unselectSeat', butacaId);
             }
-        // Si esta ocupada en la base de datos
+
+        // Si la butaca está ocupada en la base de datos
         } else {
-            console.log("butaca OCUPADA: " + butacaId);
+            console.log("butaca OCUPADA en la BBDD: " + butacaId);
         }
     }
 }

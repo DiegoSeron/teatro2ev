@@ -34,6 +34,26 @@ onMounted(async () => {
     }
 });
 
+const choosenSeats = ref<number[]>([]);
+
+function onChooseSeat(butacaId: number) {
+  console.log(`Se selecciona la butaca ${butacaId}`);
+  // Agregar el asiento seleccionado al array
+  choosenSeats.value.push(butacaId);
+  console.log(choosenSeats.value);
+  // Guardar en el sessionStorage
+  sessionStorage.setItem('choosenSeats', JSON.stringify(choosenSeats.value));
+}
+
+function onUnchooseSeat(butacaId: number) {
+  console.log(`Se deselecciona la butaca ${butacaId}`);
+  // Filtrar el array para eliminar la butaca deseleccionada
+  choosenSeats.value = choosenSeats.value.filter(seatId => seatId !== butacaId);
+  console.log(choosenSeats.value);
+  // Actualizar el sessionStorage
+  sessionStorage.setItem('choosenSeats', JSON.stringify(choosenSeats.value));
+}
+
 </script>
 
 
@@ -69,7 +89,7 @@ onMounted(async () => {
                         <div class="fila">
                             <IconSeatVue
                                 v-for="(butaca, index) in datosApiButaca.slice((filaIndex - 1) * 10, filaIndex * 10)"
-                                :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="butaca.butacaId" />
+                                :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="butaca.butacaId" @selectSeat="onChooseSeat" @unselectSeat="onUnchooseSeat"/>
                         </div>
 
                     </div>
