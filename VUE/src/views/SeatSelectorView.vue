@@ -102,13 +102,13 @@ function onUnchooseSeat(butacaId: number) {
             </div>
         </div>
         <div class="button" id="botonPago">
-            <a href="compra.html">IR A PAGAR</a>
+            <RouterLink :to="'/Compra'">IR A PAGAR</RouterLink>
         </div>
     </div>
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
 .content {
     width: 100%;
     display: flex;

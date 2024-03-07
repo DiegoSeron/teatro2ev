@@ -70,325 +70,320 @@ const id = route.params.id;
   </div>
 </template>
   
-<style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Merryweather");
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merryweather');
+
+
+$primaryColor: #ba1313;
+$primaryFont: 'Bebas Neue';
+$secondFont: 'Montserrat';
+$thirdFont: 'Merryweather';
+
+@mixin content($width, $height) {
+    width: $width;
+    height: $height;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: {
+        top: 16px;
+        bottom: 16px;
+    }
+
+
+    h3 {
+        font: {
+            family: $secondFont;
+        }
+
+        color: $primaryColor;
+    }
+}
+
+@mixin data {
+    border: 1px solid gray;
+    text-align: left;
+
+    padding: 16px;
+    margin: 16px;
+
+    border-radius: 7px;
+
+    h3 {
+        font: {
+            family: $secondFont;
+        }
+
+        color: black;
+        padding: 5px;
+    }
+}
 
 .content {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
+
 }
 
 h2 {
-  font-family: "Bebas Neue";
-  font-size: 60px;
-  margin-top: 20px;
-  margin-bottom: 0;
+    font: {
+        family: $primaryFont;
+        size: 60px;
+    }
+    margin: {
+        top: 20px;
+        bottom: 0;
+    }   
 }
+
+
 
 section {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        margin: 0;
+    }
 }
 
-section h3 {
-  margin: 0;
-}
 
 .principal {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
+    @include content(100%, auto);
 
-.principal h3 {
-  font-family: "Montserrat";
-  color: #ba1313;
-}
 
-.principal div {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-}
 
-.principal div img {
-  border-radius: 21px;
-}
+    div {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
 
-.principal div a {
-  color: #ba1313;
-  text-decoration: none;
-  margin-top: 15px;
-  font-family: "Montserrat";
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 50px;
-  border: 3px solid #ba1313;
-  width: 100%;
+        img {
+            border-radius: 21px;
+        }
+
+        a {
+            color: $primaryColor;
+            text-decoration: none;
+
+            margin-top: 15px;
+
+            font: {
+                family: $secondFont;
+                size: 18px;
+                weight: bold;
+            }
+
+            border-radius: 50px;
+            border: 3px solid $primaryColor;
+            width: 100%;
+
+        }
+    }
+
+
 }
 
 .date {
-  width: 100%;
-  height: 25%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
+    @include content(100%, 25%);
 
-.date h3 {
-  font-family: "Montserrat";
-  color: #ba1313;
-}
 
-.date__data {
-  border: 1px solid gray;
-  text-align: left;
-  padding: 16px;
-  margin: 16px;
-  border-radius: 7px;
-}
 
-.date__data h3 {
-  font-family: "Montserrat";
-  color: black;
-  padding: 5px;
+    &__data {
+        @include data();
+
+    }
 }
 
 .information {
-  width: 100%;
-  height: 25%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
+    @include content(100%, 25%);
 
-.information h3 {
-  font-family: "Montserrat";
-  color: #ba1313;
-}
-
-.information__data {
-  border: 1px solid gray;
-  text-align: left;
-  padding: 16px;
-  margin: 16px;
-  border-radius: 7px;
-}
-
-.information__data h3 {
-  font-family: "Montserrat";
-  color: black;
-  padding: 5px;
+    &__data {
+        @include data();
+    }
 }
 
 .description {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
+    @include content(100%, 50%);
 
-.description h3 {
-  font-family: "Montserrat";
-  color: #ba1313;
-}
+    div {
+        margin: {
+            left: 30px;
+            right: 30px;
+        }
 
-.description div {
-  margin-left: 30px;
-  margin-right: 30px;
-  text-align: left;
-}
+        text-align: left;
 
-.description div p {
-  font-size: 18px;
-  font-family: "Merryweather";
-  text-align: justify;
+        p {
+            font: {
+                size: 18px;
+                family: $thirdFont;
+            }
+
+            text-align: justify;
+
+        }
+    }
+
+
+
 }
 
 .cast {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
+    @include content(100%, 50%);
+
+    div {
+        margin: {
+            left: 30px;
+            right: 30px;
+        }
+
+        text-align: left;
+
+        ul {
+            font: {
+                size: 18px;
+                family: $thirdFont;
+            }
+
+            list-style: none;
+
+            text-align: justify;
+
+        }
+    }
+
 }
 
-.cast h3 {
-  font-family: "Montserrat";
-  color: #ba1313;
-}
 
-.cast div {
-  margin-left: 30px;
-  margin-right: 30px;
-  text-align: left;
-}
 
-.cast div ul {
-  font-size: 18px;
-  font-family: "Merryweather";
-  list-style: none;
-  text-align: justify;
-}
 
 /* PARA ORDENADORES */
 @media screen and (min-width: 767px) {
-  .first {
-    flex-direction: row;
-    justify-content: center;
-  }
 
-  .principal {
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    align-items: center;
-  }
+    .first {
+        flex-direction: row;
+        justify-content: center;
+    }
 
-  .principal h3 {
-    font-family: "Montserrat";
-    color: #ba1313;
-  }
+    .principal {
+        @include content(30%, 100%);
+        align-items: center;
+        h2 {
+            font: {
+                size: 48px;
+            }
+        }
 
-  .principal h2 {
-    font-size: 48px;
-  }
+        div {
+            height: 100%;
+            width: 300px;
 
-  .principal div {
-    height: 100%;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-  }
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
 
-  .principal div img {
-    border-radius: 21px;
-  }
+            img {
+                border-radius: 21px;
+            }
 
-  .principal div a {
-    color: #ba1313;
-    text-decoration: none;
-    margin-top: 15px;
-    font-family: "Montserrat";
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 50px;
-    border: 3px solid #ba1313;
-    width: 98%;
-  }
+            a {
+                color: $primaryColor;
+                text-decoration: none;
 
-  .secundary {
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    margin-left: 0;
-    margin-top: 0;
-  }
+                margin-top: 15px;
 
-  .secundary h3 {
-    font-family: "Montserrat";
-    color: #ba1313;
-  }
+                font: {
+                    family: $secondFont;
+                    size: 18px;
+                    weight: bold;
+                }
 
-  .secundary .date {
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
+                border-radius: 50px;
+                border: 3px solid $primaryColor;
+                width: 98%;
 
-  .secundary .date h3 {
-    font-family: "Montserrat";
-    color: #ba1313;
-  }
+            }
+        }
 
-  .secundary .information {
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
 
-  .secundary .information h3 {
-    font-family: "Montserrat";
-    color: #ba1313;
-  }
+    }
 
-  .description {
-    align-items: flex-start;
-  }
+    .secundary {
+        @include content(30%, 100%);
+        margin-left: 0;
+        margin-top: 0;
 
-  .description h3 {
-    margin-left: 120px;
-  }
 
-  .description div {
-    margin-left: 120px;
-    margin-right: 120px;
-  }
+        .date {
+            @include content(100%, 50%);
+        }
 
-  .description div p {
-    font-size: 20px;
-  }
+        .information {
+            @include content(100%, 50%);
 
-  .cast {
-    align-items: flex-start;
-  }
+        }
 
-  .cast h3 {
-    margin-left: 120px;
-  }
+    }
 
-  .cast div {
-    margin-left: 120px;
-    margin-right: 120px;
-  }
 
-  .cast div ul {
-    padding: 0;
-  }
+    .description {
+
+        align-items: flex-start;
+
+        h3 {
+            margin: {
+                left: 120px;
+            }
+        }
+
+        div {
+            margin: {
+                left: 120px;
+                right: 120px;
+            }
+
+            p {
+                font: {
+                    size: 20px;
+                }
+            }
+        }
+    }
+
+    .cast {
+        align-items: flex-start;
+
+        h3 {
+            margin: {
+                left: 120px;
+            }
+        }
+
+        div {
+
+            margin: {
+                left: 120px;
+                right: 120px;
+            }
+
+            ul {
+
+                padding: 0;
+
+            }
+        }
+
+    }
 }
 </style>
