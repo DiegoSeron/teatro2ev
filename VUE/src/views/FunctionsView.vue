@@ -6,10 +6,9 @@ import { ref, onMounted } from "vue";
 
 const FunctionStore = useFunctionStore();
 
-onMounted( () => {
     FunctionStore.fetchFunctions();
 
-});
+
 
 </script>
 

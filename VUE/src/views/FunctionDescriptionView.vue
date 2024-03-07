@@ -8,10 +8,10 @@ import { useFunctionStore } from '@/stores/FunctionStore';
 const FunctionStore = useFunctionStore();
 const route = useRoute();
 const id = route.params.id;
-onMounted( () => {
+
     FunctionStore.fetchFunctionsPerId(id);
 
-});
+
 </script>
 
 

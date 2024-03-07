@@ -1,37 +1,17 @@
 <script setup lang="ts">
 import IconSeatVue from '@/components/icons/IconSeat.vue';
-
-
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { useFunctionStore } from '@/stores/FunctionStore';
 
-
-interface Obra {
-    obraId: number;
-    titulo: string;
-    diaObra: Date;
-    imagen: string;
-    genero: string;
-    horaObra: Date;
-    duracion: number;
-    precio: number;
-}
-
-const datosApi = ref<Array<Obra>>([]);
+// cojo la url y el id de la obra
 const route = useRoute();
 const id = route.params.id;
-onMounted(async () => {
-    try {
 
-        const response = await axios.get(`http://localhost:5000/Obra/${id}`);
-        console.log("Fetch para sacar descripcion de obra hecho");
-        datosApi.value = response.data;
-    } catch (error) {
-        console.error('Error al hacer la petición:', error);
-    }
-});
-
+// llamo al FunctionStore y hago el fetch con el id de la obra
+const FunctionStore = useFunctionStore();
+FunctionStore.fetchFunctionsPerId(id);
 
 interface Butaca {
     obraId: number;
@@ -67,15 +47,15 @@ onMounted(async () => {
             <div class="info__text">
                 <div class="title">
                     <h2>TITULO DE LA FUNCIÓN:</h2>
-                    <h3>{{ datosApi.titulo }}</h3>
+                    <h3>{{ FunctionStore.functions.titulo }}</h3>
                 </div>
                 <div class="hour">
                     <h2>HORA DE LA FUNCIÓN:</h2>
-                    <h3>{{ datosApi.diaObra }}</h3>
+                    <h3>{{ FunctionStore.functions.diaObra }}</h3>
                 </div>
             </div>
             <div class="info__img">
-                <img :src="'../src/assets/IMAGENES/' + datosApi.imagen" alt="">
+                <img :src="'../src/assets/IMAGENES/' + FunctionStore.functions.imagen" alt="">
             </div>
         </div>
         <div class="selection">
