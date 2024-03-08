@@ -9,65 +9,81 @@ const FunctionStore = useFunctionStore();
 const route = useRoute();
 const id = route.params.id;
 
-    FunctionStore.fetchFunctionsPerId(id);
+FunctionStore.fetchFunctionsPerId(id);
 
+// Filtro para formatear la fecha
+const formatoFecha = (fechaHora: string) => {
+    const fecha = new Date(fechaHora);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return fecha.toLocaleDateString('es-ES', options);
+};
+
+// Filtro para formatear la hora
+const formatoHora = (fechaHora: string) => {
+    const hora = new Date(fechaHora);
+    const options = { hour: 'numeric', minute: 'numeric' };
+    return hora.toLocaleTimeString('es-ES', options);
+};
 
 </script>
 
 
 <template>
-  <div class="content">
-    <h2>{{ FunctionStore.functions.titulo }}</h2>
-    <section class="first">
-      <div class="principal">
-        <div>
-          <img :src="'../src/assets/IMAGENES/' + FunctionStore.functions.imagen" :alt="`${FunctionStore.functions.titulo}`">
-        </div>
-        <div>
-          <RouterLink :to="'/Butaca/' + id">SELECCIONAR BUTACAS</RouterLink>
+    <div class="content">
+        <h2>{{ FunctionStore.functions.titulo }}</h2>
+        <section class="first">
+            <div class="principal">
+                <div>
+                    <img :src="'../src/assets/IMAGENES/' + FunctionStore.functions.imagen"
+                        :alt="`${FunctionStore.functions.titulo}`">
+                </div>
+                <div>
+                    <RouterLink :to="'/Butaca/' + id">SELECCIONAR BUTACAS</RouterLink>
 
-        </div>
-      </div>
-      <div class="secundary">
-        <div class="date">
-          <h3>Horario</h3>
-          <div class="date__data">
-            <h3>Dia: {{ FunctionStore.functions.diaObra }}</h3>
-            <h3>Hora: {{ FunctionStore.functions.horaObra }}</h3>
-          </div>
-        </div>
-        <div class="information">
-          <h3>Información</h3>
-          <div class="information__data">
-            <h3>Género: {{ FunctionStore.functions.genero }}</h3>
-            <h3>Duración: {{ FunctionStore.functions.duracion }} minutos</h3>
-            <h3>Precio: {{ FunctionStore.functions.precio }}€</h3>
-          </div>
-        </div>
-      </div>
+                </div>
+            </div>
+            <div class="secundary">
+                <div class="date">
+                    <h3>Horario</h3>
+                    <div class="date__data">
+                    <!-- Mostrar la fecha -->
+                    <h3>Día: {{ formatoFecha(FunctionStore.functions.diaObra) }}</h3>
+                    <!-- Mostrar la hora -->
+                    <h3>Hora: {{ formatoHora(FunctionStore.functions.diaObra) }}</h3>
+                    </div>
+                </div>
+                <div class="information">
+                    <h3>Información</h3>
+                    <div class="information__data">
+                        <h3>Género: {{ FunctionStore.functions.genero }}</h3>
+                        <h3>Duración: {{ FunctionStore.functions.duracion }} minutos</h3>
+                        <h3>Precio: {{ FunctionStore.functions.precio }}€</h3>
+                    </div>
+                </div>
+            </div>
 
-    </section>
+        </section>
 
-    <section>
-      <div class="description">
+        <section>
+            <div class="description">
 
-        <h3>Descripcion</h3>
-        <div>
-          <p>{{ FunctionStore.functions.descripcion }}</p>
-        </div>
+                <h3>Descripcion</h3>
+                <div>
+                    <p>{{ FunctionStore.functions.descripcion }}</p>
+                </div>
 
-      </div>
-      <div class="cast">
-        <h3>Reparto</h3>
-        <div>
-          <ul>
-          </ul>
-        </div>
-      </div>
+            </div>
+            <div class="cast">
+                <h3>Reparto</h3>
+                <div>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
 
-    </section>
+        </section>
 
-  </div>
+    </div>
 </template>
   
 <style scoped lang="scss">
@@ -135,10 +151,11 @@ h2 {
         family: $primaryFont;
         size: 60px;
     }
+
     margin: {
         top: 20px;
         bottom: 0;
-    }   
+    }
 }
 
 
@@ -278,6 +295,7 @@ section {
     .principal {
         @include content(30%, 100%);
         align-items: center;
+
         h2 {
             font: {
                 size: 48px;
@@ -385,5 +403,4 @@ section {
         }
 
     }
-}
-</style>
+}</style>
