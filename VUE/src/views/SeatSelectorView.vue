@@ -148,7 +148,7 @@ function onUnchooseSeat(butacaId: number) {
 }
 
 .info__img img {
-    width: 85%;
+    width: 55%;
     height: auto;
     border-radius: 15px;
     margin-top: 5%;
