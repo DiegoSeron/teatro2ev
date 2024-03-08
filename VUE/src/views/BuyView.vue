@@ -83,8 +83,8 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
         </div>
 
         <div class="buttons">
-            <a href="../html/grid_funciones.html">CANCELAR</a>
-            <a href="../index.html">PAGAR</a>
+            <RouterLink :to="'/Obra'">CANCELAR</RouterLink>
+            <RouterLink :to="'/Obra'">PAGAR</RouterLink>
         </div>
     </div>
 </template>
