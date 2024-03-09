@@ -6,10 +6,9 @@ import { ref, onMounted } from "vue";
 
 const FunctionStore = useFunctionStore();
 
-onMounted( () => {
     FunctionStore.fetchFunctions();
 
-});
+
 
 </script>
 
@@ -47,14 +46,14 @@ onMounted( () => {
     </div>
 </template>
 
-<style>
-.functions {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-}
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+$primaryColor: #ba1313;
+$primaryFont: 'Bebas Neue';
+$secondlyFont: 'Montserrat';
+
 
 .content {
     width: 100%;
@@ -63,110 +62,199 @@ onMounted( () => {
     flex-direction: column;
 }
 
+.functions {
+
+    
+    width: 100%;
+    height: auto;
+    
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+
+}
+
 .sidebar {
     display: none;
     position: fixed;
     right: 0;
     width: 28%;
     height: auto;
+
     background-color: #fff;
+
+    .filter {
+        width: 100%;
+        height: auto;
+        position: relative;
+
+        margin: {
+            top: 10%;
+        }
+
+        &__search {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+
+            input {
+
+                width: 90%;
+                border-radius: 50px;
+                height: 30px;
+            }
+
+            img {
+                position: absolute;
+                left: 75%;
+                width: 20px;
+                cursor: pointer;
+            }
+        }
+
+        &__gender {
+            width: 100%;
+            height: auto;
+
+            display: flex;
+            justify-content: center;
+
+            ul {
+
+                width: 100%;
+
+                padding: 0;
+
+                list-style: none;
+                text-align: left;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+
+                margin: {
+                    right: 50%;
+                    left: 50%;
+                }
+
+
+                font: {
+                    size: 13px;
+                    family: $secondlyFont;
+                }
+
+                li {
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    padding: 2%;
+
+                    input {
+                        appearance: none;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+
+                        width: 20px;
+                        height: 20px;
+
+                        border: 1px solid $primaryColor;
+                        background-color: #fff;
+
+                    }
+
+                    input:checked {
+                        background-color: $primaryColor;
+                    }
+
+
+                }
+            }
+
+        }
+
+    }
+
 }
 
-.sidebar .filter {
-    width: 100%;
+.close{
+    padding: 12px;
+    background-color: #ba1313;
+    border: 2px solid black;
+    color: white;
+    font-family: $secondlyFont;
+}
+
+.iconFilter {
+    display: block;
     height: auto;
-    position: relative;
-    margin-top: 10%;
-}
+    width: auto;
+    background-color: #ba1313;
 
-.sidebar .filter__search {
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sidebar .filter__search input {
-    width: 90%;
     border-radius: 50px;
-    height: 30px;
-}
+    padding: 9px;
+    color: #fff;
+    font-family: $secondlyFont;
+    margin: {
+        left: 70%;
+        top: 15px;
+        right: 15px;
+        bottom: 15px;
+    }
 
-.sidebar .filter__search img {
-    position: absolute;
-    left: 75%;
-    width: 20px;
     cursor: pointer;
 }
 
-.sidebar .filter__gender {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-}
-
-.sidebar .filter__gender ul {
-    width: 100%;
-    padding: 0;
-    list-style: none;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-right: 50%;
-    margin-left: 50%;
-    font-size: 13px;
-    font-family: "Montserrat";
-}
-
-.sidebar .filter__gender ul li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2%;
-}
-
-.sidebar .filter__gender ul li input {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ba1313;
-    background-color: #fff;
-}
-
-.sidebar .filter__gender ul li input:checked {
-    background-color: #ba1313;
-}
-
-
 /* PARA ORDENADORES */
 @media screen and (min-width: 767px) {
+
     .functions {
         width: 70%;
         margin: 15px;
-    }
 
-    .functions .card {
-        flex-basis: calc(33% - 20px);
+
+        .card {
+            flex-basis: calc(33% - 20px);
+        }
+
     }
 
     .sidebar {
         display: block !important;
+
+        .filter {
+            &__search {
+                img {
+                    left: 82%;
+                    width: 25px;
+                }
+            }
+
+            &__gender {
+                ul {
+                    font-size: 18px;
+                }
+            }
+        }
     }
 
-    .sidebar .filter__search img {
-        left: 82%;
-        width: 25px;
+    .iconFilter {
+        display: none;
+
     }
 
-    .sidebar .filter__gender ul {
-        font-size: 18px;
+    .close {
+        display: none;
+ 
+    
     }
+
 
 }
-</style>../stores/FunctionStore
+
+</style>
