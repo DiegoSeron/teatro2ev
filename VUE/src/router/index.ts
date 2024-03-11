@@ -4,6 +4,7 @@ import FunctionsView from "../views/FunctionsView.vue"
 import FunctionDescriptionView from "../views/FunctionDescriptionView.vue"
 import SeatSelectorView from "../views/SeatSelectorView.vue"
 import BuyView from "../views/BuyView.vue"
+import AdminView from "../views/AdminView.vue"
 
 
 const router = createRouter({
@@ -40,6 +41,13 @@ const router = createRouter({
             path: '/Compra',
             name: 'compra',
             component: BuyView,
+            props: true,
+        },
+        {
+            // menu de admin
+            path: '/Admin',
+            name: 'admin',
+            component: AdminView,
             props: true,
         }
     ]
