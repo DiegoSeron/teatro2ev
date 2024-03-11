@@ -16,34 +16,40 @@ public class SeatController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<ButacaObra>> GetAll() =>
+    public ActionResult<List<ButacaDTO>> GetAll() =>
     _seatService.GetAll();
 
 
-   // PILLAR SOLO 1 BUTACA
+    // PILLAR SOLO 1 BUTACA
     [HttpGet]
     [Route("{idFunction}/{idSeat}")]
-    public ActionResult<ButacaObra> GetSeat(int idFunction, int idSeat)
+    public ActionResult<ButacaDTO> GetSeat(int idFunction, int idSeat)
     {
         var seat = _seatService.GetSeat(idFunction, idSeat);
 
-        if (seat == null){
+        if (seat == null)
+        {
             return NotFound();
-        }else{
+        }
+        else
+        {
             return seat;
         }
     }
 
-   // PILLAR TODAS LAS BUTACAS DE 1 FUNCION
+    // PILLAR TODAS LAS BUTACAS DE 1 FUNCION
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<List<ButacaObra>> GetFromFunction(int id)
+    public ActionResult<List<ButacaDTO>> GetFromFunction(int id)
     {
         var seat = _seatService.GetFromFunction(id);
 
-        if (seat == null){
+        if (seat == null)
+        {
             return NotFound();
-        }else{
+        }
+        else
+        {
             return seat;
         }
     }
@@ -52,28 +58,32 @@ public class SeatController : ControllerBase
 
 
     [HttpPost]
-    public IActionResult Create(ButacaObra seat)
+    public IActionResult Create([FromBody] ButacaObraCreateDTO butacaObraCreateDTO)
     {
-        _seatService.Add(seat);
-        return CreatedAtAction(nameof(GetSeat), new { id = seat.ObraId }, seat);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        _seatService.Add(butacaObraCreateDTO);
+        return Ok();
     }
 
 
- 
-
     [HttpPut("{idFunction}/{idSeat}")]
-    public IActionResult Update(int idFunction, int idSeat, ButacaObra seat)
+    public IActionResult Update(int idFunction, int idSeat, [FromBody] ButacaObraUpdateDTO butacaUpdateDTO)
     {
-        if (idFunction != seat.ObraId)
-            return BadRequest();
+         if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-        var existingObra = _seatService.GetSeat(idFunction, idSeat);
-        if (existingObra is null)
+        try
+        {
+            _seatService.Update(idFunction,idSeat, butacaUpdateDTO);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
             return NotFound();
-
-        _seatService.Update(seat);
-
-        return NoContent();
+        }
     }
 
 

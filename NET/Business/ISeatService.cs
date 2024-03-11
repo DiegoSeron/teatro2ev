@@ -3,11 +3,11 @@ namespace Tickett.Business;
 
 public interface ISeatService
 {
-    List<ButacaObra> GetAll();
+    List<ButacaDTO> GetAll();
     // GetAll(int id);
-    void Add(ButacaObra butaca);
-    ButacaObra GetSeat(int idFunction, int idSeat);
-    List<ButacaObra> GetFromFunction(int idFunction);
-    void Update(ButacaObra butaca);
+    void Add(ButacaObraCreateDTO butacaObraCreateDTO);
+    ButacaDTO GetSeat(int idFunction, int idSeat);
+    List<ButacaDTO> GetFromFunction(int idFunction);
+    void Update(int idFunction, int idSeat, ButacaObraUpdateDTO butacaObraUpdateDTO);
     void Delete(int idFunction, int idSeat);
 }

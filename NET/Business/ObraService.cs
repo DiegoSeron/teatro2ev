@@ -12,24 +12,6 @@ namespace Tickett.Business
 
         private readonly IObraRepository _obraRepository;
 
-
-
-        public List<ButacaObra> CrearButacasObra(int obraId)
-        {
-            List<ButacaObra> butacas = new List<ButacaObra>();
-            for (int i = 1; i <= 100; i++)
-            {
-                butacas.Add(new ButacaObra
-                {
-                    ButacaId = i,
-                    ObraId = obraId,
-                    Libre = true,
-                });
-            }
-
-            return butacas;
-
-        }
         public ObraService(IObraRepository obraRepository)
         {
             _obraRepository = obraRepository;
@@ -56,10 +38,6 @@ namespace Tickett.Business
             var obra = new Obra();
             var mappedObra = obra.mapFromCreateDto(obraCreateDTO);
             _obraRepository.Add(mappedObra);
-
-
-            // Aquí puedes realizar cualquier otra lógica que necesites
-
 
         }
 

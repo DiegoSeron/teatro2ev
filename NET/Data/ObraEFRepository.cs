@@ -13,10 +13,11 @@ namespace Tickett.Data
 
 
         private readonly ObraContext _context;
+        private readonly ISeatRepository _seatRepository;
 
-        public ObraEFRepository(ObraContext context)
+        public ObraEFRepository(ObraContext context, ISeatRepository seatRepository)
         {
-
+            _seatRepository = seatRepository;
             _context = context;
         }
 
@@ -58,6 +59,21 @@ namespace Tickett.Data
         public void Add(Obra obra)
         {
             _context.Obras.Add(obra);
+            SaveChanges();
+
+            for (int i = 1; i <= 100; i++)
+            {
+                var butaca = new ButacaObra
+                {
+                    ObraId = obra.ObraId,
+                    ButacaId = i,
+                    Libre = true // Suponiendo que al principio todas las butacas están libres
+                };
+                _seatRepository.Add(butaca);
+
+
+                // Aquí puedes realizar cualquier otra lógica que necesites
+            }
             SaveChanges();
         }
 
