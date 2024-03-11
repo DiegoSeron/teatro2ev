@@ -52,11 +52,8 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
         const response = await fetch('http://localhost:5000/Obra/'+ id, {
           method: 'DELETE',
         });
-        console.log("Fetch de eliminar funcion hecho desde FunctionStore.ts");
+        console.log("Fetch de eliminar funcion "+id+" hecho desde FunctionStore.ts");
         
-        // const data = await response.json();
-        // functions.splice(0,functions.length)
-        // functions.push(...data); 
       } catch (error) {
         console.error('Error al eliminar:', error);
       }
