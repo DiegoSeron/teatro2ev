@@ -117,25 +117,18 @@ namespace Tickett.Data
 
         public void Update(Obra obra)
         {
-            // Verificar si ya hay una instancia de Obra con el mismo ObraId en el contexto
+            // Cargar la instancia existente de Obra desde el contexto
             var existingObra = _context.Obras.Find(obra.ObraId);
 
             if (existingObra != null)
             {
-                // Si existe una instancia previa, desvincularla del contexto
-                _context.Entry(existingObra).State = EntityState.Detached;
+                // Copiar las propiedades actualizadas de la nueva instancia a la instancia existente
+                _context.Entry(existingObra).CurrentValues.SetValues(obra);
+
+                // Guardar los cambios en el contexto
+                _context.SaveChanges();
             }
-
-            // Adjuntar la nueva instancia de Obra al contexto
-            _context.Attach(obra);
-
-            // Marcar la entidad como modificada para que Entity Framework la actualice en la base de datos
-            _context.Entry(obra).State = EntityState.Modified;
-
-            // Guardar los cambios en la base de datos
-            _context.SaveChanges();
         }
-
 
 
         public void Delete(int id)
