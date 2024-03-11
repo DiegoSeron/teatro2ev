@@ -8,11 +8,13 @@ import { useSeatStore } from '@/stores/SeatStore';
 
 // cojo la url y el id de la obra
 const route = useRoute();
-const id = route.params.id;
+const id = Number.parseInt(route.params.id as string);
 
 // llamo al FunctionStore y hago el fetch con el id de la obra
 const FunctionStore = useFunctionStore();
-FunctionStore.fetchFunctionsPerId(id);
+FunctionStore.searchFunctionsPerId(id);
+const Idfunction = FunctionStore.searchFunctionsPerId(id);
+
 
 // llamo al SeatStore y hago el fetch con el id de la obra
 const SeatStore = useSeatStore();
@@ -66,15 +68,15 @@ const formatoHora = (fechaHora: string) => {
             <div class="info__text">
                 <div class="title">
                     <h2>TITULO DE LA FUNCIÓN:</h2>
-                    <h3>{{ FunctionStore.functions.titulo }}</h3>
+                    <h3>{{ Idfunction.titulo }}</h3>
                 </div>
                 <div class="hour">
                     <h2>HORA DE LA FUNCIÓN:</h2>
-                    <h3>{{ formatoFecha(FunctionStore.functions.diaObra) }}</h3>
+                    <h3>{{ formatoFecha(Idfunction.diaObra) }}</h3>
                 </div>
             </div>
             <div class="info__img">
-                <img :src="'../src/assets/IMAGENES/' + FunctionStore.functions.imagen" alt="">
+                <img :src="'../src/assets/IMAGENES/' + Idfunction.imagen" alt="">
             </div>
         </div>
         <div class="selection">

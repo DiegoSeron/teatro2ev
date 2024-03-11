@@ -15,7 +15,7 @@ FunctionStore.fetchFunctions();
     <div class="content">
         <section class="functions">
 
-            <CardGrid v-for="obra in FunctionStore.functions" :obraId="obra.obraId" :title="obra.titulo" :dia-obra="obra.diaObra"
+            <CardGrid v-for="obra in FunctionStore.functions" :obraId="obra.obraId" :title="obra.titulo" :dia-obra="obra.diaObra.toString()"
                 :imageSrc="obra.imagen" :genero="obra.genero" />
         </section>
 

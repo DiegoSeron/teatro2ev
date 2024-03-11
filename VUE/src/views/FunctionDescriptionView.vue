@@ -7,9 +7,10 @@ import { useFunctionStore } from '@/stores/FunctionStore';
 
 const FunctionStore = useFunctionStore();
 const route = useRoute();
-const id = route.params.id;
+const id = Number.parseInt(route.params.id as string);
 
-FunctionStore.fetchFunctionsPerId(id);
+const Idfunction = FunctionStore.searchFunctionsPerId(id);
+
 
 // Filtro para formatear la fecha
 const formatoFecha = (fechaHora: string) => {
@@ -30,12 +31,12 @@ const formatoHora = (fechaHora: string) => {
 
 <template>
     <div class="content">
-        <h2>{{ FunctionStore.functions.titulo }}</h2>
+        <h2>{{ Idfunction.titulo }}</h2>
         <section class="first">
             <div class="principal">
                 <div>
-                    <img :src="'../src/assets/IMAGENES/' + FunctionStore.functions.imagen"
-                        :alt="`${FunctionStore.functions.titulo}`">
+                    <img :src="'../src/assets/IMAGENES/' + Idfunction.imagen"
+                        :alt="`${Idfunction.titulo}`">
                 </div>
                 <div>
                     <RouterLink :to="'/Butaca/' + id">SELECCIONAR BUTACAS</RouterLink>
@@ -47,17 +48,17 @@ const formatoHora = (fechaHora: string) => {
                     <h3>Horario</h3>
                     <div class="date__data">
                     <!-- Mostrar la fecha -->
-                    <h3>Día: {{ formatoFecha(FunctionStore.functions.diaObra) }}</h3>
+                    <h3>Día: {{ formatoFecha(Idfunction.diaObra) }}</h3>
                     <!-- Mostrar la hora -->
-                    <h3>Hora: {{ formatoHora(FunctionStore.functions.diaObra) }}</h3>
+                    <h3>Hora: {{ formatoHora(Idfunction.diaObra) }}</h3>
                     </div>
                 </div>
                 <div class="information">
                     <h3>Información</h3>
                     <div class="information__data">
-                        <h3>Género: {{ FunctionStore.functions.genero }}</h3>
-                        <h3>Duración: {{ FunctionStore.functions.duracion }} minutos</h3>
-                        <h3>Precio: {{ FunctionStore.functions.precio }}€</h3>
+                        <h3>Género: {{ Idfunction.genero }}</h3>
+                        <h3>Duración: {{ Idfunction.duracion }} minutos</h3>
+                        <h3>Precio: {{ Idfunction.precio }}€</h3>
                     </div>
                 </div>
             </div>
@@ -69,7 +70,7 @@ const formatoHora = (fechaHora: string) => {
 
                 <h3>Descripcion</h3>
                 <div>
-                    <p>{{ FunctionStore.functions.descripcion }}</p>
+                    <p>{{ Idfunction.descripcion }}</p>
                 </div>
 
             </div>
