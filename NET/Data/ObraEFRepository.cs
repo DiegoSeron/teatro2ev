@@ -13,99 +13,140 @@ namespace Tickett.Data
 
 
         private readonly ObraContext _context;
+        private readonly ISeatRepository _seatRepository;
 
-        public ObraEFRepository(ObraContext context)
+        public ObraEFRepository(ObraContext context, ISeatRepository seatRepository)
         {
-
+            _seatRepository = seatRepository;
             _context = context;
         }
 
-        public List<Obra> GetAll()
+        public List<ObraDTO> GetAll()
         {
-            return _context.Obras.ToList();
-            // var pizzas = _context.Pizzas
-            //     .Include(p => p.PizzaIngredientes)
-            //         .ThenInclude(pi => pi.Ingrediente)
-            //     .ToList();
+            var obras = _context.Obras
+                .Include(b => b.ListaButacaObra)
+                    .ThenInclude(bo => bo.Butaca)
+                .ToList();
 
-            // var pizzasDto = pizzas.Select(p => new PizzaDto
-            // {
-            //     Id = p.Id,
-            //     Name = p.Name,
-            //     PizzaIngredientes = p.PizzaIngredientes.Select(pi => new IngredienteDto
-            //     {
-            //         Id = pi.Ingrediente.Id,
-            //         Name = pi.Ingrediente.Name
-            //     }).ToList()
-            // }).ToList();
-
-            // return pizzasDto;
+            if (obras != null)
+            {
+                var obraDto = obras.Select(o => new ObraDTO
+                {
+                    ObraId = o.ObraId,
+                    Titulo = o.Titulo,
+                    Descripcion = o.Descripcion,
+                    DiaObra = o.DiaObra,
+                    Imagen = o.Imagen,
+                    Genero = o.Genero,
+                    Duracion = o.Duracion,
+                    Precio = o.Precio,
+                    Butacas = o.ListaButacaObra
+                    .Where(bo => bo != null && bo.Butaca != null)
+                    .Select(bo => new ButacaDTO
+                    {
+                        ButacaId = bo.ButacaId,
+                        Libre = bo.Libre ? true : false
+                    }).ToList()
+                }).ToList();
+                return obraDto;
+            }
+            else
+            {
+                return null; // Devuelve null si no se encuentra la obra
+            }
         }
 
         public void Add(Obra obra)
         {
             _context.Obras.Add(obra);
             SaveChanges();
+
+            for (int i = 1; i <= 100; i++)
+            {
+                var butaca = new ButacaObra
+                {
+                    ObraId = obra.ObraId,
+                    ButacaId = i,
+                    Libre = true // Suponiendo que al principio todas las butacas están libres
+                };
+                _seatRepository.Add(butaca);
+
+
+                // Aquí puedes realizar cualquier otra lógica que necesites
+            }
+            SaveChanges();
         }
 
-        public Obra Get(int id)
+        public ObraDTO Get(int id)
         {
-            // var obras = _context.Obras
-            //     .Include(b => b.ListaButacaObra)
-            //     .ToList();
-
-            // var obraDto = obras.Select(o => new ObraDTO
-            // {
-            //     ObraId = o.ObraId,
-            //     Titulo = o.Titulo,
-            //     Descripcion = o.Descripcion,
-            //     DiaObra = o.DiaObra,
-            //     Imagen = o.Imagen,
-            //     Genero = o.Genero,
-            //     Duracion = o.Duracion,
-            //     Precio = o.Precio,
-            //     Butacas = o.ListaButacaObra.Select({
-
-            //     }).ToList();
-            // }).ToList();
-            // return obraDto;
-            var obras = _context.Obras
+            var obra = _context.Obras
                 .Include(b => b.ListaButacaObra)
-                .ToList();
+                    .ThenInclude(bo => bo.Butaca)
+                .Where(obra => obra.ObraId == id)
+                .FirstOrDefault();
 
-            var obraDto = obras.Select(o => new ObraDTO{
-                ObraId = o.ObraId,
-                Titulo = o.Titulo,
-                Descripcion = o.Descripcion,
-                DiaObra = o.DiaObra,
-                Imagen = o.Imagen,
-                Genero = o.Genero,
-                Duracion = o.Duracion,
-                Precio = o.Precio,
-                Butacas = o.ListaButacaObra.Select(ob => new ButacaDTO{
-                    ButacaId = ob.ButacaId,
-                    Libre = ob.Libre
-                }).ToList()
-            }).ToList();
-            return obraDto;
+            if (obra != null)
+            {
+                var obraDto = new ObraDTO
+                {
+                    ObraId = obra.ObraId,
+                    Titulo = obra.Titulo,
+                    Descripcion = obra.Descripcion,
+                    DiaObra = obra.DiaObra,
+                    Imagen = obra.Imagen,
+                    Genero = obra.Genero,
+                    Duracion = obra.Duracion,
+                    Precio = obra.Precio,
+                    Butacas = obra.ListaButacaObra
+                        .Where(bo => bo != null && bo.Butaca != null) // Verificar que bo y bo.Butaca no sean null
+                        .Select(bo => new ButacaDTO
+                        {
+                            ButacaId = bo.ButacaId,
+                            Libre = bo.Libre ? true : false // Suponiendo que el estado depende de la propiedad "Libre" de la butaca
+                        }).ToList()
+                };
+
+                return obraDto;
+            }
+            else
+            {
+                return null; // Devuelve null si no se encuentra la obra
+            }
+
         }
 
         public void Update(Obra obra)
         {
-            _context.Entry(obra).State = EntityState.Modified;
-            SaveChanges();
+            // Cargar la instancia existente de Obra desde el contexto
+            var existingObra = _context.Obras.Find(obra.ObraId);
+
+            if (existingObra != null)
+            {
+                // Copiar las propiedades actualizadas de la nueva instancia a la instancia existente
+                _context.Entry(existingObra).CurrentValues.SetValues(obra);
+
+                // Guardar los cambios en el contexto
+                _context.SaveChanges();
+            }
         }
+
 
         public void Delete(int id)
         {
-            var obra = Get(id);
-            if (obra is null)
+            var obraDto = Get(id);
+            if (obraDto == null)
             {
-                throw new KeyNotFoundException("Pizza not found.");
+                throw new KeyNotFoundException("Obra not found.");
             }
-            _context.Obras.Remove(obra);
-            SaveChanges();
+
+            var obra = _context.Obras.FirstOrDefault(o => o.ObraId == id);
+            if (obra != null)
+            {
+                _context.Obras.Remove(obra);
+                SaveChanges();
+            }
         }
+
 
         public void SaveChanges()
         {

@@ -1,5 +1,4 @@
 using Tickett.Data;
-using Tickett.Business;
 using Tickett.Models;
 
 
@@ -15,7 +14,7 @@ namespace Tickett.Business
             _seatRepository = seatRepository;
         
         }
-        public  List<ButacaObra> GetAll()
+        public  List<ButacaDTO> GetAll()
         {
             var seats = _seatRepository.GetAll();
             // foreach (var pizza in pizzas)
@@ -25,7 +24,7 @@ namespace Tickett.Business
             return seats;
         }
 
-        public  ButacaObra GetSeat(int idFunction, int idSeat)
+        public  ButacaDTO GetSeat(int idFunction, int idSeat)
         {
             var seat = _seatRepository.GetSeat(idFunction, idSeat);
 
@@ -37,7 +36,7 @@ namespace Tickett.Business
             return seat;
         }
 
-        public  List<ButacaObra> GetFromFunction(int idFunction)
+        public  List<ButacaDTO> GetFromFunction(int idFunction)
         {
             var seat = _seatRepository.GetFromFunction(idFunction);
 
@@ -50,9 +49,11 @@ namespace Tickett.Business
         }
           
 
-    public  void Add(ButacaObra seat)
+    public  void Add(ButacaObraCreateDTO butacaObraCreateDTO)
     {
-        _seatRepository.Add(seat);
+        var seat = new ButacaObra();
+        var mappedSeat = seat.mapFromCreateDto(butacaObraCreateDTO);
+        _seatRepository.Add(mappedSeat);
 
             // foreach (var ingrediente in pizza.Ingredientes)
             // {
@@ -60,9 +61,21 @@ namespace Tickett.Business
             // }
     }
 
-    public  void Update(ButacaObra seat)
+    public  void Update(int idFunction, int idSeat, ButacaObraUpdateDTO butacaObraUpdate)
     {
-        _seatRepository.Update(seat);
+        // _seatRepository.Update(seat);
+        var seatDto = _seatRepository.GetSeat(idFunction, idSeat);
+            if (seatDto == null)
+            {
+                throw new KeyNotFoundException($"Seat with Id {idSeat} int function {idFunction} not found.");
+            }
+
+            // Mapea los datos del DTO a la entidad Obra
+            var seat = seatDto.ToObra();
+            seat.Libre = butacaObraUpdate.Libre;
+
+            // Llama al método Update del repositorio con la entidad Obra actualizada
+            _seatRepository.Update(seat);
 
             // _ingredientesRepository.UpdateIngredientesForPizza(pizza.Ingredientes, pizza.Id);
     }

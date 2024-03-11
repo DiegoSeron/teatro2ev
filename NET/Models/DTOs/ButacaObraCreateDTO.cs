@@ -8,5 +8,6 @@ public class ButacaObraCreateDTO
 {
     [ForeignKey("Obra")]
     public int ObraId { get; set; }
+    public int ButacaId { get; set; }
 
 }

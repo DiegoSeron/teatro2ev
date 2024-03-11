@@ -307,6 +307,36 @@ namespace Tickett.Data
             modelBuilder.Entity<ButacaObra>().HasData(
                 CrearButacasObra(2).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
             );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(3).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(4).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(5).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(6).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(7).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(8).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(9).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(10).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(11).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
+            modelBuilder.Entity<ButacaObra>().HasData(
+                CrearButacasObra(12).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
+            );
 
 
         }

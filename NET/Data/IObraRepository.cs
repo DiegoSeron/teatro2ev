@@ -1,16 +1,12 @@
 ﻿using Tickett.Models;
 
 
-namespace Tickett.Data
+public interface IObraRepository
 {
-        public interface IObraRepository
-    {
-        List<Obra> GetAll();
-        // GetAll(int id);
-        void Add(Obra obra);
-        Obra Get(int id);
-        void Update(Obra obra);
-        void Delete(int id);
-
-    }
+    List<ObraDTO> GetAll();
+    // GetAll(int id);
+    void Add(Obra obra);
+    ObraDTO Get(int id);
+    void Update(Obra obra);
+    void Delete(int id);
 }

@@ -16,14 +16,14 @@ public class ObraController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<Obra>> GetAll() =>
+    public ActionResult<List<ObraDTO>> GetAll() =>
     _obraService.GetAll();
 
 
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Obra> Get(int id)
+    public ActionResult<ObraDTO> Get(int id)
     {
         var obra = _obraService.Get(id);
 
@@ -40,32 +40,37 @@ public class ObraController : ControllerBase
 
 
 
-    [HttpPost]
-    public IActionResult Create([FromBody] ObraCreateDTO obraDto)
-    {
-        if (!ModelState.IsValid) { return BadRequest(ModelState); }
+    // [HttpPost]
+    // public IActionResult Create(ObraCreateDTO obraCreateDTO)
+    // {
+    //     var obra = new Obra();
+    //     var mappedObra = obra.mapFromCreateDto(obraCreateDTO); // Suponiendo que mapFromCreateDto no es estático
+    //     _obraService.Add(mappedObra);
+    //     return CreatedAtAction(nameof(Get), new { id = mappedObra.ObraId }, mappedObra);
+    // }
 
-        try
+    [HttpPost]
+    public IActionResult Create([FromBody] ObraCreateDTO obraCreateDTO)
+    {
+        if (!ModelState.IsValid)
         {
-            var obra = _obraService.Add(obraDto); //mejor pasar el DTO completo como en el PUT
-            return CreatedAtAction(nameof(Get), new { obraId = obra.ObraId }, obra);
+            return BadRequest(ModelState);
         }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+
+        _obraService.Add(obraCreateDTO);
+        return Ok();
     }
 
 
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id, [FromBody] ObraUpdateDTO obraDto)
+    public IActionResult Update(int id, [FromBody] ObraUpdateDTO obraUpdateDTO)
     {
         if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
         try
         {
-            _obraService.Update(id, obraDto);
+            _obraService.Update(id, obraUpdateDTO);
             return NoContent();
         }
         catch (KeyNotFoundException)
@@ -73,9 +78,6 @@ public class ObraController : ControllerBase
             return NotFound();
         }
     }
-
-
-
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)

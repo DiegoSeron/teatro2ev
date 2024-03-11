@@ -1,12 +1,15 @@
 ﻿using Tickett.Models;
 
-namespace Tickett.Business;
-public interface IObraService
+namespace Tickett.Business
 {
-    List<Obra> GetAll();
-    // GetAll(int id);
-    public Obra Add(ObraCreateDTO obraCreateDTO);
-    Obra Get(int id);
-    void Update(int id, ObraUpdateDTO obraUpdateDTO);
-    void Delete(int id);
+    public interface IObraService
+    {
+        List<ObraDTO> GetAll();
+        // GetAll(int id);
+        void Add(ObraCreateDTO obraCreateDTO);
+        ObraDTO Get(int id); // Cambiado a ObraDTO
+        void Update(int id, ObraUpdateDTO obraUpdateDTO);
+        void Delete(int id);
+    }
 }
+

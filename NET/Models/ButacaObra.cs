@@ -31,5 +31,22 @@ public class ButacaObra
         // 
     }
 
+    public ButacaObra mapFromCreateDto(ButacaObraCreateDTO butacaObraCreateDTO)
+    {
+        if (butacaObraCreateDTO == null)
+        {
+            // Puedes lanzar una excepción aquí o manejar el caso de DTO nulo según tu lógica
+            throw new ArgumentNullException(nameof(butacaObraCreateDTO));
+        }
+
+        var butacaObra = new ButacaObra
+        {
+            ObraId = butacaObraCreateDTO.ObraId,
+            ButacaId = butacaObraCreateDTO.ButacaId,
+            // Resto de las propiedades...
+        };
+
+        return butacaObra;
+    }
     
 }
