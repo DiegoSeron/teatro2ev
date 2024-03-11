@@ -13,11 +13,12 @@ Admin View
 <div class="pago">
             <div>
                 <input type="radio" id="opcion1" name="opciones" value="opcion1" v-model="opcionSeleccionada">
+                <label for="opcion1">CREAR</label>
             </div>
 
             <div>
                 <input type="radio" id="opcion2" name="opciones" value="opcion2" v-model="opcionSeleccionada">
-
+                <label for="opcion2">EDITAR / BORRAR</label>
 
 
             </div>

@@ -6,30 +6,40 @@ import { ref } from 'vue';
 
 const FunctionStore = useFunctionStore();
 FunctionStore.fetchFunctions();
-const editar = ref('')
+const editar = ref(false); 
+const borrar = ref(false); 
+
+// Función para cambiar el estado de edición
+const openEdit = () => {
+  editar.value = !editar.value;
+}
+
+// Función para cambiar el estado de borrar
+const openDelete = () => {
+    borrar.value = !borrar.value;
+}
 </script>
 
 <template>
     <div class="container">
+        <button @click="openEdit">{{ editar ? 'Cancelar' : 'Editar' }}</button>
+        <button @click="openDelete">{{ borrar ? 'Cancelar' : 'Borrar' }}</button>
         <div v-for="obra in FunctionStore.functions" :key="obra.obraId" class="function">
             <div class="info">
                 <h3>{{ obra.titulo }}</h3>
             </div>
 
-            
-            <div class="actions">
-                <input type="button" value="editar" v-model="editar"></input>
+            <div class="actions" v-if="borrar">
                 <DeleteFunction />
             </div>
-            <div id="menuOpcion1" class="menu" v-show="editar === 'editar'">
-                <EditFunction />
 
-
+            <div class="menu" v-if="editar"> 
+                <EditFunction  :description="obra.descripcion" :dia-obra="obra.diaObra" :price="obra.precio" :title="obra.titulo" :obra-id="obra.obraId"/>
             </div>
         </div>
     </div>
-    
 </template>
+
 
 <style scoped lang="scss">
 .container {
@@ -37,7 +47,6 @@ const editar = ref('')
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Ajusta la altura según tus necesidades */
 }
 
 .function {
@@ -48,8 +57,8 @@ const editar = ref('')
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 400px;
     max-width: 400px;
-    /* Ajusta el ancho máximo según tus necesidades */
 
     .info {
         flex-grow: 1;
