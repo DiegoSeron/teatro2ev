@@ -1,10 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Tickett.Models;
+
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 public class Obra
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ObraId { get; set; }
     [Required]
     public string Titulo { get; set; }
@@ -25,7 +28,7 @@ public class Obra
     [Required]
     public List<ButacaObra> ListaButacaObra { get; set; }
 
-    public static int obraSeed = 1;
+    // public static int obraSeed = 1;
 
     public Obra() { }
 
@@ -38,8 +41,8 @@ public class Obra
         Genero = genero;
         Duracion = duracion;
         Precio = precio;
-        ObraId = obraSeed;
-        obraSeed++;
+        // ObraId = obraSeed;
+        // obraSeed++;
 
     }
 

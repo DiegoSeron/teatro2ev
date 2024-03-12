@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Tickett.Models;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualBasic;
+
 
 namespace Tickett.Data
 {
@@ -79,6 +81,10 @@ namespace Tickett.Data
                 .WithMany(i => i.ListaButacaObra)
                 .HasForeignKey(pi => pi.ButacaId);
 
+            modelBuilder.Entity<User>()
+                .HasKey(u => new { u.UserId });
+            
+            
 
 
 
@@ -337,6 +343,10 @@ namespace Tickett.Data
             modelBuilder.Entity<ButacaObra>().HasData(
                 CrearButacasObra(12).ToList() // Crea una nueva butaca con ButacaId = 1 y Libre = true
             );
+            modelBuilder.Entity<User>().HasData(
+                new User { UserId = 1, Name = "Admin", Email = "admin@gmail.com", Password = "Admin1234" },
+                new User { UserId = 2, Name = "User1", Email = "user1@gmail.com", Password = "User1" }
+            );
 
 
         }
@@ -347,6 +357,7 @@ namespace Tickett.Data
         public DbSet<Reparto> Repartos { get; set; }
         public DbSet<ObraReparto> ObraRepartos { get; set; }
         public DbSet<ButacaObra> ButacaObras { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }
