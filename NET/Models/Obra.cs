@@ -1,10 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Tickett.Models;
+
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 public class Obra
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ObraId { get; set; }
     [Required]
     public string Titulo { get; set; }
@@ -15,7 +18,8 @@ public class Obra
 
     [Required]
     public string Imagen { get; set; }
-    public List<ObraReparto> ListaObraReparto { get; set; }
+    [Required]
+    public string Reparto { get; set; }
     [Required]
     public string Genero { get; set; }
     [Required]
@@ -25,21 +29,22 @@ public class Obra
     [Required]
     public List<ButacaObra> ListaButacaObra { get; set; }
 
-    public static int obraSeed = 1;
+    // public static int obraSeed = 1;
 
     public Obra() { }
 
-    public Obra(string titulo, string descripcion, DateTime diaObra, string imagen, string genero, int duracion, decimal precio)
+    public Obra(string titulo, string descripcion, DateTime diaObra, string imagen, string reparto, string genero, int duracion, decimal precio)
     {
         Titulo = titulo;
         Descripcion = descripcion;
         DiaObra = diaObra;
         Imagen = imagen;
+        Reparto = reparto;
         Genero = genero;
         Duracion = duracion;
         Precio = precio;
-        ObraId = obraSeed;
-        obraSeed++;
+        // ObraId = obraSeed;
+        // obraSeed++;
 
     }
 
@@ -58,6 +63,7 @@ public class Obra
             Descripcion = obraCreateDTO.Descripcion,
             DiaObra = obraCreateDTO.DiaObra,
             Imagen = obraCreateDTO.Imagen,
+            Reparto = obraCreateDTO.Reparto,
             Genero = obraCreateDTO.Genero,
             Duracion = obraCreateDTO.Duracion,
             Precio = obraCreateDTO.Precio,
@@ -76,6 +82,7 @@ public class Obra
             Descripcion = this.Descripcion,
             DiaObra = this.DiaObra,
             Imagen = this.Imagen,
+            Reparto = this.Reparto,
             Genero = this.Genero,
             Duracion = this.Duracion,
             Precio = this.Precio,

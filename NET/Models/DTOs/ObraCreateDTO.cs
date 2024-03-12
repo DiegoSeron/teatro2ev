@@ -14,7 +14,7 @@ public class ObraCreateDTO
     [Required]
     public string Imagen { get; set; }
 
-    public List<ObraReparto> ListaObraReparto { get; set; }
+    public string Reparto { get; set; }
 
     [Required]
     public string Genero { get; set; }
@@ -22,9 +22,5 @@ public class ObraCreateDTO
     public int Duracion { get; set; }
     [Required]
     public int Precio { get; set; }
-
-    [Required]
-    public List<ButacaObra> ListaButacaObra { get; set; }
-
 
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tickett.Data;
 
@@ -11,9 +12,10 @@ using Tickett.Data;
 namespace Tickett.Data.Migrations
 {
     [DbContext(typeof(ObraContext))]
-    partial class ObraContextModelSnapshot : ModelSnapshot
+    [Migration("20240312171643_InitialCreate14")]
+    partial class InitialCreate14
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -7789,10 +7791,6 @@ namespace Tickett.Data.Migrations
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Reparto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -7806,72 +7804,66 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 1,
                             Descripcion = "La obra 'Don Juan' es un clásico atemporal que explora las travesuras y el encanto del legendario seductor Don Juan. Esta pieza teatral icónica examina la naturaleza humana, el deseo, la moralidad y las consecuencias de nuestras acciones. A través de un cautivador relato, la historia sigue a Don Juan, un personaje carismático y seductor que desafía las normas sociales. Su irresistible magnetismo lo lleva a interactuar con una variedad de personajes, cada uno reflejando diferentes aspectos de la sociedad y la moralidad de la época. 'Don Juan' invita a reflexionar sobre la dualidad del ser humano, la moralidad, el amor y la libertad, envuelto en una trama llena de intriga y emociones intensas.",
-                            DiaObra = new DateTime(2024, 3, 27, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 1, 13, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 105,
                             Genero = "Romance",
                             Imagen = "donjuan.jpg",
                             Precio = 25m,
-                            Reparto = "Luisa Fernández,Andrés Sánchez,María Gómez,Javier Rodríguez,Elena Pérez,Carlos Martínez,Ana Ruiz,Pedro Vázquez",
                             Titulo = "Don Juan"
                         },
                         new
                         {
                             ObraId = 2,
                             Descripcion = "'La Celestina' es una obra maestra de la literatura española escrita por Fernando de Rojas en el siglo XV. Esta tragicomedia narra la historia de amor entre Calisto y Melibea, en un contexto lleno de engaños, pasiones y traiciones. La trama se centra en la intervención de la alcahueta Celestina, una mujer astuta y manipuladora que actúa como intermediaria en el romance. A medida que avanza la historia, se entrelazan intrigas que revelan las complejidades de las relaciones humanas y critican la sociedad de la época. 'La Celestina' es reconocida por su profundidad psicológica en la construcción de personajes y su aguda crítica social, explorando temas como el amor, la codicia, el poder y la moralidad en un estilo literario cautivador.",
-                            DiaObra = new DateTime(2024, 3, 28, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 1, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 120,
                             Genero = "Romance",
                             Imagen = "celestina.jpg",
                             Precio = 15m,
-                            Reparto = "Sofía Martínez, Diego López, Lucía García, Javier Rodríguez, Elena Pérez, Carlos Gómez, Ana Ruiz, Pedro Vázquez",
                             Titulo = "Celestina"
                         },
                         new
                         {
                             ObraId = 3,
                             Descripcion = "Doble o nada es un thriller emocional ambientado en el hostil ambiente de las altas esferas empresariales. Una historia sobre el amor platónico, traición y engaño, y sobre todo, el poder y la ambición. Este emocionante thriller te mantendrá en vilo hasta el último minuto.",
-                            DiaObra = new DateTime(2024, 3, 31, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 2, 7, 20, 30, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 115,
                             Genero = "Thriller",
                             Imagen = "doble-o-nada.jpg",
                             Precio = 20m,
-                            Reparto = "Laura Martínez,Diego López,Ana Fernández,Javier Gómez,Sofía Rodríguez,Andrés Pérez,Elena Ruiz,Carlos Martín",
                             Titulo = "Doble o nada"
                         },
                         new
                         {
                             ObraId = 4,
                             Descripcion = "Gloria y Josete se acaban de independizar bajo la tutela de Claudia. Ante la necesidad de encontrar un trabajo para poder tener un sueldo con el que mantenerse, Claudia les propone que intenten dedicarse a algo que les guste de verdad. Ellos quieren ser artistas. Para ello deberían encontrar un representante. Esta comedia hilarante sigue las aventuras de este trío en su búsqueda por la fama y la risa del público.",
-                            DiaObra = new DateTime(2024, 4, 4, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 2, 15, 20, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 140,
                             Genero = "Comedia",
                             Imagen = "campeones.jpg",
                             Precio = 35m,
-                            Reparto = "María García,Javier Martínez,Lucía Rodríguez,Andrés López,Elena Pérez,Carlos Gómez,Ana Ruiz,Pedro Vázquez",
                             Titulo = "Campeones"
                         },
                         new
                         {
                             ObraId = 5,
                             Descripcion = "El Mago Pop es el nombre artístico de Antonio Díaz, un ilusionista español reconocido por sus impresionantes trucos de magia y espectáculos de ilusionismo. Conocido por combinar magia, tecnología y narrativa en sus actuaciones, El Mago Pop ha cautivado al público con sus shows innovadores y sorprendentes. Sus espectáculos suelen incorporar efectos visuales impactantes, interacción con el público y asombrosas ilusiones que desafían la lógica y la percepción. Antonio Díaz, como El Mago Pop, ha logrado llevar la magia a un nivel moderno y cautivador, convirtiéndose en uno de los ilusionistas más reconocidos a nivel internacional.",
-                            DiaObra = new DateTime(2024, 4, 5, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 2, 29, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 135,
                             Genero = "Monologo",
                             Imagen = "el-mago-pop.jpg",
                             Precio = 30m,
-                            Reparto = "Javier Martínez, Lucía García, Andrés Fernández, María López, Carlos Ruiz, Elena Sánchez, Pedro González, Ana Martín",
                             Titulo = "El mago Pop"
                         },
                         new
                         {
                             ObraId = 6,
                             Descripcion = "El Rey León es un espectacular musical inspirado en la película de Disney que ha cautivado a audiencias de todo el mundo. Con música de Elton John y letras de Tim Rice, esta producción teatral transporta al público a la majestuosa sabana africana. La historia sigue el viaje de Simba, un joven león destinado a convertirse en rey, a través de sus aventuras, desafíos y el aprendizaje de valiosas lecciones sobre el honor, el coraje y el amor. El espectáculo se destaca por su impresionante puesta en escena, coloridos vestuarios, efectos visuales deslumbrantes y coreografías espectaculares. 'El Rey León' es una experiencia teatral emocionante y conmovedora, que combina la magia del cine con la energía y la emoción del teatro en vivo.",
-                            DiaObra = new DateTime(2024, 4, 7, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 3, 3, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 100,
                             Genero = "Musical",
                             Imagen = "ElReyLeon3Aniv200.jpg",
                             Precio = 10m,
-                            Reparto = "Sofía Martínez,Diego López,Lucía García,Javier Rodríguez,Elena Pérez,Carlos Gómez,Ana Ruiz,Pedro Vázquez",
                             Titulo = "El Rey Leon"
                         },
                         new
@@ -7883,55 +7875,50 @@ namespace Tickett.Data.Migrations
                             Genero = "Monologo",
                             Imagen = "fango.jpg",
                             Precio = 40m,
-                            Reparto = "Sara Pérez,Javier García,Lucía Martínez,Andrés López,Elena Rodríguez,Carlos Fernández,María Gómez,Pedro Ruiz",
                             Titulo = "Fango"
                         },
                         new
                         {
                             ObraId = 8,
                             Descripcion = "La función que sale mal es una obra teatral cómica que gira en torno a un grupo de actores aficionados que intentan representar una obra de teatro, pero todo lo que puede salir mal ¡sale mal! La trama se desarrolla con una sucesión de desastres cómicos, desde problemas técnicos hasta errores de actuación y malentendidos entre los personajes. La obra es una comedia llena de situaciones hilarantes y caóticas que mantienen al público riendo a carcajadas. 'La función que sale mal' es conocida por su humor físico, su ingenio y su capacidad para convertir los errores en momentos divertidos e inolvidables para el público.",
-                            DiaObra = new DateTime(2024, 4, 12, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 3, 21, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 110,
                             Genero = "Thriller",
                             Imagen = "funcion-sale.mal.jpg",
                             Precio = 30m,
-                            Reparto = "Sofía Martínez, Diego López, Lucía García, Javier Rodríguez, Elena Pérez, Carlos Gómez, Ana Ruiz, Pedro Vázquez",
                             Titulo = "La Funcion que Sale Mal"
                         },
                         new
                         {
                             ObraId = 9,
                             Descripcion = "Ilusionate es una emocionante obra de teatro que fusiona el ilusionismo, la magia y el drama en una experiencia teatral única. Esta obra cautivadora transporta al público a un mundo de sorpresas, ilusiones y emociones. Con un elenco talentoso y efectos visuales impactantes, Ilusionate combina la magia del teatro con increíbles trucos y narrativas que mantienen al espectador absorto en un viaje lleno de misterio y asombro. Esta obra teatral es una oportunidad para sumergirse en un universo de ilusiones y disfrutar de un espectáculo que desafía la imaginación y la percepción.",
-                            DiaObra = new DateTime(2024, 4, 15, 18, 15, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 4, 4, 18, 15, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 120,
                             Genero = "Monologo",
                             Imagen = "ilusionate.jpg",
                             Precio = 15m,
-                            Reparto = "Sofía Martínez,Diego López,Lucía García,Javier Rodríguez,Elena Pérez,Carlos Gómez,Ana Ruiz,Pedro Vázquez",
                             Titulo = "Ilusionate"
                         },
                         new
                         {
                             ObraId = 10,
                             Descripcion = "José el Soñador es una historia bíblica que relata la vida de José, hijo de Jacob, vendido como esclavo por sus hermanos. La historia sigue la vida de José desde su juventud hasta convertirse en un importante funcionario en Egipto. Conocida por su narrativa llena de intriga, traición y redención, la historia muestra la habilidad de José para interpretar sueños, lo que lo lleva a ganar el favor del faraón y a desempeñar un papel crucial en la historia de Egipto. 'José el Soñador' es un relato emocionante que explora temas de fe, perseverancia y perdón, y ha sido una fuente de inspiración para muchas personas a lo largo de los siglos.",
-                            DiaObra = new DateTime(2024, 4, 16, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 4, 10, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 105,
                             Genero = "Drama",
                             Imagen = "jose-el-sonador.jpg",
                             Precio = 25m,
-                            Reparto = "Ana García,Luis Martínez,María Fernández,Javier Rodríguez,Elena Pérez,Carlos Sánchez,Lucía Martín,Andrés Gómez",
                             Titulo = "Jose el soñador"
                         },
                         new
                         {
                             ObraId = 11,
                             Descripcion = "Laponia es una región situada en el norte de Europa que abarca partes de Noruega, Suecia, Finlandia y Rusia. Conocida por su belleza natural y su paisaje ártico, Laponia es famosa por ser el hogar de la gente sami, su cultura única y las auroras boreales que se pueden observar durante la temporada de invierno. Esta región ofrece una amplia gama de actividades, como safaris en trineo de perros, excursiones para avistar renos, esquí, senderismo y la oportunidad de experimentar la cultura sami a través de sus tradiciones, como la artesanía, la música y la gastronomía local. Laponia es un destino popular para aquellos que buscan aventuras inolvidables en un entorno natural espectacular.",
-                            DiaObra = new DateTime(2024, 4, 19, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 4, 23, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 125,
                             Genero = "Thriller",
                             Imagen = "laponia.jpg",
                             Precio = 20m,
-                            Reparto = "Erik Larsson, Ingrid Johansson,Sven Andersson,Hanna Bergman,Frida Nilsson,Oskar Magnusson,Emma Karlsson,Viktor Lindström",
                             Titulo = "Laponia"
                         },
                         new
@@ -7943,8 +7930,1103 @@ namespace Tickett.Data.Migrations
                             Genero = "Comedia",
                             Imagen = "las-mil-y-una-noches.jpg",
                             Precio = 25m,
-                            Reparto = "Leyla Khan,Amir Shah,Jamil Ahmed,Nadia Malik,Karim Hassan,Ayesha Khan,Rashid Ali,Yasir Mahmood",
                             Titulo = "Las mil y una noches"
+                        });
+                });
+
+            modelBuilder.Entity("Tickett.Models.ObraReparto", b =>
+                {
+                    b.Property<int>("ObraId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RepartoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ObraId", "RepartoId");
+
+                    b.HasIndex("RepartoId");
+
+                    b.ToTable("ObraRepartos");
+
+                    b.HasData(
+                        new
+                        {
+                            ObraId = 1,
+                            RepartoId = 1
+                        },
+                        new
+                        {
+                            ObraId = 1,
+                            RepartoId = 2
+                        },
+                        new
+                        {
+                            ObraId = 1,
+                            RepartoId = 3
+                        },
+                        new
+                        {
+                            ObraId = 1,
+                            RepartoId = 4
+                        },
+                        new
+                        {
+                            ObraId = 1,
+                            RepartoId = 5
+                        },
+                        new
+                        {
+                            ObraId = 1,
+                            RepartoId = 6
+                        },
+                        new
+                        {
+                            ObraId = 1,
+                            RepartoId = 7
+                        },
+                        new
+                        {
+                            ObraId = 1,
+                            RepartoId = 8
+                        },
+                        new
+                        {
+                            ObraId = 2,
+                            RepartoId = 9
+                        },
+                        new
+                        {
+                            ObraId = 2,
+                            RepartoId = 10
+                        },
+                        new
+                        {
+                            ObraId = 2,
+                            RepartoId = 11
+                        },
+                        new
+                        {
+                            ObraId = 2,
+                            RepartoId = 12
+                        },
+                        new
+                        {
+                            ObraId = 2,
+                            RepartoId = 13
+                        },
+                        new
+                        {
+                            ObraId = 2,
+                            RepartoId = 14
+                        },
+                        new
+                        {
+                            ObraId = 2,
+                            RepartoId = 15
+                        },
+                        new
+                        {
+                            ObraId = 2,
+                            RepartoId = 16
+                        },
+                        new
+                        {
+                            ObraId = 3,
+                            RepartoId = 17
+                        },
+                        new
+                        {
+                            ObraId = 3,
+                            RepartoId = 18
+                        },
+                        new
+                        {
+                            ObraId = 3,
+                            RepartoId = 19
+                        },
+                        new
+                        {
+                            ObraId = 3,
+                            RepartoId = 20
+                        },
+                        new
+                        {
+                            ObraId = 3,
+                            RepartoId = 21
+                        },
+                        new
+                        {
+                            ObraId = 3,
+                            RepartoId = 22
+                        },
+                        new
+                        {
+                            ObraId = 3,
+                            RepartoId = 23
+                        },
+                        new
+                        {
+                            ObraId = 3,
+                            RepartoId = 24
+                        },
+                        new
+                        {
+                            ObraId = 4,
+                            RepartoId = 25
+                        },
+                        new
+                        {
+                            ObraId = 4,
+                            RepartoId = 26
+                        },
+                        new
+                        {
+                            ObraId = 4,
+                            RepartoId = 27
+                        },
+                        new
+                        {
+                            ObraId = 4,
+                            RepartoId = 28
+                        },
+                        new
+                        {
+                            ObraId = 4,
+                            RepartoId = 29
+                        },
+                        new
+                        {
+                            ObraId = 4,
+                            RepartoId = 30
+                        },
+                        new
+                        {
+                            ObraId = 4,
+                            RepartoId = 31
+                        },
+                        new
+                        {
+                            ObraId = 4,
+                            RepartoId = 32
+                        },
+                        new
+                        {
+                            ObraId = 5,
+                            RepartoId = 33
+                        },
+                        new
+                        {
+                            ObraId = 5,
+                            RepartoId = 34
+                        },
+                        new
+                        {
+                            ObraId = 5,
+                            RepartoId = 35
+                        },
+                        new
+                        {
+                            ObraId = 5,
+                            RepartoId = 36
+                        },
+                        new
+                        {
+                            ObraId = 5,
+                            RepartoId = 37
+                        },
+                        new
+                        {
+                            ObraId = 5,
+                            RepartoId = 38
+                        },
+                        new
+                        {
+                            ObraId = 5,
+                            RepartoId = 39
+                        },
+                        new
+                        {
+                            ObraId = 5,
+                            RepartoId = 40
+                        },
+                        new
+                        {
+                            ObraId = 6,
+                            RepartoId = 41
+                        },
+                        new
+                        {
+                            ObraId = 6,
+                            RepartoId = 42
+                        },
+                        new
+                        {
+                            ObraId = 6,
+                            RepartoId = 43
+                        },
+                        new
+                        {
+                            ObraId = 6,
+                            RepartoId = 44
+                        },
+                        new
+                        {
+                            ObraId = 6,
+                            RepartoId = 45
+                        },
+                        new
+                        {
+                            ObraId = 6,
+                            RepartoId = 46
+                        },
+                        new
+                        {
+                            ObraId = 6,
+                            RepartoId = 47
+                        },
+                        new
+                        {
+                            ObraId = 6,
+                            RepartoId = 48
+                        },
+                        new
+                        {
+                            ObraId = 7,
+                            RepartoId = 49
+                        },
+                        new
+                        {
+                            ObraId = 7,
+                            RepartoId = 50
+                        },
+                        new
+                        {
+                            ObraId = 7,
+                            RepartoId = 51
+                        },
+                        new
+                        {
+                            ObraId = 7,
+                            RepartoId = 52
+                        },
+                        new
+                        {
+                            ObraId = 7,
+                            RepartoId = 53
+                        },
+                        new
+                        {
+                            ObraId = 7,
+                            RepartoId = 54
+                        },
+                        new
+                        {
+                            ObraId = 7,
+                            RepartoId = 55
+                        },
+                        new
+                        {
+                            ObraId = 7,
+                            RepartoId = 56
+                        },
+                        new
+                        {
+                            ObraId = 8,
+                            RepartoId = 57
+                        },
+                        new
+                        {
+                            ObraId = 8,
+                            RepartoId = 58
+                        },
+                        new
+                        {
+                            ObraId = 8,
+                            RepartoId = 59
+                        },
+                        new
+                        {
+                            ObraId = 8,
+                            RepartoId = 60
+                        },
+                        new
+                        {
+                            ObraId = 8,
+                            RepartoId = 61
+                        },
+                        new
+                        {
+                            ObraId = 8,
+                            RepartoId = 62
+                        },
+                        new
+                        {
+                            ObraId = 8,
+                            RepartoId = 63
+                        },
+                        new
+                        {
+                            ObraId = 8,
+                            RepartoId = 64
+                        },
+                        new
+                        {
+                            ObraId = 9,
+                            RepartoId = 65
+                        },
+                        new
+                        {
+                            ObraId = 9,
+                            RepartoId = 66
+                        },
+                        new
+                        {
+                            ObraId = 9,
+                            RepartoId = 67
+                        },
+                        new
+                        {
+                            ObraId = 9,
+                            RepartoId = 68
+                        },
+                        new
+                        {
+                            ObraId = 9,
+                            RepartoId = 69
+                        },
+                        new
+                        {
+                            ObraId = 9,
+                            RepartoId = 70
+                        },
+                        new
+                        {
+                            ObraId = 9,
+                            RepartoId = 71
+                        },
+                        new
+                        {
+                            ObraId = 9,
+                            RepartoId = 72
+                        },
+                        new
+                        {
+                            ObraId = 10,
+                            RepartoId = 73
+                        },
+                        new
+                        {
+                            ObraId = 10,
+                            RepartoId = 74
+                        },
+                        new
+                        {
+                            ObraId = 10,
+                            RepartoId = 75
+                        },
+                        new
+                        {
+                            ObraId = 10,
+                            RepartoId = 76
+                        },
+                        new
+                        {
+                            ObraId = 10,
+                            RepartoId = 77
+                        },
+                        new
+                        {
+                            ObraId = 10,
+                            RepartoId = 78
+                        },
+                        new
+                        {
+                            ObraId = 10,
+                            RepartoId = 79
+                        },
+                        new
+                        {
+                            ObraId = 10,
+                            RepartoId = 80
+                        },
+                        new
+                        {
+                            ObraId = 11,
+                            RepartoId = 81
+                        },
+                        new
+                        {
+                            ObraId = 11,
+                            RepartoId = 82
+                        },
+                        new
+                        {
+                            ObraId = 11,
+                            RepartoId = 83
+                        },
+                        new
+                        {
+                            ObraId = 11,
+                            RepartoId = 84
+                        },
+                        new
+                        {
+                            ObraId = 11,
+                            RepartoId = 85
+                        },
+                        new
+                        {
+                            ObraId = 11,
+                            RepartoId = 86
+                        },
+                        new
+                        {
+                            ObraId = 11,
+                            RepartoId = 87
+                        },
+                        new
+                        {
+                            ObraId = 11,
+                            RepartoId = 88
+                        },
+                        new
+                        {
+                            ObraId = 12,
+                            RepartoId = 89
+                        },
+                        new
+                        {
+                            ObraId = 12,
+                            RepartoId = 90
+                        },
+                        new
+                        {
+                            ObraId = 12,
+                            RepartoId = 91
+                        },
+                        new
+                        {
+                            ObraId = 12,
+                            RepartoId = 92
+                        },
+                        new
+                        {
+                            ObraId = 12,
+                            RepartoId = 93
+                        },
+                        new
+                        {
+                            ObraId = 12,
+                            RepartoId = 94
+                        },
+                        new
+                        {
+                            ObraId = 12,
+                            RepartoId = 95
+                        },
+                        new
+                        {
+                            ObraId = 12,
+                            RepartoId = 96
+                        });
+                });
+
+            modelBuilder.Entity("Tickett.Models.Reparto", b =>
+                {
+                    b.Property<int>("RepartoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RepartoId"), 1L, 1);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rol")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RepartoId");
+
+                    b.ToTable("Repartos");
+
+                    b.HasData(
+                        new
+                        {
+                            RepartoId = 1,
+                            Nombre = "Luisa Fernández",
+                            Rol = "Doña Ana"
+                        },
+                        new
+                        {
+                            RepartoId = 2,
+                            Nombre = "Andrés Sánchez",
+                            Rol = "Don Juan"
+                        },
+                        new
+                        {
+                            RepartoId = 3,
+                            Nombre = "María Gómez",
+                            Rol = "Doña Inés"
+                        },
+                        new
+                        {
+                            RepartoId = 4,
+                            Nombre = "Javier Rodríguez",
+                            Rol = "Don Luis"
+                        },
+                        new
+                        {
+                            RepartoId = 5,
+                            Nombre = "Elena Pérez",
+                            Rol = "Doña Elvira"
+                        },
+                        new
+                        {
+                            RepartoId = 6,
+                            Nombre = "Carlos Martínez",
+                            Rol = "Molière"
+                        },
+                        new
+                        {
+                            RepartoId = 7,
+                            Nombre = "Ana Ruiz",
+                            Rol = "Sganarelle"
+                        },
+                        new
+                        {
+                            RepartoId = 8,
+                            Nombre = "Pedro Vázquez",
+                            Rol = "Don Gonzalo"
+                        },
+                        new
+                        {
+                            RepartoId = 9,
+                            Nombre = "Sofía Martínez",
+                            Rol = "Celestina"
+                        },
+                        new
+                        {
+                            RepartoId = 10,
+                            Nombre = "Diego López",
+                            Rol = "Calisto"
+                        },
+                        new
+                        {
+                            RepartoId = 11,
+                            Nombre = "Lucía García",
+                            Rol = "Melibea"
+                        },
+                        new
+                        {
+                            RepartoId = 12,
+                            Nombre = "Javier Rodríguez",
+                            Rol = "Sempronio"
+                        },
+                        new
+                        {
+                            RepartoId = 13,
+                            Nombre = "Elena Pérez",
+                            Rol = "Elicia"
+                        },
+                        new
+                        {
+                            RepartoId = 14,
+                            Nombre = "Carlos Gómez",
+                            Rol = "Tristán"
+                        },
+                        new
+                        {
+                            RepartoId = 15,
+                            Nombre = "Ana Ruiz",
+                            Rol = "Pármeno"
+                        },
+                        new
+                        {
+                            RepartoId = 16,
+                            Nombre = "Pedro Vázquez",
+                            Rol = "Alisa"
+                        },
+                        new
+                        {
+                            RepartoId = 17,
+                            Nombre = "Luis García",
+                            Rol = "Chris"
+                        },
+                        new
+                        {
+                            RepartoId = 18,
+                            Nombre = "María López",
+                            Rol = "Annie"
+                        },
+                        new
+                        {
+                            RepartoId = 19,
+                            Nombre = "Andrés Martínez",
+                            Rol = "Jonathan"
+                        },
+                        new
+                        {
+                            RepartoId = 20,
+                            Nombre = "Elena Rodríguez",
+                            Rol = "Sandra"
+                        },
+                        new
+                        {
+                            RepartoId = 21,
+                            Nombre = "Carlos Ruiz",
+                            Rol = "Max"
+                        },
+                        new
+                        {
+                            RepartoId = 22,
+                            Nombre = "Lucía González",
+                            Rol = "Dennis"
+                        },
+                        new
+                        {
+                            RepartoId = 23,
+                            Nombre = "Javier Fernández",
+                            Rol = "Trevor"
+                        },
+                        new
+                        {
+                            RepartoId = 24,
+                            Nombre = "Ana Pérez",
+                            Rol = "Robert"
+                        },
+                        new
+                        {
+                            RepartoId = 25,
+                            Nombre = "Erik Larsson",
+                            Rol = "Olaf, guía sami"
+                        },
+                        new
+                        {
+                            RepartoId = 26,
+                            Nombre = "Ingrid Johansson",
+                            Rol = "Kaisa, chamán sami"
+                        },
+                        new
+                        {
+                            RepartoId = 27,
+                            Nombre = "Sven Andersson",
+                            Rol = "Bjorn, explorador"
+                        },
+                        new
+                        {
+                            RepartoId = 28,
+                            Nombre = "Hanna Bergman",
+                            Rol = "Lena, viajera aventurera"
+                        },
+                        new
+                        {
+                            RepartoId = 29,
+                            Nombre = "Frida Nilsson",
+                            Rol = "Elsa, niña sami"
+                        },
+                        new
+                        {
+                            RepartoId = 30,
+                            Nombre = "Oskar Magnusson",
+                            Rol = "Gunnar, habitante local"
+                        },
+                        new
+                        {
+                            RepartoId = 31,
+                            Nombre = "Emma Karlsson",
+                            Rol = "Sofia, fotógrafa"
+                        },
+                        new
+                        {
+                            RepartoId = 32,
+                            Nombre = "Viktor Lindström",
+                            Rol = "Ole, cazador"
+                        },
+                        new
+                        {
+                            RepartoId = 33,
+                            Nombre = "Ana García",
+                            Rol = "José"
+                        },
+                        new
+                        {
+                            RepartoId = 34,
+                            Nombre = "Luis Martínez",
+                            Rol = "Jacob"
+                        },
+                        new
+                        {
+                            RepartoId = 35,
+                            Nombre = "María Fernández",
+                            Rol = "Rebeca"
+                        },
+                        new
+                        {
+                            RepartoId = 36,
+                            Nombre = "Javier Rodríguez",
+                            Rol = "Faraón"
+                        },
+                        new
+                        {
+                            RepartoId = 37,
+                            Nombre = "Elena Pérez",
+                            Rol = "Esposa de Potifar"
+                        },
+                        new
+                        {
+                            RepartoId = 38,
+                            Nombre = "Carlos Sánchez",
+                            Rol = "Potifar"
+                        },
+                        new
+                        {
+                            RepartoId = 39,
+                            Nombre = "Lucía Martín",
+                            Rol = "Mayordomo"
+                        },
+                        new
+                        {
+                            RepartoId = 40,
+                            Nombre = "Andrés Gómez",
+                            Rol = "Elvisar"
+                        },
+                        new
+                        {
+                            RepartoId = 41,
+                            Nombre = "Javier Martínez",
+                            Rol = "El Mago Pop (Antonio Díaz)"
+                        },
+                        new
+                        {
+                            RepartoId = 42,
+                            Nombre = "Lucía García",
+                            Rol = "Asistente del Mago"
+                        },
+                        new
+                        {
+                            RepartoId = 43,
+                            Nombre = "Andrés Fernández",
+                            Rol = "Participante del Público"
+                        },
+                        new
+                        {
+                            RepartoId = 44,
+                            Nombre = "María López",
+                            Rol = "Asistente Técnico"
+                        },
+                        new
+                        {
+                            RepartoId = 45,
+                            Nombre = "Carlos Ruiz",
+                            Rol = "Encargado de Escenario"
+                        },
+                        new
+                        {
+                            RepartoId = 46,
+                            Nombre = "Elena Sánchez",
+                            Rol = "Coordinador de Efectos Especiales"
+                        },
+                        new
+                        {
+                            RepartoId = 47,
+                            Nombre = "Pedro González",
+                            Rol = "Diseñador de Iluminación"
+                        },
+                        new
+                        {
+                            RepartoId = 48,
+                            Nombre = "Ana Martín",
+                            Rol = "Gerente de Producción"
+                        },
+                        new
+                        {
+                            RepartoId = 49,
+                            Nombre = "Sofía Martínez",
+                            Rol = "Lena, la ilusionista"
+                        },
+                        new
+                        {
+                            RepartoId = 50,
+                            Nombre = "Diego López",
+                            Rol = "David, el aprendiz de mago"
+                        },
+                        new
+                        {
+                            RepartoId = 51,
+                            Nombre = "Lucía García",
+                            Rol = "María, la asistente"
+                        },
+                        new
+                        {
+                            RepartoId = 52,
+                            Nombre = "Javier Rodríguez",
+                            Rol = "Carlos, el escéptico"
+                        },
+                        new
+                        {
+                            RepartoId = 53,
+                            Nombre = "Elena Pérez",
+                            Rol = "Laura, la espectadora"
+                        },
+                        new
+                        {
+                            RepartoId = 54,
+                            Nombre = "Carlos Gómez",
+                            Rol = "Jorge, el incrédulo"
+                        },
+                        new
+                        {
+                            RepartoId = 55,
+                            Nombre = "Ana Ruiz",
+                            Rol = "Paula, la admiradora"
+                        },
+                        new
+                        {
+                            RepartoId = 56,
+                            Nombre = "Pedro Vázquez",
+                            Rol = "Pablo, el curioso"
+                        },
+                        new
+                        {
+                            RepartoId = 57,
+                            Nombre = "Leyla Khan",
+                            Rol = "Scheherezade"
+                        },
+                        new
+                        {
+                            RepartoId = 58,
+                            Nombre = "Amir Shah",
+                            Rol = "Sultán Shahriar"
+                        },
+                        new
+                        {
+                            RepartoId = 59,
+                            Nombre = "Jamil Ahmed",
+                            Rol = "Aladino"
+                        },
+                        new
+                        {
+                            RepartoId = 60,
+                            Nombre = "Nadia Malik",
+                            Rol = "Jasmine"
+                        },
+                        new
+                        {
+                            RepartoId = 61,
+                            Nombre = "Karim Hassan",
+                            Rol = "Simbad"
+                        },
+                        new
+                        {
+                            RepartoId = 62,
+                            Nombre = "Ayesha Khan",
+                            Rol = "Scheherezade (joven)"
+                        },
+                        new
+                        {
+                            RepartoId = 63,
+                            Nombre = "Rashid Ali",
+                            Rol = "Ali Baba"
+                        },
+                        new
+                        {
+                            RepartoId = 64,
+                            Nombre = "Yasir Mahmood",
+                            Rol = "Genio"
+                        },
+                        new
+                        {
+                            RepartoId = 65,
+                            Nombre = "Sofía Martínez",
+                            Rol = "Nala"
+                        },
+                        new
+                        {
+                            RepartoId = 66,
+                            Nombre = "Diego López",
+                            Rol = "Simba"
+                        },
+                        new
+                        {
+                            RepartoId = 67,
+                            Nombre = "Lucía García",
+                            Rol = "Sarabi"
+                        },
+                        new
+                        {
+                            RepartoId = 68,
+                            Nombre = "Javier Rodríguez",
+                            Rol = "Mufasa"
+                        },
+                        new
+                        {
+                            RepartoId = 69,
+                            Nombre = "Elena Pérez",
+                            Rol = "Rafiki"
+                        },
+                        new
+                        {
+                            RepartoId = 70,
+                            Nombre = "Carlos Gómez",
+                            Rol = "Scar"
+                        },
+                        new
+                        {
+                            RepartoId = 71,
+                            Nombre = "Ana Ruiz",
+                            Rol = "Timón"
+                        },
+                        new
+                        {
+                            RepartoId = 72,
+                            Nombre = "Pedro Vázquez",
+                            Rol = "Pumbaa"
+                        },
+                        new
+                        {
+                            RepartoId = 73,
+                            Nombre = "María García",
+                            Rol = "Lola"
+                        },
+                        new
+                        {
+                            RepartoId = 74,
+                            Nombre = "Javier Martínez",
+                            Rol = "Pedro"
+                        },
+                        new
+                        {
+                            RepartoId = 75,
+                            Nombre = "Lucía Rodríguez",
+                            Rol = "Ana"
+                        },
+                        new
+                        {
+                            RepartoId = 76,
+                            Nombre = "Andrés López",
+                            Rol = "Juan"
+                        },
+                        new
+                        {
+                            RepartoId = 77,
+                            Nombre = "Elena Pérez",
+                            Rol = "Laura"
+                        },
+                        new
+                        {
+                            RepartoId = 78,
+                            Nombre = "Carlos Gómez",
+                            Rol = "Pablo"
+                        },
+                        new
+                        {
+                            RepartoId = 79,
+                            Nombre = "Ana Ruiz",
+                            Rol = "Carmen"
+                        },
+                        new
+                        {
+                            RepartoId = 80,
+                            Nombre = "Pedro Vázquez",
+                            Rol = "Luis"
+                        },
+                        new
+                        {
+                            RepartoId = 81,
+                            Nombre = "Sara Pérez",
+                            Rol = "Laura"
+                        },
+                        new
+                        {
+                            RepartoId = 82,
+                            Nombre = "Javier García",
+                            Rol = "Carlos"
+                        },
+                        new
+                        {
+                            RepartoId = 83,
+                            Nombre = "Lucía Martínez",
+                            Rol = "Ana"
+                        },
+                        new
+                        {
+                            RepartoId = 84,
+                            Nombre = "Andrés López",
+                            Rol = "Diego"
+                        },
+                        new
+                        {
+                            RepartoId = 85,
+                            Nombre = "Elena Rodríguez",
+                            Rol = "María"
+                        },
+                        new
+                        {
+                            RepartoId = 86,
+                            Nombre = "Carlos Fernández",
+                            Rol = "Javier"
+                        },
+                        new
+                        {
+                            RepartoId = 87,
+                            Nombre = "María Gómez",
+                            Rol = "Sofía"
+                        },
+                        new
+                        {
+                            RepartoId = 88,
+                            Nombre = "Pedro Ruiz",
+                            Rol = "Pablo"
+                        },
+                        new
+                        {
+                            RepartoId = 89,
+                            Nombre = "Laura Martínez",
+                            Rol = "Marina"
+                        },
+                        new
+                        {
+                            RepartoId = 90,
+                            Nombre = "Diego López",
+                            Rol = "Carlos"
+                        },
+                        new
+                        {
+                            RepartoId = 91,
+                            Nombre = "Ana Fernández",
+                            Rol = "Sandra"
+                        },
+                        new
+                        {
+                            RepartoId = 92,
+                            Nombre = "Javier Gómez",
+                            Rol = "Mario"
+                        },
+                        new
+                        {
+                            RepartoId = 93,
+                            Nombre = "Sofía Rodríguez",
+                            Rol = "Laura"
+                        },
+                        new
+                        {
+                            RepartoId = 94,
+                            Nombre = "Andrés Pérez",
+                            Rol = "Pedro"
+                        },
+                        new
+                        {
+                            RepartoId = 95,
+                            Nombre = "Elena Ruiz",
+                            Rol = "Lorena"
+                        },
+                        new
+                        {
+                            RepartoId = 96,
+                            Nombre = "Carlos Martín",
+                            Rol = "Pablo"
                         });
                 });
 
@@ -8008,6 +9090,25 @@ namespace Tickett.Data.Migrations
                     b.Navigation("Obra");
                 });
 
+            modelBuilder.Entity("Tickett.Models.ObraReparto", b =>
+                {
+                    b.HasOne("Tickett.Models.Obra", "Obra")
+                        .WithMany("ListaObraReparto")
+                        .HasForeignKey("ObraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tickett.Models.Reparto", "Reparto")
+                        .WithMany("ListaObraReparto")
+                        .HasForeignKey("RepartoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Obra");
+
+                    b.Navigation("Reparto");
+                });
+
             modelBuilder.Entity("Tickett.Models.Butaca", b =>
                 {
                     b.Navigation("ListaButacaObra");
@@ -8016,6 +9117,13 @@ namespace Tickett.Data.Migrations
             modelBuilder.Entity("Tickett.Models.Obra", b =>
                 {
                     b.Navigation("ListaButacaObra");
+
+                    b.Navigation("ListaObraReparto");
+                });
+
+            modelBuilder.Entity("Tickett.Models.Reparto", b =>
+                {
+                    b.Navigation("ListaObraReparto");
                 });
 #pragma warning restore 612, 618
         }
