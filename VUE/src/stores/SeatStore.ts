@@ -9,8 +9,13 @@ interface Butaca {
     obraId: number;
     butacaId: number;
     libre: boolean;
-
 }
+interface editButaca {
+
+    libre: boolean;
+}
+
+
 
 export const useSeatStore = defineStore('SeatStore', () => {
     // State
@@ -34,6 +39,29 @@ export const useSeatStore = defineStore('SeatStore', () => {
         }
     }
 
-    return { seats, calcularCantidad, fetchSeatsPerId };
+    // seleccionar butacas
+    async function selectSeats(idFunction: number, idSeat: number, editSeat: editButaca) {
+        
+        try {
+            const response = await fetch(`http://localhost:5000/Seat/${idFunction}/${idSeat}`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json', // Indica que estás enviando datos en formato JSON
+                },
+                body: JSON.stringify(editSeat), // Convierte el objeto obra a JSON y lo envía en el cuerpo de la solicitud
+                
+              });
+              if (response.ok) {
+                console.log('butaca editada exitosamente.');
+              } else {
+                console.error('Error al editar la butaca:', response.statusText);
+              }
+
+        } catch (error) {
+            console.error('Error al hacer la petición:', error);
+        }
+    }
+
+    return { seats, calcularCantidad, fetchSeatsPerId, selectSeats };
 });
 

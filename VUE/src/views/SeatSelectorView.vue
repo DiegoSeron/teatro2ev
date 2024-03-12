@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import IconSeatVue from '@/components/icons/IconSeat.vue';
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { useFunctionStore } from '@/stores/FunctionStore';
 import { useSeatStore } from '@/stores/SeatStore';
