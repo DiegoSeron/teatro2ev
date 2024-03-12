@@ -1,6 +1,31 @@
 <script setup lang="ts">
 import BuyInputs from '@/components/BuyInputs.vue';
-import { ref } from 'vue';
+import { useSeatStore } from '@/stores/SeatStore';
+import { reactive, ref } from 'vue';
+
+const SeatStore = useSeatStore();
+
+function payFunction() {
+    
+    const idFunction = 2;
+    const butaca = 1;
+
+    butacasSeleccionadas.forEach(element => {
+        console.log(element);
+        
+        SeatStore.selectSeats(idFunction, element, editedSeat);
+    });
+
+}
+
+interface seat {
+    libre: boolean
+}
+
+const editedSeat = reactive<seat>({
+    libre: false,
+
+});
 
 // Recupera las butacas seleccionadas de sessionStorage
 const butacasSeleccionadas = JSON.parse(sessionStorage.getItem('choosenSeats') as string) || [];
@@ -84,7 +109,7 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
         <div class="buttons">
             <RouterLink :to="'/Obra'">CANCELAR</RouterLink>
-            <RouterLink :to="'/Obra'">PAGAR</RouterLink>
+            <RouterLink :to="'/Obra'" @click="payFunction">PAGAR</RouterLink>
         </div>
     </div>
 </template>

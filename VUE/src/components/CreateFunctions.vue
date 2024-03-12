@@ -13,6 +13,7 @@ interface Obra {
     genero: string;
     duracion: number;
     precio: number;
+    reparto: string;
 }
 
 // inicializo una obra
@@ -24,7 +25,8 @@ const obra = reactive<Obra>({
     imagen: '',
     genero: '',
     duracion: 0,
-    precio: 0
+    precio: 0,
+    reparto: ''
 });
 
 const submitForm = async () => {
@@ -58,6 +60,11 @@ const submitForm = async () => {
         <div class="form-group">
             <label for="imagen">Imagen:</label>
             <input type="text" id="imagen" v-model="obra.imagen" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="imagen">Reparto:</label>
+            <input type="text" id="reparto" v-model="obra.reparto" class="form-control" />
         </div>
 
         <div class="form-group">
