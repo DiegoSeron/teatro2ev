@@ -1,12 +1,33 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const emits = defineEmits(['selectSeat', 'unselectSeat'])
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 defineProps<{
     isFree: boolean;
     butacaId: number;
 }>()
+
+
+// inicializo el ancho y la altura del SVG
+const svgWidth = ref(window.innerWidth > 768 ? 43 : 35);
+const svgHeight = ref(window.innerWidth > 768 ? 38 : 27);
+
+// Función para actualizar las dimensiones del SVG en función del ancho de la ventana
+const updateSvgDimensions = () => {
+  svgWidth.value = window.innerWidth > 768 ? 43 : 35;
+  svgHeight.value = window.innerWidth > 768 ? 38 : 27;
+};
+
+// Cuando se monta el componente
+onMounted(() => {
+  window.addEventListener('resize', updateSvgDimensions);
+});
+
+// Antes de desmontar el componente
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateSvgDimensions);
+});
+
+const emits = defineEmits(['selectSeat', 'unselectSeat'])
 
 const seatRef = ref<SVGGElement>();
 
@@ -38,8 +59,8 @@ function chooseSeat(butacaId: number, isFree: boolean) {
 </script>
 
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 35" width="43" height="35">
-        <g ref="seatRef" :class="[isFree ? 'free' : 'taken']" @click="chooseSeat(butacaId, isFree)">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 35" :width="svgWidth" :height="svgHeight" class="seat">
+        <g ref="seatRef" :class="[isFree ? 'free' : 'taken']" @click="chooseSeat(butacaId, isFree)" >
             <!-- respaldo -->
             <rect x="6" y="1" width="30" height="20" rx="5" />
 
@@ -72,5 +93,12 @@ function chooseSeat(butacaId: number, isFree: boolean) {
     fill: rgb(50, 50, 50);
     stroke-width: 1;
     stroke: rgb(0, 0, 0);
+}
+
+@media screen and (min-width: 767px) {
+    .seat{
+        margin: 5px;
+    }
+    
 }
 </style>
