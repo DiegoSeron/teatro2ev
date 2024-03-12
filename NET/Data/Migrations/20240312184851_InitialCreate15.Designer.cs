@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tickett.Data;
 
@@ -11,9 +12,10 @@ using Tickett.Data;
 namespace Tickett.Data.Migrations
 {
     [DbContext(typeof(ObraContext))]
-    partial class ObraContextModelSnapshot : ModelSnapshot
+    [Migration("20240312184851_InitialCreate15")]
+    partial class InitialCreate15
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -7806,7 +7808,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 1,
                             Descripcion = "La obra 'Don Juan' es un clásico atemporal que explora las travesuras y el encanto del legendario seductor Don Juan. Esta pieza teatral icónica examina la naturaleza humana, el deseo, la moralidad y las consecuencias de nuestras acciones. A través de un cautivador relato, la historia sigue a Don Juan, un personaje carismático y seductor que desafía las normas sociales. Su irresistible magnetismo lo lleva a interactuar con una variedad de personajes, cada uno reflejando diferentes aspectos de la sociedad y la moralidad de la época. 'Don Juan' invita a reflexionar sobre la dualidad del ser humano, la moralidad, el amor y la libertad, envuelto en una trama llena de intriga y emociones intensas.",
-                            DiaObra = new DateTime(2024, 3, 27, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 1, 13, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 105,
                             Genero = "Romance",
                             Imagen = "donjuan.jpg",
@@ -7818,7 +7820,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 2,
                             Descripcion = "'La Celestina' es una obra maestra de la literatura española escrita por Fernando de Rojas en el siglo XV. Esta tragicomedia narra la historia de amor entre Calisto y Melibea, en un contexto lleno de engaños, pasiones y traiciones. La trama se centra en la intervención de la alcahueta Celestina, una mujer astuta y manipuladora que actúa como intermediaria en el romance. A medida que avanza la historia, se entrelazan intrigas que revelan las complejidades de las relaciones humanas y critican la sociedad de la época. 'La Celestina' es reconocida por su profundidad psicológica en la construcción de personajes y su aguda crítica social, explorando temas como el amor, la codicia, el poder y la moralidad en un estilo literario cautivador.",
-                            DiaObra = new DateTime(2024, 3, 28, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 1, 25, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 120,
                             Genero = "Romance",
                             Imagen = "celestina.jpg",
@@ -7830,7 +7832,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 3,
                             Descripcion = "Doble o nada es un thriller emocional ambientado en el hostil ambiente de las altas esferas empresariales. Una historia sobre el amor platónico, traición y engaño, y sobre todo, el poder y la ambición. Este emocionante thriller te mantendrá en vilo hasta el último minuto.",
-                            DiaObra = new DateTime(2024, 3, 31, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 2, 7, 20, 30, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 115,
                             Genero = "Thriller",
                             Imagen = "doble-o-nada.jpg",
@@ -7842,7 +7844,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 4,
                             Descripcion = "Gloria y Josete se acaban de independizar bajo la tutela de Claudia. Ante la necesidad de encontrar un trabajo para poder tener un sueldo con el que mantenerse, Claudia les propone que intenten dedicarse a algo que les guste de verdad. Ellos quieren ser artistas. Para ello deberían encontrar un representante. Esta comedia hilarante sigue las aventuras de este trío en su búsqueda por la fama y la risa del público.",
-                            DiaObra = new DateTime(2024, 4, 4, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 2, 15, 20, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 140,
                             Genero = "Comedia",
                             Imagen = "campeones.jpg",
@@ -7854,7 +7856,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 5,
                             Descripcion = "El Mago Pop es el nombre artístico de Antonio Díaz, un ilusionista español reconocido por sus impresionantes trucos de magia y espectáculos de ilusionismo. Conocido por combinar magia, tecnología y narrativa en sus actuaciones, El Mago Pop ha cautivado al público con sus shows innovadores y sorprendentes. Sus espectáculos suelen incorporar efectos visuales impactantes, interacción con el público y asombrosas ilusiones que desafían la lógica y la percepción. Antonio Díaz, como El Mago Pop, ha logrado llevar la magia a un nivel moderno y cautivador, convirtiéndose en uno de los ilusionistas más reconocidos a nivel internacional.",
-                            DiaObra = new DateTime(2024, 4, 5, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 2, 29, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 135,
                             Genero = "Monologo",
                             Imagen = "el-mago-pop.jpg",
@@ -7866,7 +7868,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 6,
                             Descripcion = "El Rey León es un espectacular musical inspirado en la película de Disney que ha cautivado a audiencias de todo el mundo. Con música de Elton John y letras de Tim Rice, esta producción teatral transporta al público a la majestuosa sabana africana. La historia sigue el viaje de Simba, un joven león destinado a convertirse en rey, a través de sus aventuras, desafíos y el aprendizaje de valiosas lecciones sobre el honor, el coraje y el amor. El espectáculo se destaca por su impresionante puesta en escena, coloridos vestuarios, efectos visuales deslumbrantes y coreografías espectaculares. 'El Rey León' es una experiencia teatral emocionante y conmovedora, que combina la magia del cine con la energía y la emoción del teatro en vivo.",
-                            DiaObra = new DateTime(2024, 4, 7, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 3, 3, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 100,
                             Genero = "Musical",
                             Imagen = "ElReyLeon3Aniv200.jpg",
@@ -7890,7 +7892,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 8,
                             Descripcion = "La función que sale mal es una obra teatral cómica que gira en torno a un grupo de actores aficionados que intentan representar una obra de teatro, pero todo lo que puede salir mal ¡sale mal! La trama se desarrolla con una sucesión de desastres cómicos, desde problemas técnicos hasta errores de actuación y malentendidos entre los personajes. La obra es una comedia llena de situaciones hilarantes y caóticas que mantienen al público riendo a carcajadas. 'La función que sale mal' es conocida por su humor físico, su ingenio y su capacidad para convertir los errores en momentos divertidos e inolvidables para el público.",
-                            DiaObra = new DateTime(2024, 4, 12, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 3, 21, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 110,
                             Genero = "Thriller",
                             Imagen = "funcion-sale.mal.jpg",
@@ -7902,7 +7904,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 9,
                             Descripcion = "Ilusionate es una emocionante obra de teatro que fusiona el ilusionismo, la magia y el drama en una experiencia teatral única. Esta obra cautivadora transporta al público a un mundo de sorpresas, ilusiones y emociones. Con un elenco talentoso y efectos visuales impactantes, Ilusionate combina la magia del teatro con increíbles trucos y narrativas que mantienen al espectador absorto en un viaje lleno de misterio y asombro. Esta obra teatral es una oportunidad para sumergirse en un universo de ilusiones y disfrutar de un espectáculo que desafía la imaginación y la percepción.",
-                            DiaObra = new DateTime(2024, 4, 15, 18, 15, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 4, 4, 18, 15, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 120,
                             Genero = "Monologo",
                             Imagen = "ilusionate.jpg",
@@ -7914,7 +7916,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 10,
                             Descripcion = "José el Soñador es una historia bíblica que relata la vida de José, hijo de Jacob, vendido como esclavo por sus hermanos. La historia sigue la vida de José desde su juventud hasta convertirse en un importante funcionario en Egipto. Conocida por su narrativa llena de intriga, traición y redención, la historia muestra la habilidad de José para interpretar sueños, lo que lo lleva a ganar el favor del faraón y a desempeñar un papel crucial en la historia de Egipto. 'José el Soñador' es un relato emocionante que explora temas de fe, perseverancia y perdón, y ha sido una fuente de inspiración para muchas personas a lo largo de los siglos.",
-                            DiaObra = new DateTime(2024, 4, 16, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 4, 10, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 105,
                             Genero = "Drama",
                             Imagen = "jose-el-sonador.jpg",
@@ -7926,7 +7928,7 @@ namespace Tickett.Data.Migrations
                         {
                             ObraId = 11,
                             Descripcion = "Laponia es una región situada en el norte de Europa que abarca partes de Noruega, Suecia, Finlandia y Rusia. Conocida por su belleza natural y su paisaje ártico, Laponia es famosa por ser el hogar de la gente sami, su cultura única y las auroras boreales que se pueden observar durante la temporada de invierno. Esta región ofrece una amplia gama de actividades, como safaris en trineo de perros, excursiones para avistar renos, esquí, senderismo y la oportunidad de experimentar la cultura sami a través de sus tradiciones, como la artesanía, la música y la gastronomía local. Laponia es un destino popular para aquellos que buscan aventuras inolvidables en un entorno natural espectacular.",
-                            DiaObra = new DateTime(2024, 4, 19, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            DiaObra = new DateTime(2024, 4, 23, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Duracion = 125,
                             Genero = "Thriller",
                             Imagen = "laponia.jpg",

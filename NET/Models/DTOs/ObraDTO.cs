@@ -16,6 +16,8 @@ public class ObraDTO
     [Required]
     public string Imagen { get; set; }
     [Required]
+    public string Reparto { get; set; }
+    [Required]
     public string Genero { get; set; }
     [Required]
     public int Duracion { get; set; }
@@ -38,6 +40,7 @@ public class ObraDTO
             Descripcion = this.Descripcion,
             DiaObra = this.DiaObra,
             Imagen = this.Imagen,
+            Reparto = this.Reparto,
             Genero = this.Genero,
             Duracion = this.Duracion,
             Precio = this.Precio,

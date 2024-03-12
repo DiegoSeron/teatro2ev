@@ -18,7 +18,8 @@ public class Obra
 
     [Required]
     public string Imagen { get; set; }
-    public List<ObraReparto> ListaObraReparto { get; set; }
+    [Required]
+    public string Reparto { get; set; }
     [Required]
     public string Genero { get; set; }
     [Required]
@@ -32,12 +33,13 @@ public class Obra
 
     public Obra() { }
 
-    public Obra(string titulo, string descripcion, DateTime diaObra, string imagen, string genero, int duracion, decimal precio)
+    public Obra(string titulo, string descripcion, DateTime diaObra, string imagen, string reparto, string genero, int duracion, decimal precio)
     {
         Titulo = titulo;
         Descripcion = descripcion;
         DiaObra = diaObra;
         Imagen = imagen;
+        Reparto = reparto;
         Genero = genero;
         Duracion = duracion;
         Precio = precio;
@@ -61,6 +63,7 @@ public class Obra
             Descripcion = obraCreateDTO.Descripcion,
             DiaObra = obraCreateDTO.DiaObra,
             Imagen = obraCreateDTO.Imagen,
+            Reparto = obraCreateDTO.Reparto,
             Genero = obraCreateDTO.Genero,
             Duracion = obraCreateDTO.Duracion,
             Precio = obraCreateDTO.Precio,
@@ -79,6 +82,7 @@ public class Obra
             Descripcion = this.Descripcion,
             DiaObra = this.DiaObra,
             Imagen = this.Imagen,
+            Reparto = this.Reparto,
             Genero = this.Genero,
             Duracion = this.Duracion,
             Precio = this.Precio,

@@ -14,7 +14,7 @@ public class ObraCreateDTO
     [Required]
     public string Imagen { get; set; }
 
-    public List<ObraReparto> ListaObraReparto { get; set; }
+    public string Reparto { get; set; }
 
     [Required]
     public string Genero { get; set; }
