@@ -30,11 +30,11 @@ const openDelete = () => {
             </div>
 
             <div class="actions" v-if="borrar">
-                <DeleteFunction :description="obra.descripcion" :dia-obra="obra.diaObra" :price="obra.precio" :title="obra.titulo" :obra-id="obra.obraId"/>
+                <DeleteFunction :obra-id="obra.obraId"/>
             </div>
 
             <div class="menu" v-if="editar"> 
-                <EditFunction  :description="obra.descripcion" :dia-obra="obra.diaObra" :price="obra.precio" :title="obra.titulo" :obra-id="obra.obraId"/>
+                <EditFunction  :descripcion="obra.descripcion" :dia-obra="obra.diaObra" :precio="obra.precio" :titulo="obra.titulo" :obra-id="obra.obraId"/>
             </div>
         </div>
     </div>

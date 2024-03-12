@@ -4,7 +4,7 @@ defineProps<{
   imageSrc?: string
   diaObra?: string
   obraId: number
-  genero: string
+  genero?: string
 }>()
 
 </script>

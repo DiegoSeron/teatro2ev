@@ -17,7 +17,6 @@ defineProps<{
     <div class="cardFunction__text">
       <h2>{{ title }}</h2>
       <h3>{{ diaObra }}</h3>
-      <h3>{{ obraId }}</h3>
       
     </div>
     <RouterLink :to="'/Obra/' + obraId">

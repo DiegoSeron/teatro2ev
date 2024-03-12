@@ -1,63 +1,62 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
     obraId: number
-    title?: string
-    diaObra?: string
-    precio?: number
-}>()
+    titulo: string
+    diaObra: Date
+    precio: number
+    descripcion: string
+}>();
 
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
+import { useFunctionStore } from '@/stores/FunctionStore';
 
+const FunctionStore = useFunctionStore();
 
 
 interface Obra {
     obraId: number;
-    title?: string;
-    diaObra?: string;
-    description: string;
-    price: number;
+    titulo: string;
+    diaObra: Date;
+    descripcion: string;
+    precio: number;
 }
 
-// Data que se editará
-const editedObra = ref<Obra>({
-    obraId: 0,
-    title: '',
-    diaObra: '',
-    description: '',
-    price: 0
+const editedObra = reactive<Obra>({
+    obraId: props.obraId,
+    titulo: props.titulo,
+    diaObra: props.diaObra,
+    descripcion: props.descripcion,
+    precio: props.precio
 });
 
-// Método para enviar el formulario
 const submitForm = () => {
-    console.log('Datos editados:', editedObra.value);
+    console.log('Datos editados:', editedObra);
+    FunctionStore.editFunction(props.obraId, editedObra);
 };
 </script>
   
 <template>
     <form @submit.prevent="submitForm" class="edit-form">
-        <div class="form-group">
-            <label for="title">Título: </label>
-            <input type="text" id="title" v-model="editedObra.title" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label for="diaObra">Día de la obra: </label>
-            <input type="text" id="diaObra" v-model="editedObra.diaObra" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label for="description">Descripción:</label>
-            <textarea id="description" v-model="editedObra.description" class="form-control"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="price">Precio:</label>
-            <input type="number" id="price" v-model.number="editedObra.price" class="form-control" />
-        </div>
-
-        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <input type="hidden" name="obraId" v-model="editedObra.obraId" />
+      <div class="form-group">
+        <label for="title">Título: </label>
+        <input type="text" id="title" v-model="editedObra.titulo" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="diaObra">Día de la obra: </label>
+        <input type="text" id="diaObra" v-model="editedObra.diaObra" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción:</label>
+        <textarea id="description" v-model="editedObra.descripcion" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">Precio:</label>
+        <input type="number" id="price" v-model.number="editedObra.precio" class="form-control"/>
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar cambios</button>
     </form>
-</template>
+  </template>
 
 <style scoped lang="scss">
 .edit-form {
@@ -87,6 +86,11 @@ const submitForm = () => {
         border: none;
         border-radius: 4px;
         cursor: pointer;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.7); // Estilo de enfoque
+        }
     }
 
     .btn-primary {

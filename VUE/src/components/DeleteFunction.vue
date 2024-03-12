@@ -1,9 +1,6 @@
 <script setup lang="ts">
 defineProps<{
     obraId: number
-    title?: string
-    diaObra?: string
-    precio?: number
 }>()
 
 import { useFunctionStore } from '@/stores/FunctionStore';
