@@ -23,8 +23,4 @@ public class ObraCreateDTO
     [Required]
     public int Precio { get; set; }
 
-    [Required]
-    public List<ButacaObra> ListaButacaObra { get; set; }
-
-
 }
