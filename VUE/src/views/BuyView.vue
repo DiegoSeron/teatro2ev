@@ -3,7 +3,7 @@ import BuyInputs from '@/components/BuyInputs.vue';
 import { ref } from 'vue';
 
 // Recupera las butacas seleccionadas de sessionStorage
-const butacasSeleccionadas = JSON.parse(sessionStorage.getItem('choosenSeats')) || [];
+const butacasSeleccionadas = JSON.parse(sessionStorage.getItem('choosenSeats') as string) || [];
 if (butacasSeleccionadas) {
     // El array está en el localStorage, puedes usarlo como necesites
     console.log("Las butacas seleccionadas en la pagina de compra " + butacasSeleccionadas);
@@ -51,7 +51,7 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
             <div>
                 <input type="radio" id="opcion2" name="opciones" value="opcion2" v-model="opcionSeleccionada">
-                <label for="opcion1">Opción 2</label>
+                <label for="opcion2">Opción 2</label>
 
 
 
