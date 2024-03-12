@@ -15,8 +15,9 @@ FunctionStore.fetchFunctions();
     <div class="content">
         <section class="functions">
 
-            <CardGrid v-for="obra in FunctionStore.functions" :obraId="obra.obraId" :title="obra.titulo" :dia-obra="obra.diaObra.toString()"
-                :imageSrc="obra.imagen" :genero="obra.genero" />
+
+            <CardGrid v-for="obra in FunctionStore.functions" :obraId="obra.obraId" :title="obra.titulo"
+                :dia-obra="obra.diaObra.toString()" :imageSrc="obra.imagen" :genero="obra.genero" class="card" />
         </section>
 
 
@@ -61,15 +62,40 @@ $secondlyFont: 'Montserrat';
     flex-direction: column;
 }
 
+
 .functions {
 
-    
+
     width: 100%;
     height: auto;
-    
+
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+
+    .card {
+        background-color: $primaryColor;
+        width: auto;
+        height: auto;
+        margin: 10px;
+        flex-basis: calc(50% - 20px);
+        border-radius: 15px 15px 5px 5px;
+        transition: all 300ms ease;
+        cursor: pointer;
+
+
+
+        /* PARA ORDENADORES */
+        @media screen and (min-width: 767px) {
+            flex-basis: calc(33% - 20px);
+        }
+
+    }
+    
+    .card:hover {
+  transform: scale(1.05);
+
+}
 
 }
 
@@ -181,7 +207,7 @@ $secondlyFont: 'Montserrat';
 
 }
 
-.close{
+.close {
     padding: 12px;
     background-color: #ba1313;
     border: 2px solid black;
@@ -199,6 +225,7 @@ $secondlyFont: 'Montserrat';
     padding: 9px;
     color: #fff;
     font-family: $secondlyFont;
+
     margin: {
         left: 70%;
         top: 15px;
@@ -249,11 +276,10 @@ $secondlyFont: 'Montserrat';
 
     .close {
         display: none;
- 
-    
+
+
     }
 
 
 }
-
 </style>
