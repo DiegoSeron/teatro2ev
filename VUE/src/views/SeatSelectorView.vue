@@ -67,7 +67,7 @@ const formatoHora = (fechaHora: string) => {
                 </div>
                 <div class="hour">
                     <h2>HORA DE LA FUNCIÓN:</h2>
-                    <h3>{{ formatoFecha(Idfunction.diaObra) }}</h3>
+                    <h3>{{ formatoFecha(Idfunction.diaObra.toString()) }}</h3>
                 </div>
             </div>
             <div class="info__img">
@@ -77,6 +77,9 @@ const formatoHora = (fechaHora: string) => {
         <div class="selection">
             <div class="title">
                 <h2>SELECCION BUTACAS</h2>
+            </div>
+            <div class="escenario">
+                <div>escenario</div>
             </div>
             <div class="gridButacas">
                 <div class="butacas">
@@ -93,9 +96,7 @@ const formatoHora = (fechaHora: string) => {
 
 
             </div>
-            <div class="escenario">
-                <div>escenario</div>
-            </div>
+
         </div>
         <div class="button" id="botonPago">
             <RouterLink :to="'/Compra'">IR A PAGAR</RouterLink>
