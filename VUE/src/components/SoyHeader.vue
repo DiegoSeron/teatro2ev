@@ -22,7 +22,9 @@ import IconHamburguer from './icons/IconHamburguer.vue'
     <div class="icons">
       <ul>
         <li>
+          <RouterLink to="/Admin">
           <IconUser />
+        </RouterLink>
         </li>
         <li>
           <IconCart />
