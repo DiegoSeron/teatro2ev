@@ -1,23 +1,32 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useLoginStore } from '@/stores/LoginStore';
+import router from '@/router';
 
 const loginStore = useLoginStore();
-const email = ref('');
+const username = ref('');
 const password = ref('');
 
+onMounted(() => {
+    loginStore.fetchUsers();
+});
+
 const login = () => {
-    loginStore.login(email.value, password.value);
+    loginStore.login(username.value, password.value);
+    router.push('/Admin')
 };
+
+
 </script>
 
 <template>
     <form @submit.prevent="login">
-        <input type="text" v-model="email" placeholder="Email">
+        <input type="text" v-model="username" placeholder="User name">
         <input type="password" v-model="password" placeholder="Password">
         <button type="submit">Login</button>
     </form>
 </template>
+
 
 <style scoped lang="scss">
 form {

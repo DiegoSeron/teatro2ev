@@ -10,7 +10,7 @@ function payFunction() {
     const idFunction = 2;
     const butaca = 1;
 
-    butacasSeleccionadas.forEach(element => {
+    butacasSeleccionadas.forEach((element: number) => {
         console.log(element);
         
         SeatStore.selectSeats(idFunction, element, editedSeat);

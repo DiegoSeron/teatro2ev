@@ -1,9 +1,10 @@
 <script setup lang="ts">
 
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { useFunctionStore } from '@/stores/FunctionStore';
+import { sep } from 'path';
 
 const FunctionStore = useFunctionStore();
 const route = useRoute();
@@ -26,6 +27,12 @@ const formatoHora = (fechaHora: string) => {
     return hora.toLocaleTimeString('es-ES', options);
 };
 
+const separatedPlot = computed(() => {
+    return Idfunction.reparto?.split(',');
+
+});
+
+
 </script>
 
 
@@ -35,8 +42,7 @@ const formatoHora = (fechaHora: string) => {
         <section class="first">
             <div class="principal">
                 <div>
-                    <img :src="'../src/assets/IMAGENES/' + Idfunction.imagen"
-                        :alt="`${Idfunction.titulo}`">
+                    <img :src="'../src/assets/IMAGENES/' + Idfunction.imagen" :alt="`${Idfunction.titulo}`">
                 </div>
                 <div>
                     <RouterLink :to="'/Butaca/' + id">SELECCIONAR BUTACAS</RouterLink>
@@ -47,10 +53,10 @@ const formatoHora = (fechaHora: string) => {
                 <div class="date">
                     <h3>Horario</h3>
                     <div class="date__data">
-                    <!-- Mostrar la fecha -->
-                    <h3>Día: {{ formatoFecha(Idfunction.diaObra) }}</h3>
-                    <!-- Mostrar la hora -->
-                    <h3>Hora: {{ formatoHora(Idfunction.diaObra) }}</h3>
+                        <!-- Mostrar la fecha -->
+                        <h3>Día: {{ formatoFecha(Idfunction.diaObra) }}</h3>
+                        <!-- Mostrar la hora -->
+                        <h3>Hora: {{ formatoHora(Idfunction.diaObra) }}</h3>
                     </div>
                 </div>
                 <div class="information">
@@ -78,6 +84,7 @@ const formatoHora = (fechaHora: string) => {
                 <h3>Reparto</h3>
                 <div>
                     <ul>
+                        <li v-for="actor in separatedPlot">{{ `- ${actor}` }}</li>
                     </ul>
                 </div>
             </div>
@@ -404,4 +411,5 @@ section {
         }
 
     }
-}</style>
+}
+</style>

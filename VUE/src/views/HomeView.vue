@@ -8,8 +8,6 @@ import Carousel from '@/components/Carousel.vue';
 
 
 <template>
-  Vista HomeView
-
   <section class="content">
 
     <Carousel />

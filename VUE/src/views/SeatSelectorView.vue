@@ -58,10 +58,6 @@ const formatoHora = (fechaHora: string) => {
 
 
 <template>
-    <div>
-        Butacas view
-    </div>
-
     <div class="content">
         <div class="info">
             <div class="info__text">

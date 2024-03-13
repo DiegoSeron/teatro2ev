@@ -11,6 +11,7 @@ interface Obra {
   precio: number;
   descripcion: string;
   imagen?: string;
+  reparto?: string;
   genero?: string;
   duracion?: number;
 }
@@ -23,7 +24,7 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
   // Getter
   // calcula la cantidad de funciones que hay
   const calcularCantidad = computed(() => functions.length);
-
+  
   // Action
   // saca de la api todas las funciones que hay
   async function fetchFunctions() {
