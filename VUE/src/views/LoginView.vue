@@ -12,7 +12,7 @@ const router = useRouter();
 
 const login = () => {
     loginStore.login(email.value, password.value);
-    router.push('/admin');
+    router.push('/Admin');
 };
 </script>
 
