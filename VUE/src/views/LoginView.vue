@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useLoginStore } from '@/stores/LoginStore';
+import { useRouter } from 'vue-router';
+
 
 const loginStore = useLoginStore();
 const email = ref('');
 const password = ref('');
+const router = useRouter();
+
 
 const login = () => {
     loginStore.login(email.value, password.value);
+    router.push('/admin');
 };
 </script>
 
