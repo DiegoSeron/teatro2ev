@@ -1,14 +1,17 @@
+
 <script setup lang="ts">
 import BuyInputs from '@/components/BuyInputs.vue';
+import { useFunctionStore } from '@/stores/FunctionStore';
 import { useSeatStore } from '@/stores/SeatStore';
 import { reactive, ref } from 'vue';
 
 const SeatStore = useSeatStore();
+const FunctionStore = useFunctionStore();
+
+const dataFunction = FunctionStore.selectedFunction;
 
 function payFunction() {
-    
-    const idFunction = 2;
-    const butaca = 1;
+    const idFunction = dataFunction?.obraId as number;
 
     butacasSeleccionadas.forEach((element: number) => {
         console.log(element);
@@ -52,11 +55,11 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
             <div>
                 <h2>TITULO DE LA FUNCIÓN</h2>
-                <h3>TITULO DE LA FUNCIÓN</h3>
+                <h3>{{ dataFunction?.titulo }}</h3>
             </div>
             <div>
                 <h2>HORA DE LA FUNCIÓN</h2>
-                <h3>HORA DE LA FUNCIÓN</h3>
+                <h3>{{ dataFunction?.diaObra }}</h3>
             </div>
             <div>
                 <h2>BUTACAS SELECCIONADAS</h2>

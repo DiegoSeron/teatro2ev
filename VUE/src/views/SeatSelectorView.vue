@@ -63,15 +63,15 @@ const formatoHora = (fechaHora: string) => {
             <div class="info__text">
                 <div class="title">
                     <h2>TITULO DE LA FUNCIÓN:</h2>
-                    <h3>{{ Idfunction.titulo }}</h3>
+                    <h3>{{ Idfunction?.titulo }}</h3>
                 </div>
                 <div class="hour">
                     <h2>HORA DE LA FUNCIÓN:</h2>
-                    <h3>{{ formatoFecha(Idfunction.diaObra.toString()) }}</h3>
+                    <h3>{{ formatoFecha(Idfunction?.diaObra.toString() as string) }}</h3>
                 </div>
             </div>
             <div class="info__img">
-                <img :src="'../src/assets/IMAGENES/' + Idfunction.imagen" alt="">
+                <img :src="'../src/assets/IMAGENES/' + Idfunction?.imagen" alt="">
             </div>
         </div>
         <div class="selection">
