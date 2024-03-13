@@ -15,8 +15,6 @@ const logout = () => {
 </script>
 
 <template>
-    Admin View
-
     <div class="pago">
         <div>
             <input type="radio" id="opcion1" name="opciones" value="opcion1" v-model="opcionSeleccionada">
