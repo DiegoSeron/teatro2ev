@@ -1,11 +1,31 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   title?: string
   imageSrc?: string
   diaObra?: string
   obraId: number
   genero?: string
 }>()
+
+import { useSeatStore } from '@/stores/SeatStore';
+import { ref, onMounted } from 'vue';
+
+const freeSeatsCount = ref(0);
+const SeatStore = useSeatStore();
+
+onMounted(async () => {
+  try {
+    await SeatStore.fetchSeatsPerId(props.obraId);
+    freeSeatsCount.value = SeatStore.freeSeatsPerId;
+  } catch (error) {
+    console.error('Error al hacer fetch en las butacas:', error);
+  }
+});
+
+
+
+
+
 
 </script>
 
@@ -17,6 +37,7 @@ defineProps<{
     <div class="card__description">
       <h2>{{ title }}</h2>
       <h3>{{ genero }}</h3>
+      <h3 class="freeSeatsCount">Butacas disponibles: {{ freeSeatsCount }}</h3>
     </div>
   </RouterLink>
 </template>
@@ -72,6 +93,12 @@ a {
 
     font-family: $secondlyFont;
   }
+
+  .freeSeatsCount {
+      font: {
+        size: 12px;
+      }
+    }
 }
 
 
@@ -86,9 +113,16 @@ a {
         size: 36px;
       }
     }
+
     h3 {
       font: {
         size: 24px;
+      }
+    }
+
+    .freeSeatsCount {
+      font: {
+        size: 18px;
       }
     }
 

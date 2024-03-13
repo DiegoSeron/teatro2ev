@@ -2,43 +2,50 @@
 import { ref } from 'vue';
 import InputFunctionAdmin from './../components/InputFunctionAdmin.vue';
 import CreateFunctions from '@/components/CreateFunctions.vue';
+import { useLoginStore } from '@/stores/LoginStore';
+
+const loginStore = useLoginStore();
 
 const opcionSeleccionada = ref('opcion1'); // Valor por defecto
+
+const logout = () => {
+    loginStore.logout();
+};
 
 </script>
 
 <template>
-Admin View
+    Admin View
 
-<div class="pago">
-            <div>
-                <input type="radio" id="opcion1" name="opciones" value="opcion1" v-model="opcionSeleccionada">
-                <label for="opcion1">CREAR</label>
-            </div>
+    <div class="pago">
+        <div>
+            <input type="radio" id="opcion1" name="opciones" value="opcion1" v-model="opcionSeleccionada">
+            <label for="opcion1">CREAR</label>
+        </div>
 
-            <div>
-                <input type="radio" id="opcion2" name="opciones" value="opcion2" v-model="opcionSeleccionada">
-                <label for="opcion2">EDITAR / BORRAR</label>
-
-
-            </div>
-            <div id="menuOpcion1" class="menu" v-show="opcionSeleccionada === 'opcion1'">
-                <CreateFunctions/>
+        <div>
+            <input type="radio" id="opcion2" name="opciones" value="opcion2" v-model="opcionSeleccionada">
+            <label for="opcion2">EDITAR / BORRAR</label>
 
 
-            </div>
+        </div>
+        <div id="menuOpcion1" class="menu" v-show="opcionSeleccionada === 'opcion1'">
+            <CreateFunctions />
 
-            <div id="menuOpcion2" class="menu" v-show="opcionSeleccionada === 'opcion2'">
-
-                <InputFunctionAdmin/>
-
-
-            </div>
 
         </div>
 
+        <div id="menuOpcion2" class="menu" v-show="opcionSeleccionada === 'opcion2'">
+
+            <InputFunctionAdmin />
+
+
+        </div>
+
+        <RouterLink :to="'/'" @click="logout">logout</RouterLink>
+
+    </div>
+
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
