@@ -1,8 +1,5 @@
 import { defineStore } from 'pinia';
-import { computed, reactive } from 'vue';
-
-
-
+import { computed, reactive, ref } from 'vue';
 
 interface Obra {
   obraId: number;
@@ -19,11 +16,19 @@ interface Obra {
 export const useFunctionStore = defineStore('FunctionStore', () => {
   // State
   const functions = reactive(new Array<Obra>);
-
+  const selectedFunctionId = ref<number>(-1); // Inicializa con un valor que represente que no hay ninguna obra seleccionada
 
   // Getter
   // calcula la cantidad de funciones que hay
   const calcularCantidad = computed(() => functions.length);
+  
+  // Getter para obtener la obra seleccionada
+  const selectedFunction = computed(() => {
+    if (selectedFunctionId.value !== null) {
+      return functions.find(func => func.obraId === selectedFunctionId.value);
+    }
+    return null;
+  });
   
   // Action
   // saca de la api todas las funciones que hay
@@ -43,7 +48,8 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
 
   // busca en la api la funcion por id
   function searchFunctionsPerId(id: number) {
-    return functions.filter(i => i.obraId === id)[0];
+    selectedFunctionId.value = id; // Almacena el ID de la obra buscada
+    return functions.find(i => i.obraId === id);
   }
 
   // eliminar obra
@@ -101,8 +107,5 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
     }
   }
 
-
-
-  return { functions, calcularCantidad, fetchFunctions, searchFunctionsPerId, deleteFunction, createFunction, editFunction };
+  return { functions, calcularCantidad, fetchFunctions, searchFunctionsPerId, deleteFunction, createFunction, editFunction, selectedFunction };
 });
-
