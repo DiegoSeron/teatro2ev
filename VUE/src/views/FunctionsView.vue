@@ -2,10 +2,12 @@
 
 import { useFunctionStore } from '@/stores/FunctionStore';
 import CardGrid from '../components/CardGrid.vue';
-import { ref, onMounted } from "vue";
 
 const FunctionStore = useFunctionStore();
-FunctionStore.fetchFunctions();
+
+ FunctionStore.fetchFunctions();
+
+
 
 
 
