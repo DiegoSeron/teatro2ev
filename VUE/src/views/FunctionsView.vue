@@ -28,7 +28,6 @@ const FunctionStore = useFunctionStore();
             <div class="filter">
                 <div class="filter__search">
                     <input type="text" placeholder="BUSCAR...">
-                    <img src="../../iconos/icons8-búsqueda-500-ROJO 1.png" alt="">
                 </div>
                 <div class="filter__gender">
                     <ul>

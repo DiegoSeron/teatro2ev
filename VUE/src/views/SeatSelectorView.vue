@@ -4,6 +4,8 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useFunctionStore } from '@/stores/FunctionStore';
 import { useSeatStore } from '@/stores/SeatStore';
+import IconStage from '@/components/icons/IconStage.vue';
+import IconSeatExample from '@/components/icons/IconSeatExample.vue';
 
 // cojo la url y el id de la obra
 const route = useRoute();
@@ -24,34 +26,34 @@ SeatStore.fetchSeatsPerId(id);
 const choosenSeats = ref<number[]>([]);
 
 function onChooseSeat(butacaId: number) {
-  console.log(`Se selecciona la butaca ${butacaId}`);
-  // Agregar el asiento seleccionado al array
-  choosenSeats.value.push(butacaId);
-  console.log(choosenSeats.value);
-  // Guardar en el sessionStorage
-  sessionStorage.setItem('choosenSeats', JSON.stringify(choosenSeats.value));
+    console.log(`Se selecciona la butaca ${butacaId}`);
+    // Agregar el asiento seleccionado al array
+    choosenSeats.value.push(butacaId);
+    console.log(choosenSeats.value);
+    // Guardar en el sessionStorage
+    sessionStorage.setItem('choosenSeats', JSON.stringify(choosenSeats.value));
 }
 
 function onUnchooseSeat(butacaId: number) {
-  console.log(`Se deselecciona la butaca ${butacaId}`);
-  // Filtrar el array para eliminar la butaca deseleccionada
-  choosenSeats.value = choosenSeats.value.filter(seatId => seatId !== butacaId);
-  console.log(choosenSeats.value);
-  // Actualizar el sessionStorage
-  sessionStorage.setItem('choosenSeats', JSON.stringify(choosenSeats.value));
+    console.log(`Se deselecciona la butaca ${butacaId}`);
+    // Filtrar el array para eliminar la butaca deseleccionada
+    choosenSeats.value = choosenSeats.value.filter(seatId => seatId !== butacaId);
+    console.log(choosenSeats.value);
+    // Actualizar el sessionStorage
+    sessionStorage.setItem('choosenSeats', JSON.stringify(choosenSeats.value));
 }
 
 // Filtro para formatear la fecha
 const formatoFecha = (fechaHora: string) => {
     const fecha = new Date(fechaHora);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     return fecha.toLocaleDateString('es-ES', options);
 };
 
 // Filtro para formatear la hora
 const formatoHora = (fechaHora: string) => {
     const hora = new Date(fechaHora);
-    const options = { hour: 'numeric', minute: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: 'numeric' };
     return hora.toLocaleTimeString('es-ES', options);
 };
 </script>
@@ -78,28 +80,37 @@ const formatoHora = (fechaHora: string) => {
             <div class="title">
                 <h2>SELECCION BUTACAS</h2>
             </div>
-            <div class="escenario">
-                <div>escenario</div>
-            </div>
-            <div class="gridButacas">
-                <div class="butacas">
 
-                    <div v-for="filaIndex in 10" :key="filaIndex">
-                        <div class="fila">
-                            <IconSeatVue
-                                v-for="(butaca, index) in SeatStore.seats.slice((filaIndex - 1) * 10, filaIndex * 10)"
-                                :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="butaca.butacaId" @selectSeat="onChooseSeat" @unselectSeat="onUnchooseSeat"/>
+            <div class="selectorButacas">
+                <div class="datos">
+
+                    <IconSeatExample class="LIBRES" />
+                    <IconSeatExample class="SELECCIONADAS" />
+                    <IconSeatExample class="OCUPADAS" />
+                </div>
+                <div class="d">
+                    <div class="escenario">
+                        <IconStage />
+                    </div>
+                    <div class="butacas">
+                        <div v-for="filaIndex in 10" :key="filaIndex">
+                            <div class="fila">
+                                <IconSeatVue class="butaca"
+                                    v-for="(butaca, index) in SeatStore.seats.slice((filaIndex - 1) * 10, filaIndex * 10)"
+                                    :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="(butaca.butacaId as number)"
+                                    @selectSeat="onChooseSeat" @unselectSeat="onUnchooseSeat" :example="false" />
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
 
 
             </div>
 
-        </div>
-        <div class="button" id="botonPago">
-            <RouterLink :to="'/Compra'">IR A PAGAR</RouterLink>
+            <div class="button" id="botonPago">
+                <RouterLink :to="'/Compra'">IR A PAGAR</RouterLink>
+            </div>
         </div>
     </div>
 </template>
@@ -110,168 +121,228 @@ const formatoHora = (fechaHora: string) => {
     width: 100%;
     display: flex;
     flex-direction: column;
-}
 
-.info {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+    .info {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
-.info__text {
-    width: 50%;
-    height: auto;
-    background-color: #fff;
-    margin-top: 5px;
-}
+        &__text {
+            width: 50%;
+            height: auto;
+            background-color: #fff;
+            margin-top: 5px;
 
-.info__text div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+            div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
 
-.info__text div h2 {
-    margin-top: 5%;
-    margin-bottom: 0;
-    margin-left: 6%;
-    margin-right: 6%;
-    font-family: "Bebas Neue";
-    color: #ffffff;
-    color: #ba1313;
-}
+                h2 {
+                    margin-top: 5%;
+                    margin-bottom: 0;
+                    margin-left: 6%;
+                    margin-right: 6%;
+                    font-family: "Bebas Neue";
+                    color: #ffffff;
+                    color: #ba1313;
+                }
 
-.info__text div h3 {
-    margin-top: 0;
-    margin-bottom: 5%;
-    font-family: "Montserrat";
-}
+                h3 {
+                    margin-top: 0;
+                    margin-bottom: 5%;
+                    font-family: "Montserrat";
+                }
+            }
+        }
 
-.info__img {
-    width: 50%;
-    height: 100%;
-    background-color: #fff;
-    margin-top: 5px;
-}
+        &__img {
+            width: 50%;
+            height: 100%;
+            background-color: #fff;
+            margin-top: 5px;
 
-.info__img img {
-    width: 55%;
-    height: auto;
-    border-radius: 15px;
-    margin-top: 5%;
-}
-
-.selection {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.selection .title {
-    width: 100%;
-    height: 15%;
-    background-color: #ba1313;
-    margin-top: 5%;
-    margin-bottom: 0;
-    margin-left: 6%;
-    margin-right: 6%;
-    font-family: "Bebas Neue";
-    color: #ffffff;
-}
-
-.selection .gridButacas {
-    width: 100%;
-    height: 70%;
-}
-
-.selection .gridButacas .butacas {
-    width: 100%;
-    height: 380px;
-    display: grid;
-    grid-template-rows: repeat(10, 30px);
-    grid-gap: 5px;
-    justify-content: center;
-    align-items: center;
-}
-
-.selection .gridButacas .butacas .fila {
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.selection .gridButacas .butacas .butaca {
-    width: 22px;
-    height: 22px;
-    background-size: cover;
-    cursor: pointer;
-    margin: 3px;
-}
-
-.selection .gridButacas .escenario {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    font-family: "Montserrat";
-}
-
-.selection .gridButacas .escenario div {
-    background-color: #D9D9D9;
-    height: 100%;
-    width: 60%;
-}
-
-.selection .button {
-    width: 100%;
-    height: 15%;
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.selection .button a {
-    color: #ffffff;
-    text-decoration: none;
-    background-color: #ba1313;
-    padding: 10px;
-    font-family: "Montserrat";
-    font-size: 18px;
-    border-radius: 50px;
-}
-
-/* PARA ORDENADORES */
-@media screen and (min-width: 767px) {
-    .info__img {
-        width: 30%;
+            img {
+                width: 55%;
+                height: auto;
+                border-radius: 15px;
+                margin-top: 5%;
+            }
+        }
     }
 
-    .selection .gridButacas .butacas {
-        height: 415px;
-        grid-gap: 8px;
+    .selection {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .title {
+            width: 100%;
+            height: 15%;
+            background-color: #ba1313;
+            margin-top: 5%;
+            margin-bottom: 0;
+            margin-left: 6%;
+            margin-right: 6%;
+            font-family: "Bebas Neue";
+            color: #ffffff;
+        }
+
+        .selectorButacas {
+            width: 100%;
+            height: 70%;
+
+            .datos {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .d {
+                display: flex;
+                flex-direction: column;
+
+                margin: {
+                    top: 20px;
+                }
+
+                .escenario {
+                    padding-bottom: 20px;
+                }
+
+                .butacas {
+                    height: 380px;
+                    display: grid;
+                    grid-template-rows: repeat(10, 30px);
+                    grid-gap: 5px;
+                    justify-content: center;
+                    align-items: center;
+
+                    div .fila {
+                        padding: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+
+
+                }
+            }
+
+
+        }
+
+        .button {
+            width: 100%;
+            height: 15%;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                color: #ffffff;
+                text-decoration: none;
+                background-color: #ba1313;
+                padding: 10px;
+                font-family: "Montserrat";
+                font-size: 18px;
+                border-radius: 50px;
+            }
+        }
+    }
+}
+
+// PARA ORDENADORES
+@media screen and (min-width: 900px) {
+    .content {
+        .info {
+
+            &__text {
+                width: 30%;
+
+                h2 {
+
+                    font-size: 50px;
+                }
+
+                h3 {
+                    font-size: 30px;
+
+                }
+
+            }
+
+            &__img {
+                img {
+                    width: 40%;
+
+                }
+            }
+        }
+
+        .selection {
+            .selectorButacas {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+
+                .datos {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 20%;
+                }
+
+                .d {
+                    display: flex;
+                    flex-direction: column;
+
+                    margin: {
+                        top: 40px;
+                    }
+
+                    .escenario {
+                        padding-bottom: 40px;
+                    }
+
+                    .butacas {
+                        height: auto;
+                        grid-gap: 10px;
+
+
+                        div .fila {
+                            .butaca {
+                                margin: 5px;
+                            }
+                        }
+
+
+
+                    }
+                }
+
+
+            }
+
+            .button {
+                padding: {
+                    top: 60px;
+                    bottom: 20px;
+                } 
+            }
+        }
     }
 
-    .selection .gridButacas .butacas .butaca {
-        width: 37px;
-        height: 35px;
-        margin: 5px;
-    }
-
-    .selection .gridButacas .escenario div {
-        margin-top: 35px;
-    }
-
-    .selection .button {
-        margin: 45px;
-    }
-}</style>
+}
+</style>
