@@ -22,7 +22,7 @@ const formatoFecha = (fechaHora: string) => {
 // Filtro para formatear la hora
 const formatoHora = (fechaHora: string) => {
     const hora = new Date(fechaHora);
-    const options: Intl.DateTimeFormatOptions  = { hour: 'numeric', minute: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: 'numeric' };
     return hora.toLocaleTimeString('es-ES', options);
 };
 
