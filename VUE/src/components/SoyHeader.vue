@@ -3,11 +3,12 @@ import IconTeather from './icons/IconTeather.vue'
 import IconUser from './icons/IconUser.vue'
 import IconCart from './icons/IconCart.vue'
 import IconHamburguer from './icons/IconHamburguer.vue'
+import IconLogoCanvas from './icons/IconLogoCanvas.vue';
 </script>
 
 <template>
   <div class="containerLogo">
-    <IconTeather />
+    <IconLogoCanvas />
   </div>
 
   <nav class="nav">
