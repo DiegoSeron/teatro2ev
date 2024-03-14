@@ -21,7 +21,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
                                     <a href="html/descripcion_funcion.html?id=6" class="cardFunction__button">VER MÁS</a>
                                 </div>
                                 <div class="containerImg">
-                                    <img src="../IMAGENES/el-mago-pop.jpg" class="d-block w-100" alt="...">
+                                    <img src="../assets/IMAGENES/el-mago-pop.jpg" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
                                     <a href="html/descripcion_funcion.html?id=12" class="cardFunction__button">VER MÁS</a>
                                 </div>
                                 <div class="containerImg">
-                                    <img src="../IMAGENES/doble-o-nada.jpg" class="d-block w-100" alt="...">
+                                    <img src="../assets/IMAGENES/doble-o-nada.jpg" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
                                     <a href="html/descripcion_funcion.html?id=4" class="cardFunction__button">VER MÁS</a>
                                 </div>
                                 <div class="containerImg">
-                                    <img src="../IMAGENES/laponia.jpg" class="d-block w-100" alt="...">
+                                    <img src="../assets/IMAGENES/laponia.jpg" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                         </div>

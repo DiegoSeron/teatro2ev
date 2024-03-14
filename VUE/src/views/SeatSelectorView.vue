@@ -44,14 +44,14 @@ function onUnchooseSeat(butacaId: number) {
 // Filtro para formatear la fecha
 const formatoFecha = (fechaHora: string) => {
     const fecha = new Date(fechaHora);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     return fecha.toLocaleDateString('es-ES', options);
 };
 
 // Filtro para formatear la hora
 const formatoHora = (fechaHora: string) => {
     const hora = new Date(fechaHora);
-    const options = { hour: 'numeric', minute: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: 'numeric' };
     return hora.toLocaleTimeString('es-ES', options);
 };
 </script>
@@ -88,7 +88,7 @@ const formatoHora = (fechaHora: string) => {
                         <div class="fila">
                             <IconSeatVue
                                 v-for="(butaca, index) in SeatStore.seats.slice((filaIndex - 1) * 10, filaIndex * 10)"
-                                :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="butaca.butacaId" @selectSeat="onChooseSeat" @unselectSeat="onUnchooseSeat"/>
+                                :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="(butaca.butacaId as number)" @selectSeat="onChooseSeat" @unselectSeat="onUnchooseSeat"/>
                         </div>
 
                     </div>

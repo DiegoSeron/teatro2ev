@@ -4,7 +4,6 @@ import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { useFunctionStore } from '@/stores/FunctionStore';
-import { sep } from 'path';
 
 const FunctionStore = useFunctionStore();
 const route = useRoute();
@@ -16,19 +15,19 @@ const Idfunction = FunctionStore.searchFunctionsPerId(id);
 // Filtro para formatear la fecha
 const formatoFecha = (fechaHora: string) => {
     const fecha = new Date(fechaHora);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     return fecha.toLocaleDateString('es-ES', options);
 };
 
 // Filtro para formatear la hora
 const formatoHora = (fechaHora: string) => {
     const hora = new Date(fechaHora);
-    const options = { hour: 'numeric', minute: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: 'numeric' };
     return hora.toLocaleTimeString('es-ES', options);
 };
 
 const separatedPlot = computed(() => {
-    return Idfunction.reparto?.split(',');
+    return Idfunction?.reparto?.split(',');
 
 });
 
@@ -38,11 +37,11 @@ const separatedPlot = computed(() => {
 
 <template>
     <div class="content">
-        <h2>{{ Idfunction.titulo }}</h2>
+        <h2>{{ Idfunction?.titulo }}</h2>
         <section class="first">
             <div class="principal">
                 <div>
-                    <img :src="'../src/assets/IMAGENES/' + Idfunction.imagen" :alt="`${Idfunction.titulo}`">
+                    <img :src="'../src/assets/IMAGENES/' + Idfunction?.imagen" :alt="`${Idfunction?.titulo}`">
                 </div>
                 <div>
                     <RouterLink :to="'/Butaca/' + id">SELECCIONAR BUTACAS</RouterLink>
@@ -54,17 +53,17 @@ const separatedPlot = computed(() => {
                     <h3>Horario</h3>
                     <div class="date__data">
                         <!-- Mostrar la fecha -->
-                        <h3>Día: {{ formatoFecha(Idfunction.diaObra) }}</h3>
+                        <h3>Día: {{ formatoFecha(Idfunction?.diaObra.toString() as string) }}</h3>
                         <!-- Mostrar la hora -->
-                        <h3>Hora: {{ formatoHora(Idfunction.diaObra) }}</h3>
+                        <h3>Hora: {{ formatoHora(Idfunction?.diaObra.toString() as string) }}</h3>
                     </div>
                 </div>
                 <div class="information">
                     <h3>Información</h3>
                     <div class="information__data">
-                        <h3>Género: {{ Idfunction.genero }}</h3>
-                        <h3>Duración: {{ Idfunction.duracion }} minutos</h3>
-                        <h3>Precio: {{ Idfunction.precio }}€</h3>
+                        <h3>Género: {{ Idfunction?.genero }}</h3>
+                        <h3>Duración: {{ Idfunction?.duracion }} minutos</h3>
+                        <h3>Precio: {{ Idfunction?.precio }}€</h3>
                     </div>
                 </div>
             </div>
@@ -76,7 +75,7 @@ const separatedPlot = computed(() => {
 
                 <h3>Descripcion</h3>
                 <div>
-                    <p>{{ Idfunction.descripcion }}</p>
+                    <p>{{ Idfunction?.descripcion }}</p>
                 </div>
 
             </div>
