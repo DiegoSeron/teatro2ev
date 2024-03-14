@@ -2,12 +2,18 @@
 
 import { useFunctionStore } from '@/stores/FunctionStore';
 import CardGrid from '../components/CardGrid.vue';
+import Filter from '@/components/Filter.vue';
+
 
 const FunctionStore = useFunctionStore();
 
- FunctionStore.fetchFunctions();
+FunctionStore.fetchFunctions();
 
 
+// Manejar el evento para actualizar las funciones filtradas
+function onFilteredFunctions(filteredFunctions: any) {
+    FunctionStore.functions = filteredFunctions
+}
 
 
 
@@ -24,26 +30,7 @@ const FunctionStore = useFunctionStore();
 
 
         <aside class="sidebar" id="sidebar">
-
-            <div class="filter">
-                <div class="filter__search">
-                    <input type="text" placeholder="BUSCAR...">
-                    <img src="../../iconos/icons8-búsqueda-500-ROJO 1.png" alt="">
-                </div>
-                <div class="filter__gender">
-                    <ul>
-                        <li><input type="checkbox" class="genre" value="drama">DRAMA</li>
-                        <li><input type="checkbox" class="genre" value="romance">ROMANCE</li>
-                        <li><input type="checkbox" class="genre" value="comedia">COMEDIA</li>
-                        <li><input type="checkbox" class="genre" value="musical">MUSICAL</li>
-                        <li><input type="checkbox" class="genre" value="monologo">MONÓLOGO</li>
-                        <li><input type="checkbox" class="genre" value="thriller">THRILLER</li>
-                    </ul>
-                </div>
-                <div class="close" id="close" onclick="cerrarFiltros()">
-                    cerrar
-                </div>
-            </div>
+            <Filter @filter="onFilteredFunctions" />
         </aside>
     </div>
 </template>
@@ -93,11 +80,11 @@ $secondlyFont: 'Montserrat';
         }
 
     }
-    
-    .card:hover {
-  transform: scale(1.05);
 
-}
+    .card:hover {
+        transform: scale(1.05);
+
+    }
 
 }
 
