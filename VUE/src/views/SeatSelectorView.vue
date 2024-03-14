@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router';
 import { useFunctionStore } from '@/stores/FunctionStore';
 import { useSeatStore } from '@/stores/SeatStore';
 import IconStage from '@/components/icons/IconStage.vue';
+import IconSeatExample from '@/components/icons/IconSeatExample.vue';
 
 // cojo la url y el id de la obra
 const route = useRoute();
@@ -45,14 +46,14 @@ function onUnchooseSeat(butacaId: number) {
 // Filtro para formatear la fecha
 const formatoFecha = (fechaHora: string) => {
     const fecha = new Date(fechaHora);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     return fecha.toLocaleDateString('es-ES', options);
 };
 
 // Filtro para formatear la hora
 const formatoHora = (fechaHora: string) => {
     const hora = new Date(fechaHora);
-    const options = { hour: 'numeric', minute: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: 'numeric' };
     return hora.toLocaleTimeString('es-ES', options);
 };
 </script>
@@ -80,34 +81,27 @@ const formatoHora = (fechaHora: string) => {
                 <h2>SELECCION BUTACAS</h2>
             </div>
 
-            <div class="gridButacas">
+            <div class="selectorButacas">
                 <div class="datos">
 
-                    <div class="datos__leyenda">
-                        <IconSeatVue />
-                        <IconSeatVue />
-                        <IconSeatVue />
-                    </div>
-
-                    <div class="datos__disponibilidad">
-                        <IconSeatVue />
-                        <IconSeatVue />
-                        <IconSeatVue />
-                    </div>
-
+                    <IconSeatExample class="LIBRES" />
+                    <IconSeatExample class="SELECCIONADAS" />
+                    <IconSeatExample class="OCUPADAS" />
                 </div>
-                <div class="butacas">
+                <div class="d">
                     <div class="escenario">
                         <IconStage />
                     </div>
-                    <div v-for="filaIndex in 10" :key="filaIndex">
-                        <div class="fila">
-                            <IconSeatVue
-                                v-for="(butaca, index) in SeatStore.seats.slice((filaIndex - 1) * 10, filaIndex * 10)"
-                                :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="butaca.butacaId"
-                                @selectSeat="onChooseSeat" @unselectSeat="onUnchooseSeat" />
-                        </div>
+                    <div class="butacas">
+                        <div v-for="filaIndex in 10" :key="filaIndex">
+                            <div class="fila">
+                                <IconSeatVue class="butaca"
+                                    v-for="(butaca, index) in SeatStore.seats.slice((filaIndex - 1) * 10, filaIndex * 10)"
+                                    :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="(butaca.butacaId as number)"
+                                    @selectSeat="onChooseSeat" @unselectSeat="onUnchooseSeat" :example="false" />
+                            </div>
 
+                        </div>
                     </div>
                 </div>
 
@@ -201,43 +195,49 @@ const formatoHora = (fechaHora: string) => {
             color: #ffffff;
         }
 
-        .gridButacas {
+        .selectorButacas {
             width: 100%;
             height: 70%;
 
-            .butacas {
-                width: 100%;
-                height: 380px;
-                display: grid;
-                grid-template-rows: repeat(10, 30px);
-                grid-gap: 5px;
-                justify-content: center;
-                align-items: center;
-                margin-top: 50px;
-
-                .fila {
-                    padding: 0;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-            }
-
-            .escenario {
+            .datos {
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
                 align-items: center;
-                width: 100%;
-                height: 50px;
-                font-family: "Montserrat";
+            }
 
-                div {
-                    background-color: #D9D9D9;
-                    height: 100%;
-                    width: 60%;
+            .d {
+                display: flex;
+                flex-direction: column;
+
+                margin: {
+                    top: 20px;
+                }
+
+                .escenario {
+                    padding-bottom: 20px;
+                }
+
+                .butacas {
+                    height: 380px;
+                    display: grid;
+                    grid-template-rows: repeat(10, 30px);
+                    grid-gap: 5px;
+                    justify-content: center;
+                    align-items: center;
+
+                    div .fila {
+                        padding: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+
+
                 }
             }
+
+
         }
 
         .button {
@@ -268,6 +268,7 @@ const formatoHora = (fechaHora: string) => {
 
             &__text {
                 width: 30%;
+
                 h2 {
 
                     font-size: 50px;
@@ -287,47 +288,61 @@ const formatoHora = (fechaHora: string) => {
                 }
             }
         }
-    }
 
-    .selection {
-        .gridButacas {
-            display: flex;
-            align-items: center;
-            justify-content: center; // Ajusta el espacio entre .datos y .butacas
-
-            .datos {
+        .selection {
+            .selectorButacas {
                 display: flex;
-                flex-direction: column;
-                align-items: flex-end;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
 
-                width: 30%; // Reduzco un poco el ancho para dar más espacio a .butacas
-
-                .datos__leyenda,
-                .datos__disponibilidad {
-
+                .datos {
                     display: flex;
                     flex-direction: column;
-                }
-            }
-
-            .butacas {
-                width: 45%; // Reduzco un poco el ancho para dar más espacio a .datos
-
-                .escenario {
-                    text-align: center;
-                    margin-bottom: 20px;
-                }
-
-                .fila {
+                    align-items: center;
                     justify-content: center;
+                    width: 20%;
                 }
+
+                .d {
+                    display: flex;
+                    flex-direction: column;
+
+                    margin: {
+                        top: 40px;
+                    }
+
+                    .escenario {
+                        padding-bottom: 40px;
+                    }
+
+                    .butacas {
+                        height: auto;
+                        grid-gap: 10px;
+
+
+                        div .fila {
+                            .butaca {
+                                margin: 5px;
+                            }
+                        }
+
+
+
+                    }
+                }
+
+
             }
 
-        }
-
-        .button {
-            margin: 45px;
+            .button {
+                padding: {
+                    top: 60px;
+                    bottom: 20px;
+                } 
+            }
         }
     }
+
 }
 </style>

@@ -37,19 +37,20 @@ function chooseSeat(butacaId: number, isFree: boolean) {
         // Si la butaca está libre en la base de datos
         if (isFree) {
             console.log("butaca LIBRE en la BBDD");
+            // Se agrega la clase de agitación para las butacas libres
+            seatRef.value.classList.add('freeShaking');
             // Si se selecciona
-            if (esLibre) {
+            if (seatRef.value.classList.contains('free')) {
                 seatRef.value.classList.remove('free');
                 seatRef.value.classList.add('choosen');
-                // Se agrega la clase de agitación
-                seatRef.value.classList.add('shaking');
+                seatRef.value.classList.remove('freeShaking');
+                seatRef.value.classList.add('choosenShaking');
                 emits('selectSeat', butacaId);
-                // Si se deselecciona
+            // Si se deselecciona
             } else {
                 seatRef.value.classList.remove('choosen');
                 seatRef.value.classList.add('free');
-                // Se remueve la clase de agitación
-                seatRef.value.classList.remove('shaking');
+                seatRef.value.classList.remove('choosenShaking');
                 emits('unselectSeat', butacaId);
             }
 
@@ -75,7 +76,7 @@ function chooseSeat(butacaId: number, isFree: boolean) {
 
             <!-- reposabrazos derecho -->
             <rect x="31" y="13" width="10" height="20" rx="5" />
-            <text x="50%" y="40%" dominant-baseline="middle" text-anchor="middle" fill="black" font-size="16"
+            <text x="50%" y="35%" dominant-baseline="middle" text-anchor="middle" fill="black" font-size="16"
                 font-family="Montserrat, sans-serif">{{ butacaId }}</text>
         </g>
     </svg>
@@ -84,8 +85,8 @@ function chooseSeat(butacaId: number, isFree: boolean) {
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-@mixin cursor-none {
-    cursor: pointer;
+@mixin cursor($cursor) {
+    cursor: $cursor;
     user-select: none;
 }
 
@@ -93,32 +94,44 @@ function chooseSeat(butacaId: number, isFree: boolean) {
     fill: #ba1313;
     stroke-width: 1;
     stroke: rgb(0, 0, 0);
-    @include cursor-none;
+    @include cursor(pointer);
 }
 
 .free {
     fill: white;
     stroke-width: 1;
     stroke: rgb(0, 0, 0);
-    @include cursor-none;
+    @include cursor(pointer);
 }
 
 .taken {
     fill: rgb(50, 50, 50);
     stroke-width: 1;
     stroke: rgb(0, 0, 0);
-    @include cursor-none;
+    @include cursor(default);
 }
 
-.shaking {
-    animation: shake 0.5s ease infinite;
+.choosenShaking {
+    animation: choosenShake 0.2s;
+}
+.freeShaking {
+    animation: freeShake 0.2s;
 }
 
-@keyframes shake {
+@keyframes choosenShake {
     0% { transform: translate(0, 0); }
-    25% { transform: translate(-5px, 0); }
-    50% { transform: translate(5px, 0); }
-    75% { transform: translate(-5px, 0); }
+    25% { transform: translate(-4px, 0); }
+    50% { transform: translate(4px, 0); }
+    75% { transform: translate(-4px, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes freeShake {
+
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-1.5px, 0); }
+    50% { transform: translate(1.5px, 0); }
+    75% { transform: translate(-1.5px, 0); }
     100% { transform: translate(0, 0); }
 }
 </style>
