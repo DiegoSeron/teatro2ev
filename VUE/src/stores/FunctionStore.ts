@@ -21,7 +21,7 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
   // Getter
   // calcula la cantidad de funciones que hay
   const calcularCantidad = computed(() => functions.length);
-  
+
   // Getter para obtener la obra seleccionada
   const selectedFunction = computed(() => {
     if (selectedFunctionId.value !== null) {
@@ -29,7 +29,10 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
     }
     return null;
   });
-  
+
+
+
+
   // Action
   // saca de la api todas las funciones que hay
   async function fetchFunctions() {
@@ -74,7 +77,7 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
           'Content-Type': 'application/json', // Indica que estás enviando datos en formato JSON
         },
         body: JSON.stringify(obra), // Convierte el objeto obra a JSON y lo envía en el cuerpo de la solicitud
-        
+
       });
       if (response.ok) {
         console.log('Obra creada exitosamente.');
@@ -95,7 +98,7 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
           'Content-Type': 'application/json', // Indica que estás enviando datos en formato JSON
         },
         body: JSON.stringify(obra), // Convierte el objeto obra a JSON y lo envía en el cuerpo de la solicitud
-        
+
       });
       if (response.ok) {
         console.log('Obra editada exitosamente.');
@@ -107,5 +110,27 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
     }
   }
 
-  return { functions, calcularCantidad, fetchFunctions, searchFunctionsPerId, deleteFunction, createFunction, editFunction, selectedFunction };
+
+  // funcion para sacar el dia de la obra
+  const formatoFecha = (fechaHora: string) => {
+    const fecha = new Date(fechaHora)
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    return fecha.toLocaleDateString('es-ES', options);
+  };
+
+  // funcion para sacar el dia de la obra
+  const formatoDia = (fechaHora: string) => {
+    const fecha = new Date(fechaHora)
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return fecha.toLocaleDateString('es-ES', options);
+  };
+
+  // funcion para sacar la hora de la obra
+  const formatoHora = (fechaHora: string) => {
+    const hora = new Date(fechaHora);
+    const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: 'numeric' };
+    return hora.toLocaleTimeString('es-ES', options);
+  };
+
+  return { functions, calcularCantidad, fetchFunctions, searchFunctionsPerId, deleteFunction, createFunction, editFunction, selectedFunction, formatoHora, formatoDia,formatoFecha };
 });

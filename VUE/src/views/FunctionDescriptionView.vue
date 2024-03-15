@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
-import { ref, onMounted, computed } from 'vue';
-import axios from 'axios';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useFunctionStore } from '@/stores/FunctionStore';
 
@@ -10,21 +9,6 @@ const route = useRoute();
 const id = Number.parseInt(route.params.id as string);
 
 const Idfunction = FunctionStore.searchFunctionsPerId(id);
-
-
-// Filtro para formatear la fecha
-const formatoFecha = (fechaHora: string) => {
-    const fecha = new Date(fechaHora);
-    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return fecha.toLocaleDateString('es-ES', options);
-};
-
-// Filtro para formatear la hora
-const formatoHora = (fechaHora: string) => {
-    const hora = new Date(fechaHora);
-    const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: 'numeric' };
-    return hora.toLocaleTimeString('es-ES', options);
-};
 
 const separatedPlot = computed(() => {
     return Idfunction?.reparto?.split(',');
@@ -53,9 +37,9 @@ const separatedPlot = computed(() => {
                     <h3>Horario</h3>
                     <div class="date__data">
                         <!-- Mostrar la fecha -->
-                        <h3>Día: {{ formatoFecha(Idfunction?.diaObra.toString() as string) }}</h3>
+                        <h3>Día: {{ FunctionStore.formatoDia(Idfunction?.diaObra.toString() as string) }}</h3>
                         <!-- Mostrar la hora -->
-                        <h3>Hora: {{ formatoHora(Idfunction?.diaObra.toString() as string) }}</h3>
+                        <h3>Hora: {{ FunctionStore.formatoHora(Idfunction?.diaObra.toString() as string) }}</h3>
                     </div>
                 </div>
                 <div class="information">

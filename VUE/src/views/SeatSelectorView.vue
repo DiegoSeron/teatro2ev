@@ -43,19 +43,6 @@ function onUnchooseSeat(butacaId: number) {
     sessionStorage.setItem('choosenSeats', JSON.stringify(choosenSeats.value));
 }
 
-// Filtro para formatear la fecha
-const formatoFecha = (fechaHora: string) => {
-    const fecha = new Date(fechaHora);
-    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return fecha.toLocaleDateString('es-ES', options);
-};
-
-// Filtro para formatear la hora
-const formatoHora = (fechaHora: string) => {
-    const hora = new Date(fechaHora);
-    const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: 'numeric' };
-    return hora.toLocaleTimeString('es-ES', options);
-};
 </script>
 
 
@@ -69,7 +56,7 @@ const formatoHora = (fechaHora: string) => {
                 </div>
                 <div class="hour">
                     <h2>HORA DE LA FUNCIÓN:</h2>
-                    <h3>{{ formatoFecha(Idfunction?.diaObra.toString() as string) }}</h3>
+                    <h3>{{ FunctionStore.formatoHora(Idfunction?.diaObra.toString() as string) }}</h3>
                 </div>
             </div>
             <div class="info__img">
