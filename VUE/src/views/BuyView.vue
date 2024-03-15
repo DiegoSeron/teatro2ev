@@ -21,6 +21,7 @@ function payFunction() {
         SeatStore.selectSeats(idFunction, element, editedSeat);
     });
 
+    SeatStore.deleteSeats()
 }
 
 interface seat {
@@ -33,7 +34,7 @@ const editedSeat = reactive<seat>({
 });
 
 // Recupera las butacas seleccionadas de sessionStorage
-const butacasSeleccionadas = JSON.parse(sessionStorage.getItem('choosenSeats') as string) || [];
+const butacasSeleccionadas = SeatStore.choosenSeats
 // Función de comparación para ordenar los números de menor a mayor
 const compararNumeros = (a: number, b: number) => a - b;
 // Ordenar el array de butacas seleccionadas de menor a mayor
@@ -126,8 +127,8 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
         </div>
 
         <div class="buttons">
-            <RouterLink :to="'/Obra'">CANCELAR</RouterLink>
-            <RouterLink :to="'/Obra'" @click="payFunction">PAGAR</RouterLink>
+            <RouterLink :to="'/Obra'" @click="SeatStore.deleteSeats" >CANCELAR</RouterLink>
+            <RouterLink :to="'/Obra'" @click="payFunction" >PAGAR</RouterLink>
         </div>
     </div>
 </template>
