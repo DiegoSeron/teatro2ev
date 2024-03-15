@@ -52,7 +52,12 @@ if (butacasSeleccionadas) {
     console.log('No hay butacas seleccionadas en el localStorage');
 }
 
+const isValidate = ref(false);
 
+// Maneja el evento de validación enviado por los componentes hijos
+const handleValidation = (isValid: boolean) => {
+    isValidate.value = isValid;
+};
 
 const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
@@ -102,10 +107,10 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
             <div id="menuOpcion1" class="menu" v-if="opcionSeleccionada === 'opcion1'">
 
                 <BuyInputs titleInput="CORREO ELECTRONICO" classInput="email" typeInput="email"
-                    placeholderInput="example@gmail.com" />
+                    placeholderInput="example@gmail.com" @validate="handleValidation"/>
 
                 <BuyInputs titleInput="CONTRASEÑA" classInput="password" typeInput="password"
-                    placeholderInput="Contraseña123" />
+                    placeholderInput="Contraseña123" @validate="handleValidation"/>
 
 
 
@@ -115,12 +120,12 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
             <div id="menuOpcion2" class="menu" v-else-if="opcionSeleccionada === 'opcion2'">
 
                 <BuyInputs titleInput="TITULAR DE LA TARJETA" classInput="text" typeInput="text"
-                    placeholderInput="NOMBRE APELLIDO APELLIDO" />
+                    placeholderInput="NOMBRE APELLIDO APELLIDO" @validate="handleValidation"/>
                 <BuyInputs titleInput="NUMERO DE TARJETA" classInput="text" typeInput="text"
-                    placeholderInput="XXXXXXXXXXXXXXXX" />
+                    placeholderInput="XXXXXXXXXXXXXXXX" @validate="handleValidation"/>
                 <BuyInputs titleInput="FECHA DE CADUCIDAD" classInput="text" typeInput="text"
-                    placeholderInput="MM/AAAA" />
-                <BuyInputs titleInput="CVV" classInput="password" typeInput="password" placeholderInput="123" />
+                    placeholderInput="MM/AAAA" @validate="handleValidation" />
+                <BuyInputs titleInput="CVV" classInput="password" typeInput="password" placeholderInput="123" @validate="handleValidation"/>
 
             </div>
 
@@ -128,7 +133,7 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
         <div class="buttons">
             <RouterLink :to="'/Obra'" @click="SeatStore.deleteSeats" >CANCELAR</RouterLink>
-            <RouterLink :to="'/Obra'" @click="payFunction" >PAGAR</RouterLink>
+            <RouterLink :to="'/Obra'" @click="payFunction" v-if="isValidate">PAGAR</RouterLink>
         </div>
     </div>
 </template>
@@ -301,7 +306,7 @@ body {
     .pago {
         div {
             label {
-                width: 50%;
+                width: 30%;
                 height: auto;
             }
         }
