@@ -30,7 +30,7 @@ export const useSeatStore = defineStore('SeatStore', () => {
     // busca en la api las butacas por id de la funcion
     async function fetchSeatsPerId(id: any) {
         try {
-            const response = await fetch(`http://localhost:5000/Seat/${id}`);
+            const response = await fetch(`http://tickettback.retocsv.es:80/Seat/${id}`);
             console.log("Fetch para sacar butacas por obra id");
 
             const data = await response.json();
@@ -53,7 +53,7 @@ export const useSeatStore = defineStore('SeatStore', () => {
     async function selectSeats(idFunction: number, idSeat: number, editSeat: Butaca) {
 
         try {
-            const response = await fetch(`http://localhost:5000/Seat/${idFunction}/${idSeat}`, {
+            const response = await fetch(`http://tickettback.retocsv.es:80/Seat/${idFunction}/${idSeat}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json', // Indica que estás enviando datos en formato JSON

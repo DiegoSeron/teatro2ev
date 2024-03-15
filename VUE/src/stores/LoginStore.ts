@@ -18,7 +18,7 @@ export const useLoginStore = defineStore('LoginStore', () => {
     async function fetchUsers() {
         debugger
         try {
-          const response = await fetch('http://localhost:5000/User');
+          const response = await fetch('http://tickettback.retocsv.es:80/User');
           console.log("Fetch de usuarios hecho desde LoginStore.ts");
     
           const data = await response.json();

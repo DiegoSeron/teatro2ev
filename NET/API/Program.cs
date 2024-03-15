@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy  =>
                       {
-                          policy.WithOrigins("http://localhost:5173")
+                          policy.WithOrigins("http://tickett.retocsv.es:80")
                             .AllowAnyMethod()
                             .AllowAnyHeader();
                       });

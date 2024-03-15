@@ -37,7 +37,7 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
   // saca de la api todas las funciones que hay
   async function fetchFunctions() {
     try {
-      const response = await fetch('http://localhost:5000/Obra');
+      const response = await fetch('http://tickettback.retocsv.es:80/Obra');
       console.log("Fetch de grid de funciones hecho desde FunctionStore.ts");
 
       const data = await response.json();
@@ -58,7 +58,7 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
   // eliminar obra
   async function deleteFunction(id: number) {
     try {
-      const response = await fetch('http://localhost:5000/Obra/' + id, {
+      const response = await fetch('http://tickettback.retocsv.es:80/Obra/' + id, {
         method: 'DELETE',
       });
       console.log("Fetch de eliminar funcion " + id + " hecho desde FunctionStore.ts");
@@ -71,7 +71,7 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
   // crear obra
   async function createFunction(obra: Obra) {
     try {
-      const response = await fetch('http://localhost:5000/Obra', {
+      const response = await fetch('http://tickettback.retocsv.es:80/Obra', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Indica que estás enviando datos en formato JSON
@@ -92,7 +92,7 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
   // editar obra
   async function editFunction(id: number, obra: Obra) {
     try {
-      const response = await fetch('http://localhost:5000/Obra/' + id, {
+      const response = await fetch('http://tickettback.retocsv.es:80/Obra/' + id, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json', // Indica que estás enviando datos en formato JSON
