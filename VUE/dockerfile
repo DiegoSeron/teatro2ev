@@ -1,29 +1,15 @@
-# Etapa de compilación
-FROM node:18-alpine AS build-stage
-
-# Establecer directorio de trabajo
+# Etapa de construcción de la aplicación Vue.js
+FROM node:18 AS build-vue
 WORKDIR /app
-
-# Copiar archivo de configuración
 COPY package*.json ./
-
-# Instalar dependencias
 RUN npm install
-
-# Copiar archivos del proyecto
+RUN npm install vite
+RUN npm install -D sass
 COPY . .
-
-# Compilar la aplicación para producción
 RUN npm run build
 
 # Etapa de producción
-FROM nginx:alpine AS production-stage
-
-# Copiar la compilación de la etapa de compilación al servidor Nginx
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-
-# Exponer puerto 80
-EXPOSE 81
-
-# Iniciar Nginx
+FROM nginx:alpine AS production
+COPY --from=build-vue /app/dist /usr/share/nginx/html
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
