@@ -1,6 +1,7 @@
-
 <script setup lang="ts">
 import BuyInputs from '@/components/BuyInputs.vue';
+import IconPaypal from '@/components/icons/IconPaypal.vue';
+import IconVisa from '@/components/icons/IconVisa.vue';
 import { useFunctionStore } from '@/stores/FunctionStore';
 import { useSeatStore } from '@/stores/SeatStore';
 import { reactive, ref } from 'vue';
@@ -10,12 +11,13 @@ const FunctionStore = useFunctionStore();
 
 const dataFunction = FunctionStore.selectedFunction;
 
+// llama al endpoint para reservar las butacas
 function payFunction() {
     const idFunction = dataFunction?.obraId as number;
 
     butacasSeleccionadas.forEach((element: number) => {
         console.log(element);
-        
+
         SeatStore.selectSeats(idFunction, element, editedSeat);
     });
 
@@ -32,6 +34,15 @@ const editedSeat = reactive<seat>({
 
 // Recupera las butacas seleccionadas de sessionStorage
 const butacasSeleccionadas = JSON.parse(sessionStorage.getItem('choosenSeats') as string) || [];
+// Función de comparación para ordenar los números de menor a mayor
+const compararNumeros = (a: number, b: number) => a - b;
+// Ordenar el array de butacas seleccionadas de menor a mayor
+butacasSeleccionadas.sort(compararNumeros);
+
+// obtener el precio total de la compra
+const precioTotal = dataFunction?.precio as number * butacasSeleccionadas.length;
+
+// para comprobar en consola las butacas seleccionadas
 if (butacasSeleccionadas) {
     // El array está en el localStorage, puedes usarlo como necesites
     console.log("Las butacas seleccionadas en la pagina de compra " + butacasSeleccionadas);
@@ -40,51 +51,54 @@ if (butacasSeleccionadas) {
     console.log('No hay butacas seleccionadas en el localStorage');
 }
 
+
+
 const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
 </script>
 
 <template>
-    Compra View
-
     <div class="content">
         <div class="info">
             <div>
-                <h2>RESUMEN DE LA COMPRA</h2>
-            </div>
-
-            <div>
-                <h2>TITULO DE LA FUNCIÓN</h2>
+                <h2>TITULO</h2>
                 <h3>{{ dataFunction?.titulo }}</h3>
             </div>
             <div>
-                <h2>HORA DE LA FUNCIÓN</h2>
-                <h3>{{ dataFunction?.diaObra }}</h3>
+                <h2>FECHA</h2>
+                <h3>{{ FunctionStore.formatoFecha(dataFunction?.diaObra.toString() as string) }}</h3>
             </div>
             <div>
                 <h2>BUTACAS SELECCIONADAS</h2>
-
-                <h3 id="butacasSeleccionadas" style="display: flex; padding: 5px;">
-                    Las butacasa seleccionadas son:
-                    <p v-for="b in butacasSeleccionadas">{{ b }}</p>
-
-                </h3>
+                <div>
+                    <h3 v-for="(seat, index) in butacasSeleccionadas" :key="index">Butaca Nº{{ seat }} | {{ dataFunction?.precio }}€</h3>
+                </div>
+            </div>
+            <div>
+                <h2>IMPORTE TOTAL</h2>
+                <div>
+                    <h3 >{{ precioTotal }}€</h3>
+                </div>
             </div>
         </div>
         <div class="pago">
-            <div>
+            <div style="display: flex; align-items: center;">
                 <input type="radio" id="opcion1" name="opciones" value="opcion1" checked v-model="opcionSeleccionada">
-                <label for="opcion1">Opción 1</label>
+                <label for="opcion1">
+                    <IconPaypal/>
+                </label>
             </div>
 
-            <div>
+            <div style="display: flex; align-items: center;">
                 <input type="radio" id="opcion2" name="opciones" value="opcion2" v-model="opcionSeleccionada">
-                <label for="opcion2">Opción 2</label>
+                <label for="opcion2">
+                    <IconVisa/> 
+                </label>
 
 
 
             </div>
-            <div id="menuOpcion1" class="menu" v-show="opcionSeleccionada === 'opcion1'">
+            <div id="menuOpcion1" class="menu" v-if="opcionSeleccionada === 'opcion1'">
 
                 <BuyInputs titleInput="CORREO ELECTRONICO" classInput="email" typeInput="email"
                     placeholderInput="example@gmail.com" />
@@ -97,13 +111,14 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
             </div>
 
-            <div id="menuOpcion2" class="menu" v-show="opcionSeleccionada === 'opcion2'">
+            <div id="menuOpcion2" class="menu" v-else-if="opcionSeleccionada === 'opcion2'">
 
                 <BuyInputs titleInput="TITULAR DE LA TARJETA" classInput="text" typeInput="text"
                     placeholderInput="NOMBRE APELLIDO APELLIDO" />
                 <BuyInputs titleInput="NUMERO DE TARJETA" classInput="text" typeInput="text"
                     placeholderInput="XXXXXXXXXXXXXXXX" />
-                <BuyInputs titleInput="FECHA DE CADUCIDAD" classInput="text" typeInput="text" placeholderInput="MM/AAAA" />
+                <BuyInputs titleInput="FECHA DE CADUCIDAD" classInput="text" typeInput="text"
+                    placeholderInput="MM/AAAA" />
                 <BuyInputs titleInput="CVV" classInput="password" typeInput="password" placeholderInput="123" />
 
             </div>
@@ -117,155 +132,178 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
     </div>
 </template>
 
-<style scoped lang="scss"> @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
- @import url('https://fonts.googleapis.com/css?family=Merryweather');
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merryweather');
 
 
- $primaryColor: #ba1313;
- $primaryFont: 'Bebas Neue';
- $secondFont: 'Montserrat';
- $thirdFont: 'Merryweather';
+$primaryColor: #ba1313;
+$primaryFont: 'Bebas Neue';
+$secondFont: 'Montserrat';
+$thirdFont: 'Merryweather';
 
- @mixin h2() {
-     padding: 0;
-
-     margin: {
-         bottom: 0;
-         left: 6%;
-         right: 6%;
-     }
-
-     font-family: $primaryFont;
-     color: $primaryColor;
- }
-
- @mixin h3() {
-     margin: {
-         top: 0;
-         bottom: 5%;
-     }
-
-     font-family: $secondFont;
- }
-
- @mixin button() {
-     text-decoration: none;
-     font-weight: bold;
-
-     border: 2px solid $primaryColor;
-     border-radius: 50px;
-
-     padding: 15px;
-
-     margin: 30px;
+@mixin h2($fontSize) {
+    padding: 0;
 
 
-     font-family: $secondFont;
-     color: $primaryColor;
+    margin: {
+        bottom: 0;
 
- }
+    }
 
- body {
-     background-color: white;
-     text-align: center;
-     padding: 0px;
-     margin: 0px;
- }
+    font: {
+        family: $primaryFont;
+        size: $fontSize;
+    }
 
- .content {
-     width: 100%;
-     height: auto;
+    color: $primaryColor;
+}
 
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
+@mixin h3($fontSize) {
+    margin: {
+        top: 0;
+        bottom: 5%;
+    }
 
- }
+    font: {
+        family: $secondFont;
+        size: $fontSize;
+    }
+}
 
- .info {
-     width: 80%;
-     height: auto;
+@mixin button() {
+    text-decoration: none;
+    font-weight: bold;
 
-     border: 1px solid black;
-     margin: 20px;
+    border: 2px solid $primaryColor;
+    border-radius: 50px;
 
-     margin-top: 40px;
+    padding: 15px;
 
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-
-     h2 {
-         @include h2();
-     }
-
-     h3 {
-         @include h3();
-     }
-
- }
-
- .pago {
-     width: 80%;
-     height: auto;
-
-     border: 1px solid black;
-     margin: 20px;
-
-     text-align: left;
+    margin: 30px;
 
 
-     div {
+    font-family: $secondFont;
+    color: $primaryColor;
 
-         margin: {
-             top: 20px;
-             left: 5px;
-         }
+}
+
+body {
+    background-color: white;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.content {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.info {
+    width: 80%;
+    height: auto;
+
+    border: 1px solid black;
+    margin: 20px;
+
+    margin-top: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+        @include h2(30px);
+    }
+
+    h3 {
+        @include h3(18px);
+
+    }
 
 
+}
 
-         img {
-             width: 20%;
-             height: auto;
-         }
-     }
+.pago {
+    width: 80%;
+    height: auto;
 
+    border: 1px solid black;
+    margin: 20px;
 
-
-
-     .menu {
-         height: auto;
-         width: auto;
-         padding-bottom: 15px;
-
-     }
-
- }
-
- .buttons {
-     margin-top: 20px;
-     padding-bottom: 30px;
-
-     a {
-         @include button();
-
-     }
- }
+    text-align: left;
 
 
- /* PARA ORDENADORES */
- @media screen and (min-width: 767px) {
+    div {
+
+        margin: {
+            top: 20px;
+            left: 5px;
+        }
+
+        input[type="radio"] {
+            margin-top: 0;
+        }
+
+        img {
+            width: 20%;
+            height: auto;
+        }
+    }
 
 
-     .pago {
-         div {
-             img {
-                 width: 10%;
-                 height: auto;
-             }
-         }
-     }
- }
+    .menu {
+        height: auto;
+        width: auto;
+        padding-bottom: 15px;
+
+    }
+
+}
+
+.buttons {
+    margin-top: 20px;
+    padding-bottom: 50px;
+
+    a {
+        @include button();
+
+    }
+}
+
+
+/* PARA ORDENADORES */
+@media screen and (min-width: 767px) {
+    .info {
+
+
+    h2 {
+        @include h2(36px);
+    }
+
+    h3 {
+        @include h3(25px);
+
+    }
+
+
+}
+
+    .pago {
+        div {
+            label {
+                width: 50%;
+                height: auto;
+            }
+        }
+    }
+}
 </style>
