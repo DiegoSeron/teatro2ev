@@ -168,8 +168,16 @@ const submitForm = async () => {
 
         <div class="form-group">
             <label for="genero">Género:</label>
-            <input type="text" id="genero" v-model="obra.genero" class="form-control" @input="validateGenero">
-            <span class="error-message">{{ generoError }}</span>
+            <select id="genero" v-model="obra.genero" class="form-control" @change="validateGenero">
+                <option value="">Selecciona un género</option>
+                <option value="Drama">Drama</option>
+                <option value="Romance">Romance</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Musical">Musical</option>
+                <option value="Monologo">Monólogo</option>
+                <option value="Thriller">Thriller</option>
+                <!-- Agrega más opciones según tus necesidades -->
+            </select> <span class="error-message">{{ generoError }}</span>
         </div>
 
         <div class="form-group">
