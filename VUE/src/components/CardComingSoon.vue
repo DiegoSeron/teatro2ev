@@ -9,7 +9,7 @@ defineProps<{
 </script>
 
 <template>
-  
+
   <article class="cardFunction">
     <div class="cardFunction__img">
       <img :src="'src/assets/IMAGENES/' + imageSrc" alt="title">
@@ -17,12 +17,14 @@ defineProps<{
     <div class="cardFunction__text">
       <h2>{{ title }}</h2>
       <h3>{{ diaObra }}</h3>
-      
+
     </div>
-    <RouterLink :to="'/Obra/' + obraId">
-      <button class="cardFunction__button">VER MÁS</button>
-    </RouterLink>
-    </article>
+    <button class="cardFunction__button">
+      <RouterLink :to="'/Obra/' + obraId">
+        VER MÁS
+      </RouterLink>
+    </button>
+  </article>
 </template>
 
 <style>
@@ -47,15 +49,18 @@ defineProps<{
   align-items: center;
   cursor: default;
 }
+
 .cardFunction .cardFunction__img {
   width: 90%;
   height: 65%;
 }
+
 .cardFunction .cardFunction__img img {
   width: 100%;
   height: 100%;
   border-radius: 15px;
 }
+
 .cardFunction .cardFunction__text {
   width: 90%;
   color: white;
@@ -67,14 +72,17 @@ defineProps<{
   justify-content: left;
   align-items: left;
 }
+
 .cardFunction .cardFunction__text h2 {
   margin: 0;
   padding: 0;
 }
+
 .cardFunction .cardFunction__text h3 {
   margin: 0;
   padding: 0;
 }
+
 @media screen and (max-width: 767px) {
   .cardFunction {
     background-color: #ba1313;
@@ -95,11 +103,13 @@ defineProps<{
     margin: 5%;
     position: relative;
   }
+
   .cardFunction .cardFunction__text {
     padding-top: 6px;
     padding-bottom: 6px;
     font-size: 16px;
   }
+
   .cardFunction .cardFunction__button {
     text-align: center;
     font-size: 9px;
