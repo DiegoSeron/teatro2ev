@@ -28,7 +28,11 @@ function validate(titleInput: string) {
         validateExpirationDate();
     } else if (titleInput === "CVV") {
         validateCVV();
+    }else {
+        isValidate.value = true;
+
     }
+
 
     emits('validate', isValidate)
 }
@@ -43,7 +47,6 @@ const validateEmail = () => {
 
     } else {
         error.value = '';
-        isValidate.value = true;
 
     }
 };
@@ -57,7 +60,6 @@ const validatePassword = () => {
 
     } else {
         error.value = '';
-        isValidate.value = true;
 
     }
 };
@@ -72,7 +74,6 @@ const validateCardholder = () => {
 
     } else {
         error.value = '';
-        isValidate.value = true;
 
     }
 };
@@ -87,7 +88,6 @@ const validateCardNumber = () => {
 
     } else {
         error.value = '';
-        isValidate.value = true;
 
     }
 };
@@ -102,7 +102,6 @@ const validateExpirationDate = () => {
 
     } else {
         error.value = '';
-        isValidate.value = true;
 
     }
 };
@@ -117,7 +116,6 @@ const validateCVV = () => {
 
     } else {
         error.value = '';
-        isValidate.value = true;
 
     }
 };
