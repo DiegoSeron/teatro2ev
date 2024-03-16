@@ -5,7 +5,7 @@ import CardGrid from '../components/CardGrid.vue';
 
 const FunctionStore = useFunctionStore();
 
- FunctionStore.fetchFunctions();
+FunctionStore.fetchFunctions();
 
 
 
@@ -83,20 +83,12 @@ $secondlyFont: 'Montserrat';
         border-radius: 15px 15px 5px 5px;
         transition: all 300ms ease;
         cursor: pointer;
+    }
 
-
-
-        /* PARA ORDENADORES */
-        @media screen and (min-width: 767px) {
-            flex-basis: calc(33% - 20px);
-        }
+    .card:hover {
+        transform: scale(1.05);
 
     }
-    
-    .card:hover {
-  transform: scale(1.05);
-
-}
 
 }
 
@@ -244,9 +236,9 @@ $secondlyFont: 'Montserrat';
         width: 70%;
         margin: 15px;
 
-
         .card {
-            flex-basis: calc(33% - 20px);
+            flex-basis: calc(31% - 40px);
+            margin-bottom: 50px;
         }
 
     }
