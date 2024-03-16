@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { defineProps } from 'vue';
+import { reactive, ref } from 'vue';
+import { useFunctionStore } from '@/stores/FunctionStore';
+
 const props = defineProps<{
     obraId: number
     titulo: string
@@ -7,11 +11,7 @@ const props = defineProps<{
     descripcion: string
 }>();
 
-import { reactive, ref } from 'vue';
-import { useFunctionStore } from '@/stores/FunctionStore';
-
 const FunctionStore = useFunctionStore();
-
 
 interface Obra {
     obraId: number;
@@ -29,36 +29,113 @@ const editedObra = reactive<Obra>({
     precio: props.precio
 });
 
+// Variables para almacenar mensajes de error
+const tituloError = ref('');
+const descripcionError = ref('');
+const diaObraError = ref('');
+const precioError = ref('');
+
+// Función para validar el título
+const validateTitulo = () => {
+    // Validación: Título no puede estar vacío
+    if (!editedObra.titulo.trim()) {
+        tituloError.value = 'El título es obligatorio';
+    } else {
+        tituloError.value = '';
+    }
+};
+
+// Función para validar la descripción
+const validateDescripcion = () => {
+    // Validación: Descripción no puede estar vacía
+    if (!editedObra.descripcion.trim()) {
+        descripcionError.value = 'La descripción es obligatoria';
+    } else {
+        descripcionError.value = '';
+    }
+};
+
+// Función para validar el día de la obra
+const validateDiaObra = () => {
+    // Validación: Día de la obra no puede estar vacío
+    if (!editedObra.diaObra) {
+        diaObraError.value = 'El día de la obra es obligatorio';
+    } else {
+        diaObraError.value = '';
+    }
+};
+
+// Función para validar el precio
+const validatePrecio = () => {
+    // Validación: Precio debe ser un número positivo
+    if (editedObra.precio < 0 || isNaN(editedObra.precio)) {
+        precioError.value = 'El precio debe ser un número positivo';
+    } else {
+        precioError.value = '';
+    }
+};
+
 const submitForm = () => {
+    // Validar todos los campos antes de enviar el formulario
+    validateTitulo();
+    validateDescripcion();
+    validateDiaObra();
+    validatePrecio();
+
+    // Verificar si hay errores antes de enviar el formulario
+    if (tituloError.value || descripcionError.value || diaObraError.value || precioError.value) {
+        // Si hay errores, no enviar el formulario
+        console.log('Formulario no enviado debido a errores de validación');
+        return;
+    }
+
+    // Si no hay errores, enviar el formulario
     console.log('Datos editados:', editedObra);
     FunctionStore.editFunction(props.obraId, editedObra);
 };
 </script>
-  
+
 <template>
     <form @submit.prevent="submitForm" class="edit-form">
         <input type="hidden" name="obraId" v-model="editedObra.obraId" />
-      <div class="form-group">
-        <label for="title">Título: </label>
-        <input type="text" id="title" v-model="editedObra.titulo" class="form-control"/>
-      </div>
-      <div class="form-group">
-        <label for="diaObra">Día de la obra: </label>
-        <input type="text" id="diaObra" v-model="editedObra.diaObra" class="form-control"/>
-      </div>
-      <div class="form-group">
-        <label for="description">Descripción:</label>
-        <textarea id="description" v-model="editedObra.descripcion" class="form-control"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="price">Precio:</label>
-        <input type="number" id="price" v-model.number="editedObra.precio" class="form-control"/>
-      </div>
-      <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <div class="form-group">
+            <label for="title">Título: </label>
+            <input type="text" id="title" v-model="editedObra.titulo" class="form-control" />
+            <span class="error-message">{{ tituloError }}</span>
+        </div>
+        <div class="form-group">
+            <label for="diaObra">Día de la obra: </label>
+            <input type="datetime-local" id="diaObra" v-model="editedObra.diaObra" class="form-control" />
+            <span class="error-message">{{ diaObraError }}</span>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea id="description" v-model="editedObra.descripcion" class="form-control"></textarea>
+            <span class="error-message">{{ descripcionError }}</span>
+        </div>
+        <div class="form-group">
+            <label for="price">Precio:</label>
+            <input type="number" id="price" v-model.number="editedObra.precio" class="form-control" />
+            <span class="error-message">{{ precioError }}</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
     </form>
-  </template>
+</template>
+
+<style>
+/* Estilos para el mensaje de error */
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+</style>
+
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+$secondlyFont: 'Montserrat';
+
 .edit-form {
     max-width: 400px;
     margin: 0 auto;
@@ -71,12 +148,19 @@ const submitForm = () => {
             margin-bottom: 5px;
         }
 
+
+
         .form-control {
             width: 100%;
             padding: 8px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
+        }
+
+        span {
+            color: red;
+            font-family: $secondlyFont;
         }
     }
 
