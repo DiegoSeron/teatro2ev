@@ -8,6 +8,7 @@ import BuyView from "../views/BuyView.vue";
 import AdminView from "../views/AdminView.vue";
 import LoginView from "../views/LoginView.vue";
 import { useLoginStore } from '../stores/LoginStore'; // Importa el store de autenticación
+import ResumeView from "@/views/ResumeView.vue";
 
 
 
@@ -45,6 +46,13 @@ const router = createRouter({
             path: '/Compra',
             name: 'compra',
             component: BuyView,
+            props: true,
+        },
+        {
+            // selector de butacas
+            path: '/Resumen',
+            name: 'resumen',
+            component: ResumeView,
             props: true,
         }
         ,

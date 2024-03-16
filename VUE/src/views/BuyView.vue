@@ -20,8 +20,6 @@ function payFunction() {
 
         SeatStore.selectSeats(idFunction, element, editedSeat);
     });
-
-    SeatStore.deleteSeats()
 }
 
 interface seat {
@@ -133,7 +131,7 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
         <div class="buttons">
             <RouterLink :to="'/Obra'" @click="SeatStore.deleteSeats" >CANCELAR</RouterLink>
-            <RouterLink :to="'/Obra'" @click="payFunction" v-if="isValidate">PAGAR</RouterLink>
+            <RouterLink :to="'/Resumen'" @click="payFunction" >PAGAR</RouterLink>
         </div>
     </div>
 </template>
