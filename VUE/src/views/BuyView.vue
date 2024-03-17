@@ -2,6 +2,7 @@
 import BuyInputs from '@/components/BuyInputs.vue';
 import IconPaypal from '@/components/icons/IconPaypal.vue';
 import IconVisa from '@/components/icons/IconVisa.vue';
+import router from '@/router';
 import { useFunctionStore } from '@/stores/FunctionStore';
 import { useSeatStore } from '@/stores/SeatStore';
 import { reactive, ref } from 'vue';
@@ -13,13 +14,21 @@ const dataFunction = FunctionStore.selectedFunction;
 
 // llama al endpoint para reservar las butacas
 function payFunction() {
-    const idFunction = dataFunction?.obraId as number;
+    if (isValidate.value === false) {
+        alert('false')
+    }else {
+        alert('true')
+        router.push('/Resumen');
 
-    butacasSeleccionadas.forEach((element: number) => {
-        console.log(element);
+        const idFunction = dataFunction?.obraId as number;
 
-        SeatStore.selectSeats(idFunction, element, editedSeat);
-    });
+butacasSeleccionadas.forEach((element: number) => {
+    console.log(element);
+
+    SeatStore.selectSeats(idFunction, element, editedSeat);
+});
+    }
+
 }
 
 interface seat {
@@ -50,14 +59,17 @@ if (butacasSeleccionadas) {
     console.log('No hay butacas seleccionadas en el localStorage');
 }
 
-const isValidate = ref(false);
+const isValidate = ref<boolean>(false);
 
 // Maneja el evento de validación enviado por los componentes hijos
 const handleValidation = (isValid: boolean) => {
     isValidate.value = isValid;
+    console.log('en el padre', isValid);
 };
 
+
 const opcionSeleccionada = ref('opcion1'); // Valor por defecto
+
 
 </script>
 
@@ -115,7 +127,7 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
             </div>
 
-            <div id="menuOpcion2" class="menu" v-else-if="opcionSeleccionada === 'opcion2'">
+            <div id="menuOpcion2" class="menu" v-else>
 
                 <BuyInputs titleInput="TITULAR DE LA TARJETA" classInput="text" typeInput="text"
                     placeholderInput="NOMBRE APELLIDO APELLIDO" @validate="handleValidation"/>
@@ -129,9 +141,9 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
 
         </div>
 
-        <div class="buttons">
+        <div class="buttons" >
             <RouterLink :to="'/Obra'" @click="SeatStore.deleteSeats" >CANCELAR</RouterLink>
-            <RouterLink :to="'/Resumen'" @click="payFunction" >PAGAR</RouterLink>
+            <RouterLink :to="'/Resumen'" @click="payFunction">PAGAR</RouterLink>
         </div>
     </div>
 </template>

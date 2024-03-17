@@ -4,9 +4,7 @@ import CardInformation from '@/components/CardInformation.vue';
 import Carousel from '@/components/Carousel.vue';
 import { useFunctionStore } from '@/stores/FunctionStore';
 
-const FunctionStore = useFunctionStore();
 
-FunctionStore.fetchFunctions();
 
 </script>
 
