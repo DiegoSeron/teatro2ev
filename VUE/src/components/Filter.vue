@@ -1,4 +1,35 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue';
+import { useFunctionStore } from '@/stores/FunctionStore';
+
+const FunctionStore = useFunctionStore();
+
+const emits = defineEmits(['filter']);
+
+// Variable reactiva para almacenar el término de búsqueda
+const searchTerm = ref('');
+
+
+function filterByTitle() {
+    // Filtrar las funciones según el término de búsqueda
+    emits('filter', FunctionStore.filterFunctionsByTitle(searchTerm.value.trim()));
+
+}
+
+function filterByGenre() {
+    // Obtener todas las casillas de verificación de género
+    const checkboxes = document.querySelectorAll<HTMLInputElement>('.genre');
+
+    // Filtrar las casillas de verificación seleccionadas y obtener los valores de los géneros
+    const selectedGenres = Array.from(checkboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+    // Filtrar las funciones según los géneros seleccionados
+    const filteredFunctions = selectedGenres.length > 0 ? FunctionStore.filterFunctionsByGenre(selectedGenres) : FunctionStore.functions;
+
+    // Emitir el evento con las funciones filtradas
+    emits('filter', filteredFunctions);
+}
 
 </script>
 
@@ -6,16 +37,19 @@
 
     <div class="filter">
         <div class="filter__search">
-            <input type="text" placeholder="BUSCAR...">
+            <input type="text" v-model="searchTerm" placeholder="Buscar por título (minimo 2 caracteres)"
+                @input="filterByTitle()" />
         </div>
         <div class="filter__gender">
             <ul>
-                <li><input type="checkbox" class="genre" value="drama">DRAMA</li>
-                <li><input type="checkbox" class="genre" value="romance">ROMANCE</li>
-                <li><input type="checkbox" class="genre" value="comedia">COMEDIA</li>
-                <li><input type="checkbox" class="genre" value="musical">MUSICAL</li>
-                <li><input type="checkbox" class="genre" value="monologo">MONÓLOGO</li>
-                <li><input type="checkbox" class="genre" value="thriller">THRILLER</li>
+                <li><input type="checkbox" class="genre" value="drama" @change="filterByGenre">DRAMA</li>
+                <li><input type="checkbox" class="genre" value="romance" @change="filterByGenre">ROMANCE</li>
+                <li><input type="checkbox" class="genre" value="comedia" @change="filterByGenre">COMEDIA</li>
+                <li><input type="checkbox" class="genre" value="musical" @change="filterByGenre">MUSICAL</li>
+                <li><input type="checkbox" class="genre" value="monologo" @change="filterByGenre">MONÓLOGO</li>
+                <li><input type="checkbox" class="genre" value="thriller" @change="filterByGenre">THRILLER</li>
+                <!-- checkbox sin valor para que funcione el filtro de genero -->
+                <li><input type="checkbox" class="genre" value="" @change="filterByGenre" style="display: none;" checked></li>
             </ul>
         </div>
         <div class="close" id="close" onclick="cerrarFiltros()">
@@ -187,6 +221,4 @@ $secondlyFont: 'Montserrat';
 
 
 }
-
-
 </style>
