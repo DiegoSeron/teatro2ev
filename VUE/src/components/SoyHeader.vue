@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import IconTeather from './icons/IconTeather.vue'
 import IconUser from './icons/IconUser.vue'
 import IconCart from './icons/IconCart.vue'
 import IconHamburguer from './icons/IconHamburguer.vue'
 import IconLogoCanvas from './icons/IconLogoCanvas.vue';
+
+const isMenuOpen = ref(false);
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
 </script>
 
 <template>
@@ -12,7 +19,7 @@ import IconLogoCanvas from './icons/IconLogoCanvas.vue';
   </div>
 
   <nav class="nav">
-    <div class="navegation mostrando" id="navegation">
+    <div class="navegation" :class="{ 'mostrando': isMenuOpen }" id="navegation">
       <ul>
         <RouterLink to="/"><li><a>INICIO</a></li></RouterLink>
         <RouterLink to="/Obra"><li><a>FUNCIONES</a></li></RouterLink>
@@ -24,14 +31,14 @@ import IconLogoCanvas from './icons/IconLogoCanvas.vue';
       <ul>
         <li>
           <RouterLink to="/Admin">
-          <IconUser />
-        </RouterLink>
+            <IconUser />
+          </RouterLink>
         </li>
         <li>
           <IconCart />
         </li>
         <li>
-          <IconHamburguer />
+          <IconHamburguer @click="toggleMenu" />
         </li>
       </ul>
     </div>

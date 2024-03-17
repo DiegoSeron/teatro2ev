@@ -23,25 +23,6 @@ SeatStore.fetchSeatsPerId(id);
 
 
 
-const choosenSeats = ref<number[]>([]);
-
-function onChooseSeat(butacaId: number) {
-    console.log(`Se selecciona la butaca ${butacaId}`);
-    // Agregar el asiento seleccionado al array
-    choosenSeats.value.push(butacaId);
-    console.log(choosenSeats.value);
-    // Guardar en el sessionStorage
-    sessionStorage.setItem('choosenSeats', JSON.stringify(choosenSeats.value));
-}
-
-function onUnchooseSeat(butacaId: number) {
-    console.log(`Se deselecciona la butaca ${butacaId}`);
-    // Filtrar el array para eliminar la butaca deseleccionada
-    choosenSeats.value = choosenSeats.value.filter(seatId => seatId !== butacaId);
-    console.log(choosenSeats.value);
-    // Actualizar el sessionStorage
-    sessionStorage.setItem('choosenSeats', JSON.stringify(choosenSeats.value));
-}
 
 </script>
 
@@ -85,7 +66,8 @@ function onUnchooseSeat(butacaId: number) {
                                 <IconSeatVue class="butaca"
                                     v-for="(butaca, index) in SeatStore.seats.slice((filaIndex - 1) * 10, filaIndex * 10)"
                                     :key="butaca.butacaId" :isFree="butaca.libre" :butacaId="(butaca.butacaId as number)"
-                                    @selectSeat="onChooseSeat" @unselectSeat="onUnchooseSeat" :example="false" />
+                                    @selectSeat="SeatStore.onChooseSeat" @unselectSeat="SeatStore.onUnchooseSeat"
+                                    :example="false" />
                             </div>
 
                         </div>
@@ -95,8 +77,9 @@ function onUnchooseSeat(butacaId: number) {
 
             </div>
 
-            <div class="button" id="botonPago">
-                <RouterLink :to="'/Compra'">IR A PAGAR</RouterLink>
+            <div class="button" id="botonPago" >
+                <RouterLink :to="'/Compra'"  v-if="SeatStore.choosenSeats.length">IR A PAGAR</RouterLink>
+                <div v-else>SELECCIONE BUTACA</div>
             </div>
         </div>
     </div>
@@ -227,6 +210,8 @@ function onUnchooseSeat(butacaId: number) {
 
         }
 
+
+
         .button {
             width: 100%;
             height: 15%;
@@ -235,7 +220,9 @@ function onUnchooseSeat(butacaId: number) {
             justify-content: center;
             align-items: center;
 
-            a {
+
+
+            a, div {
                 color: #ffffff;
                 text-decoration: none;
                 background-color: #ba1313;
@@ -245,6 +232,8 @@ function onUnchooseSeat(butacaId: number) {
                 border-radius: 50px;
             }
         }
+
+
     }
 }
 
@@ -326,7 +315,7 @@ function onUnchooseSeat(butacaId: number) {
                 padding: {
                     top: 60px;
                     bottom: 20px;
-                } 
+                }
             }
         }
     }

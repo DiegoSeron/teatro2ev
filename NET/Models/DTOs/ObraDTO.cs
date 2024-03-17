@@ -6,24 +6,31 @@ public class ObraDTO
 {
     [Required]
     public int ObraId { get; set; }
-    [Required]
+     [Required]
     public string Titulo { get; set; }
     [Required]
+    public string Title { get; set; }
+    [Required]
     public string Descripcion { get; set; }
+    [Required]
+    public string Description { get; set; }
     [Required]
     public DateTime DiaObra { get; set; }
 
     [Required]
     public string Imagen { get; set; }
+
     [Required]
     public string Reparto { get; set; }
+
     [Required]
     public string Genero { get; set; }
+    [Required]
+    public string Gender { get; set; }
     [Required]
     public int Duracion { get; set; }
     [Required]
     public decimal Precio { get; set; }
-
     public List<ButacaDTO> Butacas { get; set; }
 
 
@@ -37,11 +44,14 @@ public class ObraDTO
         {
             ObraId = this.ObraId,
             Titulo = this.Titulo,
+            Title = this.Title,
             Descripcion = this.Descripcion,
+            Description = this.Description,
             DiaObra = this.DiaObra,
             Imagen = this.Imagen,
             Reparto = this.Reparto,
             Genero = this.Genero,
+            Gender = this.Gender,
             Duracion = this.Duracion,
             Precio = this.Precio,
             ListaButacaObra = this.Butacas != null ? this.Butacas.Select(b => new ButacaObra
