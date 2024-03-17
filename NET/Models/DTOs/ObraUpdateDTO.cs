@@ -6,13 +6,9 @@ public class ObraUpdateDTO
 {
      [Required]
     public string Titulo { get; set; }
-     [Required]
-    public string Title { get; set; }
     
      [Required]
     public string Descripcion { get; set; }
-     [Required]
-    public string Description { get; set; }
      [Required]
     public int Precio { get; set; }
      [Required]

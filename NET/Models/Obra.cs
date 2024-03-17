@@ -11,12 +11,10 @@ public class Obra
     public int ObraId { get; set; }
     [Required]
     public string Titulo { get; set; }
-    [Required]
-    public string Title { get; set; }
+
     [Required]
     public string Descripcion { get; set; }
-    [Required]
-    public string Description { get; set; }
+
     [Required]
     public DateTime DiaObra { get; set; }
 
@@ -28,8 +26,7 @@ public class Obra
 
     [Required]
     public string Genero { get; set; }
-    [Required]
-    public string Gender { get; set; }
+
     [Required]
     public int Duracion { get; set; }
     [Required]
@@ -41,17 +38,14 @@ public class Obra
 
     public Obra() { }
 
-    public Obra(string titulo, string title, string descripcion, string description, DateTime diaObra, string imagen, string reparto, string genero, string gender, int duracion, decimal precio)
+    public Obra(string titulo, string descripcion, DateTime diaObra, string imagen, string reparto, string genero, int duracion, decimal precio)
     {
         Titulo = titulo;
-        Title = title;
         Descripcion = descripcion;
-        Description = description;
         DiaObra = diaObra;
         Imagen = imagen;
         Reparto = reparto;
         Genero = genero;
-        Gender = gender;
         Duracion = duracion;
         Precio = precio;
         // ObraId = obraSeed;
@@ -71,14 +65,11 @@ public class Obra
         var obra = new Obra
         {
             Titulo = obraCreateDTO.Titulo,
-            Title = obraCreateDTO.Title,
             Descripcion = obraCreateDTO.Descripcion,
-            Description = obraCreateDTO.Description,
             DiaObra = obraCreateDTO.DiaObra,
             Imagen = obraCreateDTO.Imagen,
             Reparto = obraCreateDTO.Reparto,
             Genero = obraCreateDTO.Genero,
-            Gender = obraCreateDTO.Gender,
             Duracion = obraCreateDTO.Duracion,
             Precio = obraCreateDTO.Precio,
             // Resto de las propiedades...
@@ -93,14 +84,11 @@ public class Obra
         {
             ObraId = this.ObraId,
             Titulo = this.Titulo,
-            Title = this.Title,
             Descripcion = this.Descripcion,
-            Description = this.Description,
             DiaObra = this.DiaObra,
             Imagen = this.Imagen,
             Reparto = this.Reparto,
             Genero = this.Genero,
-            Gender = this.Gender,
             Duracion = this.Duracion,
             Precio = this.Precio,
             Butacas = this.ListaButacaObra.Select(bo => new ButacaDTO

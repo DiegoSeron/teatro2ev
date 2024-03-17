@@ -34,7 +34,7 @@ const openDelete = () => {
             </div>
 
             <div class="menu" v-if="editar"> 
-                <EditFunction  :descripcion="obra.descripcion" :description="obra.description" :dia-obra="obra.diaObra" :precio="obra.precio" :titulo="obra.titulo" :title="obra.title" :obra-id="obra.obraId"/>
+                <EditFunction  :descripcion="obra.descripcion"  :dia-obra="obra.diaObra" :precio="obra.precio" :titulo="obra.titulo" :obra-id="obra.obraId"/>
             </div>
         </div>
     </div>

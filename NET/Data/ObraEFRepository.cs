@@ -33,14 +33,11 @@ namespace Tickett.Data
                 {
                     ObraId = o.ObraId,
                     Titulo = o.Titulo,
-                    Title = o.Title,
                     Descripcion = o.Descripcion,
-                    Description = o.Description,
                     DiaObra = o.DiaObra,
                     Imagen = o.Imagen,
                     Reparto = o.Reparto,
                     Genero = o.Genero,
-                    Gender = o.Gender,
                     Duracion = o.Duracion,
                     Precio = o.Precio,
                 }).ToList();
@@ -87,14 +84,11 @@ namespace Tickett.Data
                 {
                     ObraId = obra.ObraId,
                     Titulo = obra.Titulo,
-                    Title = obra.Title,
                     Descripcion = obra.Descripcion,
-                    Description = obra.Description,
                     DiaObra = obra.DiaObra,
                     Imagen = obra.Imagen,
                     Reparto = obra.Reparto,
                     Genero = obra.Genero,
-                    Gender = obra.Gender,
                     Duracion = obra.Duracion,
                     Precio = obra.Precio,
                     Butacas = obra.ListaButacaObra

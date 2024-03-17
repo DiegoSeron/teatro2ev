@@ -4,15 +4,12 @@ import { computed, reactive, ref } from 'vue';
 interface Obra {
   obraId: number;
   titulo: string;
-  title : string;
   diaObra: Date;
   precio: number;
   descripcion: string;
-  description: string;
   imagen?: string;
   reparto?: string;
   genero?: string;
-  gender?: string;
   duracion?: number;
 }
 

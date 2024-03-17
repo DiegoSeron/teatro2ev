@@ -6,11 +6,9 @@ import { useFunctionStore } from '@/stores/FunctionStore';
 const props = defineProps<{
     obraId: number
     titulo: string
-    title: string
     diaObra: Date
     precio: number
     descripcion: string
-    description: string
 }>();
 
 const FunctionStore = useFunctionStore();
@@ -18,20 +16,16 @@ const FunctionStore = useFunctionStore();
 interface Obra {
     obraId: number;
     titulo: string;
-    title: string;
     diaObra: Date;
     descripcion: string;
-    description: string;
     precio: number;
 }
 
 const editedObra = reactive<Obra>({
     obraId: props.obraId,
     titulo: props.titulo,
-    title: props.title,
     diaObra: props.diaObra,
     descripcion: props.descripcion,
-    description: props.description,
     precio: props.precio
 });
 
@@ -50,27 +44,11 @@ const validateTitulo = () => {
         tituloError.value = '';
     }
 };
-const validateTitle = () => {
-    // Validación: Título no puede estar vacío
-    if (!editedObra.title.trim()) {
-        tituloError.value = 'El título es obligatorio';
-    } else {
-        tituloError.value = '';
-    }
-};
 
 // Función para validar la descripción
 const validateDescripcion = () => {
     // Validación: Descripción no puede estar vacía
     if (!editedObra.descripcion.trim()) {
-        descripcionError.value = 'La descripción es obligatoria';
-    } else {
-        descripcionError.value = '';
-    }
-};
-const validateDescription = () => {
-    // Validación: Descripción no puede estar vacía
-    if (!editedObra.description.trim()) {
         descripcionError.value = 'La descripción es obligatoria';
     } else {
         descripcionError.value = '';
@@ -100,8 +78,7 @@ const validatePrecio = () => {
 const submitForm = () => {
     // Validar todos los campos antes de enviar el formulario
     validateTitulo();
-    validateTitle();
-    validateDescription();
+    validateDescripcion();
     validateDiaObra();
     validatePrecio();
 
@@ -127,11 +104,6 @@ const submitForm = () => {
             <span class="error-message">{{ tituloError }}</span>
         </div>
         <div class="form-group">
-            <label for="title">Titulo (ingles): </label>
-            <input type="text" id="title" v-model="editedObra.title" class="form-control" />
-            <span class="error-message">{{ tituloError }}</span>
-        </div>
-        <div class="form-group">
             <label for="diaObra">Día de la obra: </label>
             <input type="datetime-local" id="diaObra" v-model="editedObra.diaObra" class="form-control" />
             <span class="error-message">{{ diaObraError }}</span>
@@ -139,11 +111,6 @@ const submitForm = () => {
         <div class="form-group">
             <label for="description">Descripción:</label>
             <textarea id="description" v-model="editedObra.descripcion" class="form-control"></textarea>
-            <span class="error-message">{{ descripcionError }}</span>
-        </div>
-        <div class="form-group">
-            <label for="description">Descripción (ingles):</label>
-            <textarea id="description" v-model="editedObra.description" class="form-control"></textarea>
             <span class="error-message">{{ descripcionError }}</span>
         </div>
         <div class="form-group">

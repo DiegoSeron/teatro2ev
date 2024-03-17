@@ -7,15 +7,12 @@ const FunctionStore = useFunctionStore();
 interface Obra {
     obraId: number;
     titulo: string;
-    title: string;
     diaObra: Date;
     precio: number;
     descripcion: string;
-    description: string;
     imagen?: string;
     reparto?: string;
     genero?: string;
-    gender?: string;
     duracion: number;
 }
 
@@ -23,13 +20,10 @@ interface Obra {
 const obra = reactive<Obra>({
     obraId: 0,
     titulo: '',
-    title: '',
     descripcion: '',
-    description: '',
     diaObra: new Date(),
     imagen: '',
     genero: '',
-    gender: '',
     duracion: 0,
     precio: 0,
     reparto: ''
@@ -57,14 +51,6 @@ const validateTitulo = () => {
         tituloError.value = '';
     }
 };
-const validateTitle = () => {
-    // Validación: Título no puede estar vacío
-    if (!obra.title.trim()) {
-        titleError.value = 'El título es obligatorio';
-    } else {
-        titleError.value = '';
-    }
-};
 
 // Función para validar la descripción
 const validateDescripcion = () => {
@@ -75,14 +61,7 @@ const validateDescripcion = () => {
         descripcionError.value = '';
     }
 };
-const validateDescription = () => {
-    // Validación: Descripción no puede estar vacía
-    if (!obra.description.trim()) {
-        descriptionError.value = 'La descripción es obligatoria';
-    } else {
-        descriptionError.value = '';
-    }
-};
+
 
 // Función para validar el día de la obra
 const validateDiaObra = () => {
@@ -115,14 +94,6 @@ const validateGenero = () => {
         generoError.value = '';
     }
 };
-const validateGender = () => {
-    // Validación: Género no puede estar vacío
-    if (!obra.gender?.trim()) {
-        genderError.value = 'El género es obligatorio';
-    } else {
-        genderError.value = '';
-    }
-};
 
 // Función para validar la duración
 const validateDuracion = () => {
@@ -149,13 +120,10 @@ const submitForm = async () => {
 
     try {
         validateTitulo();
-        validateTitle();
         validateDescripcion();
-        validateDescription();
         validateDiaObra();
         validateReparto();
         validateGenero();
-        validateGender();
         validateDuracion();
         validatePrecio();
         // Llamada a createFunction con los datos de la obra
@@ -176,23 +144,12 @@ const submitForm = async () => {
             <input type="text" id="titulo" v-model="obra.titulo" class="form-control" @input="validateTitulo">
             <span class="error-message">{{ tituloError }}</span>
         </div>
-        <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" id="title" v-model="obra.title" class="form-control" @input="validateTitle">
-            <span class="error-message">{{ titleError }}</span>
-        </div>
 
         <div class="form-group">
             <label for="descripcion">Descripción:</label>
             <textarea id="descripcion" v-model="obra.descripcion" class="form-control"
                 @input="validateDescripcion"></textarea>
             <span class="error-message">{{ descripcionError }}</span>
-        </div>
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea id="description" v-model="obra.description" class="form-control"
-                @input="validateDescription"></textarea>
-            <span class="error-message">{{ descriptionError }}</span>
         </div>
 
         <div class="form-group">
@@ -225,19 +182,6 @@ const submitForm = async () => {
                 <option value="Thriller">Thriller</option>
                 <!-- Agrega más opciones según tus necesidades -->
             </select> <span class="error-message">{{ generoError }}</span>
-        </div>
-        <div class="form-group">
-            <label for="gender">Gender:</label>
-            <select id="gender" v-model="obra.gender" class="form-control" @change="validateGender">
-                <option value="">Selecciona un género (ingles)</option>
-                <option value="Drama">Drama</option>
-                <option value="Romance">Romance</option>
-                <option value="Comedia">Comedy</option>
-                <option value="Musical">Musical</option>
-                <option value="Monologo">Monologue</option>
-                <option value="Thriller">Thriller</option>
-                <!-- Agrega más opciones según tus necesidades -->
-            </select> <span class="error-message">{{ genderError }}</span>
         </div>
 
         <div class="form-group">
