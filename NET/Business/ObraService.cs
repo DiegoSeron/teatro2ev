@@ -52,7 +52,9 @@ namespace Tickett.Business
             // Mapea los datos del DTO a la entidad Obra
             var obra = obraDto.ToObra();
             obra.Titulo = obraUpdate.Titulo;
+            obra.Title = obraUpdate.Title;
             obra.Descripcion = obraUpdate.Descripcion;
+            obra.Description = obraUpdate.Description;
             obra.Precio = obraUpdate.Precio;
             obra.DiaObra = obraUpdate.DiaObra;
 
