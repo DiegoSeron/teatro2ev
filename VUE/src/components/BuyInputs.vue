@@ -15,9 +15,9 @@ const error = ref('');
 const isValidate = ref<boolean>(false);
 
 function validate(titleInput: string) {
-    // Realiza la validación según el título del campo de entrada
     if (titleInput === "CORREO ELECTRONICO") {
         validateEmail();
+        console.log(isValidate); 
     } else if (titleInput === "CONTRASEÑA") {
         validatePassword();
     } else if (titleInput === "TITULAR DE LA TARJETA") {
@@ -28,13 +28,9 @@ function validate(titleInput: string) {
         validateExpirationDate();
     } else if (titleInput === "CVV") {
         validateCVV();
-    }else {
-        isValidate.value = true;
-
     }
-
-
     emits('validate', isValidate)
+
 }
 
 // Función de validación para el correo electrónico
@@ -47,6 +43,7 @@ const validateEmail = () => {
 
     } else {
         error.value = '';
+        isValidate.value = true;
 
     }
 };
@@ -60,6 +57,7 @@ const validatePassword = () => {
 
     } else {
         error.value = '';
+        isValidate.value = true;
 
     }
 };
@@ -74,6 +72,7 @@ const validateCardholder = () => {
 
     } else {
         error.value = '';
+        isValidate.value = true;
 
     }
 };
@@ -88,6 +87,7 @@ const validateCardNumber = () => {
 
     } else {
         error.value = '';
+        isValidate.value = true;
 
     }
 };
@@ -102,6 +102,7 @@ const validateExpirationDate = () => {
 
     } else {
         error.value = '';
+        isValidate.value = true;
 
     }
 };
@@ -116,6 +117,7 @@ const validateCVV = () => {
 
     } else {
         error.value = '';
+        isValidate.value = true;
 
     }
 };
