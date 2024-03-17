@@ -2,6 +2,9 @@
 import CardComingSoon from '@/components/CardComingSoon.vue';
 import CardInformation from '@/components/CardInformation.vue';
 import Carousel from '@/components/Carousel.vue';
+import { useFunctionStore } from '@/stores/FunctionStore';
+
+
 
 </script>
 
@@ -17,8 +20,8 @@ import Carousel from '@/components/Carousel.vue';
       <h2>PRÓXIMAS FUNCIONES</h2>
     </div>
     <div class="articlesFunction">
-      <CardComingSoon title="Diego" imageSrc="campeones.jpg" dia-obra="15/4/44" :obraId="4" />
-      <CardComingSoon title="Diego" imageSrc="donjuan.jpg" dia-obra="15/4/44" :obraId="1" />
+      <CardComingSoon title="Campeones" imageSrc="campeones.jpg" dia-obra="30/03/2024" :obraId="4" />
+      <CardComingSoon title="Don Juan" imageSrc="donjuan.jpg" dia-obra="16/02/2024" :obraId="1" />
     </div>
   </section>
   <section class="content">

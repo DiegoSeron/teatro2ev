@@ -2,6 +2,7 @@
 import BuyInputs from '@/components/BuyInputs.vue';
 import IconPaypal from '@/components/icons/IconPaypal.vue';
 import IconVisa from '@/components/icons/IconVisa.vue';
+import router from '@/router';
 import { useFunctionStore } from '@/stores/FunctionStore';
 import { useSeatStore } from '@/stores/SeatStore';
 import { reactive, ref } from 'vue';
@@ -21,6 +22,7 @@ function payFunction() {
         SeatStore.selectSeats(idFunction, element, editedSeat);
     });
 
+
 }
 
 interface seat {
@@ -33,7 +35,7 @@ const editedSeat = reactive<seat>({
 });
 
 // Recupera las butacas seleccionadas de sessionStorage
-const butacasSeleccionadas = JSON.parse(sessionStorage.getItem('choosenSeats') as string) || [];
+const butacasSeleccionadas = SeatStore.choosenSeats
 // Función de comparación para ordenar los números de menor a mayor
 const compararNumeros = (a: number, b: number) => a - b;
 // Ordenar el array de butacas seleccionadas de menor a mayor
@@ -51,9 +53,17 @@ if (butacasSeleccionadas) {
     console.log('No hay butacas seleccionadas en el localStorage');
 }
 
+const isValidate = ref<boolean>(false);
+
+// Maneja el evento de validación enviado por los componentes hijos
+const handleValidation = (isValid: boolean) => {
+    isValidate.value = isValid;
+    console.log('en el padre', isValid);
+};
 
 
 const opcionSeleccionada = ref('opcion1'); // Valor por defecto
+
 
 </script>
 
@@ -71,13 +81,14 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
             <div>
                 <h2>BUTACAS SELECCIONADAS</h2>
                 <div>
-                    <h3 v-for="(seat, index) in butacasSeleccionadas" :key="index">Butaca Nº{{ seat }} | {{ dataFunction?.precio }}€</h3>
+                    <h3 v-for="(seat, index) in butacasSeleccionadas" :key="index">Butaca Nº{{ seat }} | {{
+                    dataFunction?.precio }}€</h3>
                 </div>
             </div>
             <div>
                 <h2>IMPORTE TOTAL</h2>
                 <div>
-                    <h3 >{{ precioTotal }}€</h3>
+                    <h3>{{ precioTotal }}€</h3>
                 </div>
             </div>
         </div>
@@ -85,14 +96,14 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
             <div style="display: flex; align-items: center;">
                 <input type="radio" id="opcion1" name="opciones" value="opcion1" checked v-model="opcionSeleccionada">
                 <label for="opcion1">
-                    <IconPaypal/>
+                    <IconPaypal />
                 </label>
             </div>
 
             <div style="display: flex; align-items: center;">
                 <input type="radio" id="opcion2" name="opciones" value="opcion2" v-model="opcionSeleccionada">
                 <label for="opcion2">
-                    <IconVisa/> 
+                    <IconVisa />
                 </label>
 
 
@@ -101,33 +112,34 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
             <div id="menuOpcion1" class="menu" v-if="opcionSeleccionada === 'opcion1'">
 
                 <BuyInputs titleInput="CORREO ELECTRONICO" classInput="email" typeInput="email"
-                    placeholderInput="example@gmail.com" />
+                    placeholderInput="example@gmail.com" @validate="handleValidation" />
 
                 <BuyInputs titleInput="CONTRASEÑA" classInput="password" typeInput="password"
-                    placeholderInput="Contraseña123" />
+                    placeholderInput="Contraseña123" @validate="handleValidation" />
 
 
 
 
             </div>
 
-            <div id="menuOpcion2" class="menu" v-else-if="opcionSeleccionada === 'opcion2'">
+            <div id="menuOpcion2" class="menu" v-else>
 
                 <BuyInputs titleInput="TITULAR DE LA TARJETA" classInput="text" typeInput="text"
-                    placeholderInput="NOMBRE APELLIDO APELLIDO" />
+                    placeholderInput="NOMBRE APELLIDO APELLIDO" @validate="handleValidation" />
                 <BuyInputs titleInput="NUMERO DE TARJETA" classInput="text" typeInput="text"
-                    placeholderInput="XXXXXXXXXXXXXXXX" />
-                <BuyInputs titleInput="FECHA DE CADUCIDAD" classInput="text" typeInput="text"
-                    placeholderInput="MM/AAAA" />
-                <BuyInputs titleInput="CVV" classInput="password" typeInput="password" placeholderInput="123" />
+                    placeholderInput="XXXXXXXXXXXXXXXX" @validate="handleValidation" />
+                <BuyInputs titleInput="FECHA DE CADUCIDAD" classInput="text" typeInput="text" placeholderInput="MM/AAAA"
+                    @validate="handleValidation" />
+                <BuyInputs titleInput="CVV" classInput="password" typeInput="password" placeholderInput="123"
+                    @validate="handleValidation" />
 
             </div>
 
         </div>
 
         <div class="buttons">
-            <RouterLink :to="'/Obra'">CANCELAR</RouterLink>
-            <RouterLink :to="'/Obra'" @click="payFunction">PAGAR</RouterLink>
+            <RouterLink :to="'/Obra'" @click="SeatStore.deleteSeats">CANCELAR</RouterLink>
+            <RouterLink :to="'/Resumen'" @click="payFunction">PAGAR</RouterLink>
         </div>
     </div>
 </template>
@@ -285,22 +297,22 @@ body {
     .info {
 
 
-    h2 {
-        @include h2(36px);
+        h2 {
+            @include h2(36px);
+        }
+
+        h3 {
+            @include h3(25px);
+
+        }
+
+
     }
-
-    h3 {
-        @include h3(25px);
-
-    }
-
-
-}
 
     .pago {
         div {
             label {
-                width: 50%;
+                width: 30%;
                 height: auto;
             }
         }

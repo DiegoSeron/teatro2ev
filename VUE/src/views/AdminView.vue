@@ -40,10 +40,28 @@ const logout = () => {
 
         </div>
 
-        <RouterLink :to="'/'" @click="logout">logout</RouterLink>
+        <div class="divLogout">
+        <RouterLink :to="'/'" @click="logout" class="logout">LOGOUT</RouterLink>
+    </div>
 
     </div>
 
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+$secondlyFont: 'Montserrat';
+.pago {
+    .divLogout {
+        padding: 20px;
+        .logout{
+            color: white;
+            background-color: red;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: $secondlyFont;
+        }
+    }
+}
+</style>

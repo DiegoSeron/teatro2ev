@@ -25,7 +25,6 @@ namespace Tickett.Data
         {
             var obras = _context.Obras
                 .Include(b => b.ListaButacaObra)
-                    .ThenInclude(bo => bo.Butaca)
                 .ToList();
 
             if (obras != null)
@@ -34,20 +33,16 @@ namespace Tickett.Data
                 {
                     ObraId = o.ObraId,
                     Titulo = o.Titulo,
+                    Title = o.Title,
                     Descripcion = o.Descripcion,
+                    Description = o.Description,
                     DiaObra = o.DiaObra,
                     Imagen = o.Imagen,
                     Reparto = o.Reparto,
                     Genero = o.Genero,
+                    Gender = o.Gender,
                     Duracion = o.Duracion,
                     Precio = o.Precio,
-                    Butacas = o.ListaButacaObra
-                    .Where(bo => bo != null && bo.Butaca != null)
-                    .Select(bo => new ButacaDTO
-                    {
-                        ButacaId = bo.ButacaId,
-                        Libre = bo.Libre ? true : false
-                    }).ToList()
                 }).ToList();
                 return obraDto;
             }
@@ -92,11 +87,14 @@ namespace Tickett.Data
                 {
                     ObraId = obra.ObraId,
                     Titulo = obra.Titulo,
+                    Title = obra.Title,
                     Descripcion = obra.Descripcion,
+                    Description = obra.Description,
                     DiaObra = obra.DiaObra,
                     Imagen = obra.Imagen,
                     Reparto = obra.Reparto,
                     Genero = obra.Genero,
+                    Gender = obra.Gender,
                     Duracion = obra.Duracion,
                     Precio = obra.Precio,
                     Butacas = obra.ListaButacaObra

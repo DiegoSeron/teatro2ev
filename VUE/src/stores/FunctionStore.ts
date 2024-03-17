@@ -4,12 +4,15 @@ import { computed, reactive, ref } from 'vue';
 interface Obra {
   obraId: number;
   titulo: string;
+  title : string;
   diaObra: Date;
   precio: number;
   descripcion: string;
+  description: string;
   imagen?: string;
   reparto?: string;
   genero?: string;
+  gender?: string;
   duracion?: number;
 }
 
@@ -17,6 +20,8 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
   // State
   const functions = reactive(new Array<Obra>);
   const selectedFunctionId = ref<number>(-1); // Inicializa con un valor que represente que no hay ninguna obra seleccionada
+
+
 
   // Getter
   // calcula la cantidad de funciones que hay
@@ -132,5 +137,38 @@ export const useFunctionStore = defineStore('FunctionStore', () => {
     return hora.toLocaleTimeString('es-ES', options);
   };
 
-  return { functions, calcularCantidad, fetchFunctions, searchFunctionsPerId, deleteFunction, createFunction, editFunction, selectedFunction, formatoHora, formatoDia,formatoFecha };
+  // Filtrar funciones por título
+  function filterFunctionsByTitle(title: string) {
+    console.log('Busco por titulo en la store');
+    if (title.length < 2){      
+      return functions;
+    }else {
+      const functionsFiltered = functions.filter(func => func.titulo.toLowerCase().includes(title.toLowerCase()));
+      return functionsFiltered
+    }
+  }
+
+  function filterFunctionsByGenre(genres: string[]) {
+    console.log('Busco por género en la store');
+    console.log(genres);
+
+    // Verifica si no se han seleccionado géneros
+    if (genres.length < 2 ) {
+      console.log('Ningún género seleccionado');
+      // Si no se ha seleccionado ningún género, devuelve todas las funciones sin filtrar
+      return functions;
+
+    } else{
+        // Filtra las funciones que coinciden con al menos uno de los géneros seleccionados
+        const functionsFiltered = functions.filter(func => {
+          // Verifica si la función tiene al menos uno de los géneros seleccionados
+          return func.genero && genres.some(genre => func.genero?.toLowerCase() === genre.toLowerCase());
+      });
+      return functionsFiltered;
+
+    }
+}
+
+
+  return { functions, calcularCantidad, fetchFunctions, searchFunctionsPerId, deleteFunction, createFunction, editFunction, selectedFunction, formatoHora, formatoDia,formatoFecha, filterFunctionsByTitle, filterFunctionsByGenre };
 });
