@@ -6,7 +6,7 @@ import Filter from '@/components/Filter.vue';
 
 const FunctionStore = useFunctionStore();
 
-
+FunctionStore.fetchFunctions();
 
 
 
