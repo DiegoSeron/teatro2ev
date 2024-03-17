@@ -3,13 +3,17 @@
 import { useFunctionStore } from '@/stores/FunctionStore';
 import CardGrid from '../components/CardGrid.vue';
 import Filter from '@/components/Filter.vue';
+import { ref } from 'vue';
 
 const FunctionStore = useFunctionStore();
 
+
 FunctionStore.fetchFunctions();
 
-
-
+// Manejar el evento para actualizar las funciones filtradas
+function onFilteredFunctions(filteredFunctions: any) {
+    FunctionStore.functions = filteredFunctions
+}
 
 </script>
 
@@ -24,7 +28,7 @@ FunctionStore.fetchFunctions();
 
 
         <aside class="sidebar" id="sidebar">
-            <Filter/>
+            <Filter @filter="onFilteredFunctions" />
 
         </aside>
     </div>

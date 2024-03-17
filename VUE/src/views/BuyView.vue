@@ -14,20 +14,14 @@ const dataFunction = FunctionStore.selectedFunction;
 
 // llama al endpoint para reservar las butacas
 function payFunction() {
-    if (isValidate.value === false) {
-        alert('false')
-    }else {
-        alert('true')
-        router.push('/Resumen');
+    const idFunction = dataFunction?.obraId as number;
 
-        const idFunction = dataFunction?.obraId as number;
+    butacasSeleccionadas.forEach((element: number) => {
+        console.log(element);
 
-butacasSeleccionadas.forEach((element: number) => {
-    console.log(element);
+        SeatStore.selectSeats(idFunction, element, editedSeat);
+    });
 
-    SeatStore.selectSeats(idFunction, element, editedSeat);
-});
-    }
 
 }
 
@@ -87,13 +81,14 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
             <div>
                 <h2>BUTACAS SELECCIONADAS</h2>
                 <div>
-                    <h3 v-for="(seat, index) in butacasSeleccionadas" :key="index">Butaca Nº{{ seat }} | {{ dataFunction?.precio }}€</h3>
+                    <h3 v-for="(seat, index) in butacasSeleccionadas" :key="index">Butaca Nº{{ seat }} | {{
+                    dataFunction?.precio }}€</h3>
                 </div>
             </div>
             <div>
                 <h2>IMPORTE TOTAL</h2>
                 <div>
-                    <h3 >{{ precioTotal }}€</h3>
+                    <h3>{{ precioTotal }}€</h3>
                 </div>
             </div>
         </div>
@@ -101,14 +96,14 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
             <div style="display: flex; align-items: center;">
                 <input type="radio" id="opcion1" name="opciones" value="opcion1" checked v-model="opcionSeleccionada">
                 <label for="opcion1">
-                    <IconPaypal/>
+                    <IconPaypal />
                 </label>
             </div>
 
             <div style="display: flex; align-items: center;">
                 <input type="radio" id="opcion2" name="opciones" value="opcion2" v-model="opcionSeleccionada">
                 <label for="opcion2">
-                    <IconVisa/> 
+                    <IconVisa />
                 </label>
 
 
@@ -117,10 +112,10 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
             <div id="menuOpcion1" class="menu" v-if="opcionSeleccionada === 'opcion1'">
 
                 <BuyInputs titleInput="CORREO ELECTRONICO" classInput="email" typeInput="email"
-                    placeholderInput="example@gmail.com" @validate="handleValidation"/>
+                    placeholderInput="example@gmail.com" @validate="handleValidation" />
 
                 <BuyInputs titleInput="CONTRASEÑA" classInput="password" typeInput="password"
-                    placeholderInput="Contraseña123" @validate="handleValidation"/>
+                    placeholderInput="Contraseña123" @validate="handleValidation" />
 
 
 
@@ -130,19 +125,20 @@ const opcionSeleccionada = ref('opcion1'); // Valor por defecto
             <div id="menuOpcion2" class="menu" v-else>
 
                 <BuyInputs titleInput="TITULAR DE LA TARJETA" classInput="text" typeInput="text"
-                    placeholderInput="NOMBRE APELLIDO APELLIDO" @validate="handleValidation"/>
+                    placeholderInput="NOMBRE APELLIDO APELLIDO" @validate="handleValidation" />
                 <BuyInputs titleInput="NUMERO DE TARJETA" classInput="text" typeInput="text"
-                    placeholderInput="XXXXXXXXXXXXXXXX" @validate="handleValidation"/>
-                <BuyInputs titleInput="FECHA DE CADUCIDAD" classInput="text" typeInput="text"
-                    placeholderInput="MM/AAAA" @validate="handleValidation" />
-                <BuyInputs titleInput="CVV" classInput="password" typeInput="password" placeholderInput="123" @validate="handleValidation"/>
+                    placeholderInput="XXXXXXXXXXXXXXXX" @validate="handleValidation" />
+                <BuyInputs titleInput="FECHA DE CADUCIDAD" classInput="text" typeInput="text" placeholderInput="MM/AAAA"
+                    @validate="handleValidation" />
+                <BuyInputs titleInput="CVV" classInput="password" typeInput="password" placeholderInput="123"
+                    @validate="handleValidation" />
 
             </div>
 
         </div>
 
-        <div class="buttons" >
-            <RouterLink :to="'/Obra'" @click="SeatStore.deleteSeats" >CANCELAR</RouterLink>
+        <div class="buttons">
+            <RouterLink :to="'/Obra'" @click="SeatStore.deleteSeats">CANCELAR</RouterLink>
             <RouterLink :to="'/Resumen'" @click="payFunction">PAGAR</RouterLink>
         </div>
     </div>
@@ -301,17 +297,17 @@ body {
     .info {
 
 
-    h2 {
-        @include h2(36px);
+        h2 {
+            @include h2(36px);
+        }
+
+        h3 {
+            @include h3(25px);
+
+        }
+
+
     }
-
-    h3 {
-        @include h3(25px);
-
-    }
-
-
-}
 
     .pago {
         div {
