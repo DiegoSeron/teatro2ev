@@ -31,6 +31,6 @@ services:
             - backend
         build:
           context: .
-          dockerfile: API/Dockerfile
+          dockerfile: Dockerfile
         depends_on:
             - db    #API without db running is useless

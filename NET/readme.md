@@ -18,3 +18,9 @@ docker commit & docker push
 `dotnet ef migrations add InitialCreate -p ./Data/Tickett.Data.csproj -s ./API/Tickett.API.csproj`
 `dotnet ef database update  -p ./Data/Tickett.Data.csproj -s ./API/Tickett.API.csproj`
 `dotnet ef database drop  -p ./Data/Tickett.Data.csproj -s ./API/Tickett.API.csproj`
+
+
+## Idea a aplicar para los asientos
+`nuestras salas tienen asientos fijos, en el momento que hace el get pinta un array con los asientos en localStorage y cuando seleccionas los asientos`
+`modificas el estado del asiento en ese array y lo envias a vue, Despues guardas en una tabla reservas el id de la obra y un array<int> con los numeros`
+`de los asientos seleccionados.`

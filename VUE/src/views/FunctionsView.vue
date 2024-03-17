@@ -1,11 +1,19 @@
 <script setup lang="ts">
 
+import { useFunctionStore } from '@/stores/FunctionStore';
 import CardGrid from '../components/CardGrid.vue';
+import Filter from '@/components/Filter.vue';
+import { ref } from 'vue';
 
-import { useFunctionsStore } from '@/store/obras-store'
+const FunctionStore = useFunctionStore();
 
-const datosApi = useFunctionsStore()
 
+FunctionStore.fetchFunctions();
+
+// Manejar el evento para actualizar las funciones filtradas
+function onFilteredFunctions(filteredFunctions: any) {
+    FunctionStore.functions = filteredFunctions
+}
 
 </script>
 
@@ -13,44 +21,27 @@ const datosApi = useFunctionsStore()
     <div class="content">
         <section class="functions">
 
-            <CardGrid v-for="obra in datosApi" :obraId="obra.obraId" :title="obra.titulo" 
-                :dia-obra="obra.diaObra" :imageSrc="obra.imagen" :genero="obra.genero" />
+
+            <CardGrid v-for="obra in FunctionStore.functions" :obraId="obra.obraId" :title="obra.titulo"
+                :dia-obra="obra.diaObra.toString()" :imageSrc="obra.imagen" :genero="obra.genero" class="card" />
         </section>
 
 
         <aside class="sidebar" id="sidebar">
+            <Filter @filter="onFilteredFunctions" />
 
-            <div class="filter">
-                <div class="filter__search">
-                    <input type="text" placeholder="BUSCAR...">
-                    <img src="../../iconos/icons8-búsqueda-500-ROJO 1.png" alt="">
-                </div>
-                <div class="filter__gender">
-                    <ul>
-                        <li><input type="checkbox" class="genre" value="drama">DRAMA</li>
-                        <li><input type="checkbox" class="genre" value="romance">ROMANCE</li>
-                        <li><input type="checkbox" class="genre" value="comedia">COMEDIA</li>
-                        <li><input type="checkbox" class="genre" value="musical">MUSICAL</li>
-                        <li><input type="checkbox" class="genre" value="monologo">MONÓLOGO</li>
-                        <li><input type="checkbox" class="genre" value="thriller">THRILLER</li>
-                    </ul>
-                </div>
-                <div class="close" id="close" onclick="cerrarFiltros()">
-                    cerrar
-                </div>
-            </div>
         </aside>
     </div>
 </template>
 
-<style>
-.functions {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-}
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+$primaryColor: #ba1313;
+$primaryFont: 'Bebas Neue';
+$secondlyFont: 'Montserrat';
+
 
 .content {
     width: 100%;
@@ -59,110 +50,119 @@ const datosApi = useFunctionsStore()
     flex-direction: column;
 }
 
+
+.functions {
+
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+
+    .card {
+        background-color: $primaryColor;
+        width: auto;
+        height: auto;
+        margin: 10px;
+        flex-basis: calc(50% - 20px);
+        border-radius: 15px 15px 5px 5px;
+        transition: all 300ms ease;
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+
+    }
+
+}
+
 .sidebar {
     display: none;
     position: fixed;
     right: 0;
     width: 28%;
     height: auto;
+
     background-color: #fff;
+
 }
 
-.sidebar .filter {
-    width: 100%;
+.close {
+    padding: 12px;
+    background-color: #ba1313;
+    border: 2px solid black;
+    color: white;
+    font-family: $secondlyFont;
+}
+
+.iconFilter {
+    display: block;
     height: auto;
-    position: relative;
-    margin-top: 10%;
-}
+    width: auto;
+    background-color: #ba1313;
 
-.sidebar .filter__search {
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sidebar .filter__search input {
-    width: 90%;
     border-radius: 50px;
-    height: 30px;
-}
+    padding: 9px;
+    color: #fff;
+    font-family: $secondlyFont;
 
-.sidebar .filter__search img {
-    position: absolute;
-    left: 75%;
-    width: 20px;
+    margin: {
+        left: 70%;
+        top: 15px;
+        right: 15px;
+        bottom: 15px;
+    }
+
     cursor: pointer;
 }
 
-.sidebar .filter__gender {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-}
-
-.sidebar .filter__gender ul {
-    width: 100%;
-    padding: 0;
-    list-style: none;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-right: 50%;
-    margin-left: 50%;
-    font-size: 13px;
-    font-family: "Montserrat";
-}
-
-.sidebar .filter__gender ul li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2%;
-}
-
-.sidebar .filter__gender ul li input {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ba1313;
-    background-color: #fff;
-}
-
-.sidebar .filter__gender ul li input:checked {
-    background-color: #ba1313;
-}
-
-
 /* PARA ORDENADORES */
 @media screen and (min-width: 767px) {
+
     .functions {
         width: 70%;
         margin: 15px;
-    }
 
-    .functions .card {
-        flex-basis: calc(33% - 20px);
+        .card {
+            flex-basis: calc(31% - 40px);
+            margin-bottom: 50px;
+        }
+
     }
 
     .sidebar {
         display: block !important;
+
+        .filter {
+            &__search {
+                img {
+                    left: 82%;
+                    width: 25px;
+                }
+            }
+
+            &__gender {
+                ul {
+                    font-size: 18px;
+                }
+            }
+        }
     }
 
-    .sidebar .filter__search img {
-        left: 82%;
-        width: 25px;
+    .iconFilter {
+        display: none;
+
     }
 
-    .sidebar .filter__gender ul {
-        font-size: 18px;
+    .close {
+        display: none;
+
+
     }
+
 
 }
 </style>

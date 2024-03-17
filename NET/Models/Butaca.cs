@@ -7,18 +7,12 @@ public class Butaca
 {
     [Key]
     public int ButacaId { get; set; }
-    [Required]
     public bool Libre { get; set; }
-    [Required]
-    public int ObraId { get; set; }
-    public Obra Obra { get; set; }
+    public List<ButacaObra> ListaButacaObra { get; set; }
 
-    
     public Butaca() { }
-    public Butaca(int butacaId, bool libre, int obraId)
+    public Butaca(int butacaId, bool libre)
     {
-        Libre = libre;
-        ObraId = obraId;
         ButacaId = butacaId;
         //     ButacaId = butacaSeed;
         //     butacaSeed++;

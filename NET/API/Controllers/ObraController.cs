@@ -16,20 +16,23 @@ public class ObraController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<Obra>> GetAll() =>
+    public ActionResult<List<ObraDTO>> GetAll() =>
     _obraService.GetAll();
 
 
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Obra> Get(int id)
+    public ActionResult<ObraDTO> Get(int id)
     {
         var obra = _obraService.Get(id);
 
-        if (obra == null){
+        if (obra == null)
+        {
             return NotFound();
-        }else{
+        }
+        else
+        {
             return obra;
         }
     }
@@ -37,33 +40,44 @@ public class ObraController : ControllerBase
 
 
 
-    [HttpPost]
-    public IActionResult Create(Obra obra)
-    {
-        _obraService.Add(obra);
-        return CreatedAtAction(nameof(Get), new { id = obra.ObraId }, obra);
-    }
+    // [HttpPost]
+    // public IActionResult Create(ObraCreateDTO obraCreateDTO)
+    // {
+    //     var obra = new Obra();
+    //     var mappedObra = obra.mapFromCreateDto(obraCreateDTO); // Suponiendo que mapFromCreateDto no es estático
+    //     _obraService.Add(mappedObra);
+    //     return CreatedAtAction(nameof(Get), new { id = mappedObra.ObraId }, mappedObra);
+    // }
 
+    [HttpPost]
+    public IActionResult Create([FromBody] ObraCreateDTO obraCreateDTO)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        _obraService.Add(obraCreateDTO);
+        return Ok();
+    }
 
 
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id, Obra obra)
+    public IActionResult Update(int id, [FromBody] ObraUpdateDTO obraUpdateDTO)
     {
-        if (id != obra.ObraId)
-            return BadRequest();
+        if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-        var existingObra = _obraService.Get(id);
-        if (existingObra is null)
+        try
+        {
+            _obraService.Update(id, obraUpdateDTO);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
             return NotFound();
-
-        _obraService.Update(obra);
-
-        return NoContent();
+        }
     }
-
-
-
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)

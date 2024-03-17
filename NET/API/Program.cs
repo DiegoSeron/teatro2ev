@@ -15,7 +15,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy  =>
                       {
-                          policy.WithOrigins("http://localhost:5173");
+                          policy.WithOrigins("http://tickett.retocsv.es:80")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
                       });
 });
 
@@ -33,6 +35,12 @@ var connectionString = builder.Configuration.GetConnectionString("ServerDB");
 // builder.Services.AddScoped<IObraService, ObraService>();
 builder.Services.AddScoped<IObraService, ObraService>();
 builder.Services.AddScoped<IObraRepository, ObraEFRepository>();
+
+builder.Services.AddScoped<ISeatService, SeatService>();
+builder.Services.AddScoped<ISeatRepository, SeatEFRepository>();
+
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserEFRepository>();
 
 // builder.Services.AddScoped<IIngredienteService, IngredienteService>();
 // builder.Services.AddScoped<IIngredientesRepository, IngredienteEFRepository>();

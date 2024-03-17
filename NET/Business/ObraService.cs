@@ -1,6 +1,8 @@
 using Tickett.Data;
 using Tickett.Business;
 using Tickett.Models;
+using Microsoft.VisualBasic;
+using System.Diagnostics.Metrics;
 
 
 namespace Tickett.Business
@@ -9,59 +11,65 @@ namespace Tickett.Business
     {
 
         private readonly IObraRepository _obraRepository;
-        
 
-        public ObraService(IObraRepository obraRepository){
+        public ObraService(IObraRepository obraRepository)
+        {
             _obraRepository = obraRepository;
-        
+
         }
-        public  List<Obra> GetAll()
+        public List<ObraDTO> GetAll()
         {
-            var pizzas = _obraRepository.GetAll();
-            // foreach (var pizza in pizzas)
-            // {
-            //     pizza.Ingredientes = _ingredientesRepository.GetIngredientesByPizzaId(pizza.Id);
-            // }
-            return pizzas;
+            var obras = _obraRepository.GetAll();
+            return obras;
         }
 
-        public  Obra Get(int id)
+
+        public ObraDTO Get(int id)
         {
-            var pizza = _obraRepository.Get(id);
-
-            // if (pizza != null)
-            // {
-            //     pizza.Ingredientes = _ingredientesRepository.GetIngredientesByPizzaId(pizza.Id);
-            // }
-
-            return pizza;
+            var obra = _obraRepository.Get(id);
+            // Aquí deberías mapear la instancia de Obra a ObraDTO si es necesario
+            return obra;
         }
-          
 
-    public  void Add(Obra obra)
-    {
-        _obraRepository.Add(obra);
 
-            // foreach (var ingrediente in pizza.Ingredientes)
-            // {
-            //     _ingredientesRepository.AddIngredienteToPizza(ingrediente, pizza.Id);
-            // }
+        public void Add(ObraCreateDTO obraCreateDTO)
+        {
+
+            var obra = new Obra();
+            var mappedObra = obra.mapFromCreateDto(obraCreateDTO);
+            _obraRepository.Add(mappedObra);
+
+        }
+
+        public void Update(int id, ObraUpdateDTO obraUpdate)
+        {
+            var obraDto = _obraRepository.Get(id);
+            if (obraDto == null)
+            {
+                throw new KeyNotFoundException($"Obra con Id {id} no encontrada.");
+            }
+
+            // Mapea los datos del DTO a la entidad Obra
+            var obra = obraDto.ToObra();
+            obra.Titulo = obraUpdate.Titulo;
+            obra.Descripcion = obraUpdate.Descripcion;
+            obra.Precio = obraUpdate.Precio;
+            obra.DiaObra = obraUpdate.DiaObra;
+
+            // Llama al método Update del repositorio con la entidad Obra actualizada
+            _obraRepository.Update(obra);
+        }
+
+
+
+        public void Delete(int id)
+        {
+            _obraRepository.Delete(id);
+        }
     }
 
-    public  void Update(Obra obra)
-    {
-        _obraRepository.Update(obra);
 
-            // _ingredientesRepository.UpdateIngredientesForPizza(pizza.Ingredientes, pizza.Id);
-    }
 
-    public  void Delete(int id)
-    {
-        _obraRepository.Delete(id);
-    }
+
 }
-
-
-        
-    }
 
