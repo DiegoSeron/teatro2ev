@@ -2,10 +2,10 @@
 
 import { useFunctionStore } from '@/stores/FunctionStore';
 import CardGrid from '../components/CardGrid.vue';
+import Filter from '@/components/Filter.vue';
 
 const FunctionStore = useFunctionStore();
 
-FunctionStore.fetchFunctions();
 
 
 
@@ -24,25 +24,8 @@ FunctionStore.fetchFunctions();
 
 
         <aside class="sidebar" id="sidebar">
+            <Filter/>
 
-            <div class="filter">
-                <div class="filter__search">
-                    <input type="text" placeholder="BUSCAR...">
-                </div>
-                <div class="filter__gender">
-                    <ul>
-                        <li><input type="checkbox" class="genre" value="drama">DRAMA</li>
-                        <li><input type="checkbox" class="genre" value="romance">ROMANCE</li>
-                        <li><input type="checkbox" class="genre" value="comedia">COMEDIA</li>
-                        <li><input type="checkbox" class="genre" value="musical">MUSICAL</li>
-                        <li><input type="checkbox" class="genre" value="monologo">MONÓLOGO</li>
-                        <li><input type="checkbox" class="genre" value="thriller">THRILLER</li>
-                    </ul>
-                </div>
-                <div class="close" id="close" onclick="cerrarFiltros()">
-                    cerrar
-                </div>
-            </div>
         </aside>
     </div>
 </template>
@@ -100,103 +83,6 @@ $secondlyFont: 'Montserrat';
     height: auto;
 
     background-color: #fff;
-
-    .filter {
-        width: 100%;
-        height: auto;
-        position: relative;
-
-        margin: {
-            top: 10%;
-        }
-
-        &__search {
-            width: 100%;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-
-            input {
-
-                width: 90%;
-                border-radius: 50px;
-                height: 30px;
-            }
-
-            img {
-                position: absolute;
-                left: 75%;
-                width: 20px;
-                cursor: pointer;
-            }
-        }
-
-        &__gender {
-            width: 100%;
-            height: auto;
-
-            display: flex;
-            justify-content: center;
-
-            ul {
-
-                width: 100%;
-
-                padding: 0;
-
-                list-style: none;
-                text-align: left;
-
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: flex-start;
-
-                margin: {
-                    right: 50%;
-                    left: 50%;
-                }
-
-
-                font: {
-                    size: 13px;
-                    family: $secondlyFont;
-                }
-
-                li {
-
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    padding: 2%;
-
-                    input {
-                        appearance: none;
-                        -webkit-appearance: none;
-                        -moz-appearance: none;
-
-                        width: 20px;
-                        height: 20px;
-
-                        border: 1px solid $primaryColor;
-                        background-color: #fff;
-
-                    }
-
-                    input:checked {
-                        background-color: $primaryColor;
-                    }
-
-
-                }
-            }
-
-        }
-
-    }
 
 }
 
