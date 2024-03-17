@@ -72,44 +72,18 @@ import CarouselFunction from './CarouselFunction.vue';
 /* PARA ORDENADORES */
 @media screen and (min-width: 767px) {
     .carousel {
-        margin-top: 50px;
-        margin-bottom: 50px;
+
 
         .carousel-inner {
-            padding-top: 60px;
-            padding-bottom: 60px;
-            background-color: #ba1313;
 
             .carousel-item div {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 350px;
+                height: 450px;
                 margin-left: 50px;
                 margin-right: 50px;
 
-                .info {
-                    width: 20%;
-                    display: flex;
-                    flex-direction: column;
-
-                    h1 {
-                        font-family: "Bebas Neue";
-                        color: #ffffff !important;
-                        font-size: 80px;
-                    }
-                }
-
-                .containerImg {
-                    width: 15%;
-                    height: 90%;
-
-                    img {
-                        width: 100%;
-                        height: auto;
-                        border-radius: 15px;
-                    }
-                }
             }
         }
     }
