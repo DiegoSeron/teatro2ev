@@ -41,14 +41,17 @@ public class Obra
 
     public Obra() { }
 
-    public Obra(string titulo, string descripcion, DateTime diaObra, string imagen, string reparto, string genero, int duracion, decimal precio)
+    public Obra(string titulo, string title, string descripcion, string description, DateTime diaObra, string imagen, string reparto, string genero, string gender, int duracion, decimal precio)
     {
         Titulo = titulo;
+        Title = title;
         Descripcion = descripcion;
+        Description = description;
         DiaObra = diaObra;
         Imagen = imagen;
         Reparto = reparto;
         Genero = genero;
+        Gender = gender;
         Duracion = duracion;
         Precio = precio;
         // ObraId = obraSeed;
