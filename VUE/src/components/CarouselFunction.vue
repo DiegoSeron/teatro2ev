@@ -67,8 +67,10 @@ const props = defineProps<{
     }
 
     .containerImg {
-        width: 15%;
+        width: 13%;
         height: 90%;
+        display: flex;
+        align-items: center;
 
         img {
             width: 100%;
