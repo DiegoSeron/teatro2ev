@@ -25,7 +25,6 @@ namespace Tickett.Data
         {
             var obras = _context.Obras
                 .Include(b => b.ListaButacaObra)
-                    .ThenInclude(bo => bo.Butaca)
                 .ToList();
 
             if (obras != null)
@@ -44,13 +43,6 @@ namespace Tickett.Data
                     Gender = o.Gender,
                     Duracion = o.Duracion,
                     Precio = o.Precio,
-                    Butacas = o.ListaButacaObra
-                    .Where(bo => bo != null && bo.Butaca != null)
-                    .Select(bo => new ButacaDTO
-                    {
-                        ButacaId = bo.ButacaId,
-                        Libre = bo.Libre ? true : false
-                    }).ToList()
                 }).ToList();
                 return obraDto;
             }
